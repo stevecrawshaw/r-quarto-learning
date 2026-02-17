@@ -1,0 +1,252 @@
+---
+title: "Session 4: Quarto Mastery"
+subtitle: "Author professional reproducible reports"
+---
+
+- **Duration:** 4 hours
+- **Goal:** Author professional, reproducible reports that combine narrative, code, visualisations, and tables.
+
+So far you've written code that produces charts. Today you turn that into a professional document -- one that updates itself when data changes, never has a copy-paste error, and can produce HTML and PDF from the same source.
+
+## Learning Outcomes
+
+- Structure multi-section Quarto documents
+- Control code chunk execution and output
+- Format text with Markdown syntax
+- Create professional tables
+- Use cross-references for figures and tables
+- Understand the "freeze" workflow for collaboration
+- Render both HTML and PDF outputs
+
+## Session Structure
+
+### Part 1: Homework Review (30 min)
+
+- Show-and-tell: Volunteers share their cleaned datasets and draught indicators
+- Discussion: What data cleaning challenges did you encounter?
+
+### Part 2: Markdown Essentials (45 min)
+
+Your indicator chapter needs headings, formatted text, and structured findings -- not just code.
+
+**Basic Syntax:**
+
+```markdown
+# Heading 1
+## Heading 2
+### Heading 3
+
+**Bold text**
+*Italic text*
+
+- Bullet point
+- Another point
+  - Nested point
+
+1. Numbered list
+2. Second item
+
+[Link text](https://example.com)
+
+> Block quote - for highlighting key findings
+
+`inline code` for variable names like `employment_rate`
+```
+
+**Guided Practise (20 min):**
+
+Add section headings, format key numbers, create bulleted lists, and add block quotes to your chapter.
+
+### Part 3: Quarto Code Chunks (60 min)
+
+Control what readers see: hide the data wrangling, show the chart, embed key numbers in your narrative.
+
+**Anatomy of a Code Chunk:**
+
+````
+```{{r}}
+#| label: my-analysis
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Employment trends across the region"
+#| fig-width: 8
+#| fig-height: 5
+
+# Your R code here
+ggplot(data, aes(x = year, y = value)) +
+  geom_line() +
+  theme_weca()
+```
+````
+
+**Key Chunk Options:**
+
+| Option | Effect | When to Use |
+|--------|--------|-------------|
+| `echo: false` | Hide code, show output | Final reports |
+| `echo: true` | Show code and output | Teaching, documentation |
+| `eval: false` | Show code, don't run | Example code |
+| `include: false` | Run code, hide everything | Setup chunks |
+| `warning: false` | Suppress warnings | Known harmless warnings |
+| `fig-cap: "..."` | Figure caption | All charts (for accessibility) |
+| `label: my-chunk` | Chunk identifier | Required for cross-references |
+
+> **Try It (10 min):** Add `echo: false` and `fig-cap` to your existing chart chunk, then re-render. Notice the difference in the output.
+
+**BREAK (15 min)**
+
+**Inline R Code:**
+
+Use inline R expressions to embed computed values directly in your narrative text.
+
+**Example syntax:**
+
+In your `.qmd` file you would write:
+
+> The employment rate increased from `` `r min(data$employment_rate)` ``% in 2015 to `` `r max(data$employment_rate)` ``% in 2024.
+
+**How it works:**
+
+- Wrap R expressions with backtick-r-space: `` `r expr` ``
+- The code executes when rendering
+- Results appear inline in your text
+
+**Benefits:**
+
+- Numbers update automatically when data changes
+- No copy-paste errors
+- Ensures text matches visualisations
+
+> **Try It (10 min):** Write a sentence with an inline R expression for a summary statistic from your indicator data (e.g. the mean, min, or max of a key column).
+
+**BREAK (15 min)**
+
+### Part 4: Tables in Quarto (45 min)
+
+Summary tables alongside charts make your indicator section complete.
+
+**Creating Tables from Data:**
+
+```r
+# Basic table
+data %>%
+  select(area, population, employment_rate) %>%
+  knitr::kable(
+    col.names = c("Area", "Population", "Employment Rate (%)"),
+    digits = 1,
+    format.args = list(big.mark = ",")
+  )
+```
+
+> **Try It (10 min):** Create a `knitr::kable()` table from your indicator data, with formatted column names and appropriate decimal places.
+
+### Part 5: Document Structure & Cross-References (45 min)
+
+Professional reports reference "see Figure 1" not "see the chart above".
+
+**YAML Frontmatter:**
+
+```yaml
+---
+title: "Public Transport Connectivity"
+subtitle: "Connecting the region through better public transport"
+author: "Your Name"
+date: last-modified
+---
+```
+
+**Cross-References to Figures:**
+
+````
+```{{r}}
+#| label: fig-employment-trend
+#| fig-cap: "Employment rate trends 2015-2024"
+
+ggplot(data, aes(x = year, y = employment_rate)) +
+  geom_line() +
+  theme_weca()
+```
+
+As shown in @fig-employment-trend, employment rates have
+steadily increased over the past decade.
+````
+
+> **Try It (10 min):** Add a label to your figure chunk (e.g. `#| label: fig-my-chart`) and reference it in your text with `@fig-my-chart`. Re-render and cheque the link works.
+
+### Common Pitfalls
+
+1. **Cross-reference doesn't link** -- Label must start with `fig-` or `tbl-` prefix. Cheque: `#| label: fig-my-chart` not `#| label: my-chart`.
+2. **YAML error on render** -- Indentation matters. Use 2 spaces, never tabs. Cheque colons have a space after them.
+3. **Inline R shows code instead of result** -- Ensure backtick-r-space syntax is correct and the referenced object exists in an earlier chunk.
+4. **Figure caption missing from output** -- Need both `#| label:` and `#| fig-cap:` in the same chunk.
+
+### Part 6: The Freeze Workflow for Collaboration (30 min)
+
+**How It Works:**
+
+1. You render your chapter with your local data
+2. Quarto saves outputs to `_freeze/` directory
+3. You commit both source (`.qmd`) and cache (`_freeze/`) to Git
+4. Others pull your changes and render the full book using your cached outputs
+
+**Workflow in Practise:**
+
+```bash
+# After editing your chapter
+quarto render chapters/02-transport/index.qmd
+
+# Commit BOTH source and cache
+git add chapters/02-transport/index.qmd
+git add _freeze/html/chapters/02-transport/
+git commit -m "Add bus ridership indicator"
+git push
+```
+
+**Important:** Always commit the `_freeze/` directory alongside your `.qmd` file!
+
+### Part 7: Rendering Options (15 min)
+
+```bash
+# HTML (default)
+quarto render chapters/02-transport/index.qmd
+
+# PDF
+quarto render chapters/02-transport/index.qmd --to pdf
+
+# Preview with live reload
+quarto preview
+```
+
+### Part 8: Practical Exercise (45 min)
+
+Write a "Key Question" for your indicator section. Your analysis should answer this question. Your Key Findings section should directly address it.
+
+Work in pairs. Review each other's Quarto source for: missing figure captions, chunk labels, cross-references, and narrative quality.
+
+Create a complete indicator section with:
+
+1. YAML frontmatter with title, author, date
+2. Context section explaining the indicator
+3. Data section with code folding
+4. Analysis section with visualisations, tables, and cross-references
+5. Key findings section with bulleted insights
+6. Data source citation
+
+### Part 9: Wrap-up & Homework (15 min)
+
+**Reflection (5 min):**
+
+Before we finish, take 2 minutes to write down:
+
+1. One thing you understand now that you didn't at the start
+2. One thing that's still unclear or you'd like more practise with
+
+What's the biggest advantage of Quarto over copy-paste reporting? Share with the group if you're comfortable.
+
+**Homework (1-2 hours):**
+
+1. **Complete:** Your indicator section following the structure
+2. **Create:** A second indicator using a different dataset
+3. **Refine:** Ensure all charts have captions, add inline R code to narrative
+4. **Read:** CONTRIBUTING.md sections on "Collaborative Rendering"

@@ -1,0 +1,206 @@
+---
+title: "Setup Guide"
+---
+
+## Pre-Session Setup Checklist
+
+Complete this setup **before Session 1** to ensure smooth training delivery.
+
+## Software Installation
+
+### Required Software
+
+Install the following on all analyst machines:
+
+1. **R** (version ≥ 4.3)
+   - Download: <https://cran.r-project.org/>
+   - Windows: Use default installation options
+   - Verify: Open R console, check version with `R.version.string`
+
+2. **Positron** (Recommended IDE)
+   - Download: <https://github.com/posit-dev/positron/releases>
+   - Alternative: RStudio if Positron unavailable
+   - Verify: Launch Positron, create new R file
+
+3. **Quarto** (version ≥ 1.4)
+   - Download: <https://quarto.org/docs/get-started/>
+   - Verify: Open terminal, run `quarto --version`
+
+4. **Python** (version ≥ 3.10)
+   - Download: <https://www.python.org/>
+   - Windows: Check "Add Python to PATH" during installation
+   - Verify: `python --version`
+
+5. **uv** (Python package manager)
+   - Install: `pip install uv` or download from <https://github.com/astral-sh/uv>
+   - Verify: `uv --version`
+
+6. **Git** (version control)
+   - Download: <https://git-scm.com/>
+   - Windows: Install Git Bash with default options
+   - Verify: Open Git Bash, run `git --version`
+
+## Project Setup
+
+### Clone the Indicators Repository
+
+```bash
+cd ~/projects
+git clone https://github.com/your-org/indicators.git
+```
+### Install R Packages
+
+1. Open Positron
+2. Navigate to: `File > Open Folder > indicators`
+3. In R console, run:
+
+```r
+# Install renv (if not already installed)
+install.packages("renv")
+
+# Restore project packages
+renv::restore()
+```
+
+This will install all required R packages listed in `renv.lock`.
+
+**Expected packages include:**
+
+- tidyverse (data manipulation and visualisation)
+- here (robust file paths)
+- readxl (Excel file import)
+- janitor (data cleaning)
+- gt (publication tables)
+- And other project-specific packages
+
+### Install Python Dependencies
+
+1. Open Git Bash in the indicators project folder
+2. Run:
+
+```bash
+# Create virtual environment and install packages
+uv sync
+```
+
+This installs Python packages listed in `pyproject.toml`.
+
+### Install Pre-Commit Hooks
+
+Run the hook installation script:
+
+```bash
+cd indicators
+bash scripts/hooks/install-hooks.sh
+```
+
+This sets up secret scanning to prevent accidental credential commits.
+
+## Verify Setup
+
+### Check R Environment
+
+In Positron R console:
+
+```r
+# Load core packages
+library(tidyverse)
+library(here)
+
+# Check project root
+here::here()  # Should show indicators project path
+
+# Check WECA helpers
+source(here::here("scripts", "R", "helpers.R"))
+show_weca_palette()
+```
+
+### Check Quarto Rendering
+
+```bash
+cd indicators
+quarto render index.qmd
+```
+
+Should produce HTML output in `_output/` directory without errors.
+
+### Check Git Configuration
+
+```bash
+git config user.name
+git config user.email
+```
+
+If not set, configure:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+### Test Full Workflow
+
+1. Open `chapters/01-economy/index.qmd` in Positron
+2. Run the first code chunk (Ctrl+Shift+Enter)
+3. Render the chapter: Click "Render" button
+4. Verify HTML output opens in browser
+
+## Prepare Practice Data
+
+### Example Datasets
+
+Ensure these files exist in `indicators/data/examples/`:
+
+- `bus_ridership.csv`
+- `area_employment.csv`
+
+These are small, clean datasets (4 columns, 20 rows) used for practice exercises in Sessions 1-2. From Session 3 onwards, analysts work with their own real indicator data.
+
+### Create Practice Branches
+
+For each analyst, create a practice branch:
+
+```bash
+git checkout -b helen-practice
+git push -u origin helen-practice
+git checkout main
+
+git checkout -b alex-practice
+git push -u origin alex-practice
+git checkout main
+
+# Repeat for each analyst
+```
+
+## Troubleshooting Setup
+
+If you encounter problems during setup, see the [Troubleshooting Guide](troubleshooting.qmd) — particularly the **Setup Issues** section.
+
+## Post-Setup Verification
+
+Before Session 1, verify each machine:
+
+- [ ] R opens and shows correct version
+- [ ] Positron launches without errors
+- [ ] Indicators project opens in Positron
+- [ ] `library(tidyverse)` loads without errors
+- [ ] `here::here()` shows correct project path
+- [ ] Test chapter renders to HTML
+- [ ] Git Bash opens and shows correct git version
+- [ ] `git status` works in indicators folder
+- [ ] Example datasets are present in `data/examples/`
+
+## Support Resources
+
+**During setup:**
+
+- Installation guides: Check software websites
+- IT support: Contact your IT department
+- Course instructor: Email for specific issues
+
+**During course:**
+
+- R help: `?function_name` or `help(package_name)`
+- Tidyverse docs: <https://www.tidyverse.org/>
+- Quarto guide: <https://quarto.org/docs/guide/>
+- Git reference: <https://git-scm.com/doc>

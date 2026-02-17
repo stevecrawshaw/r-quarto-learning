@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(quarto preview:*)",
+      "Bash(quarto render:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "WebFetch(domain:quarto.org)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

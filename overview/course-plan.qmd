@@ -1,0 +1,111 @@
+---
+title: "Course Plan Overview"
+---
+
+## Course Design Philosophy
+
+This course follows evidence-based pedagogical principles:
+
+1. **"Whole Game First"** - Session 1 shows the complete workflow before diving into details
+2. **Tidyverse-First** - Human-centered R syntax (pipes, verbs) from the start
+3. **Visual Feedback Early** - Charts in Session 1 for immediate gratification
+4. **Real-World Application** - Build actual WECA indicators, not toy examples
+5. **Literate Programming** - Code + narrative from day one via Quarto
+6. **Active Learning** - Live coding, immediate practice, pair programming options
+7. **Low Friction** - Pre-installed software, standardized helper functions
+
+## Learning Outcomes
+
+By the end of this course, analysts will be able to:
+
+- Navigate the command line (Git Bash) for basic file operations
+- Use Positron IDE to write and execute R code
+- Load, transform, and analyse data using tidyverse packages
+- Create publication-quality visualisations with ggplot2
+- Author reproducible reports combining code, narrative, and outputs using Quarto
+- Use Git for version control and GitHub for collaboration
+- Follow the WECA indicators project workflow independently
+
+## Session Breakdown
+
+| Session | Focus | Key Milestone | Duration |
+|---------|-------|---------------|----------|
+| **1** | The Whole Game | Render a complete indicator from template | 4 hours |
+| **2** | R Fundamentals | Transform and visualise real data | 4 hours |
+| **3** | Data Wrangling | Clean and prepare messy datasets | 4 hours |
+| **4** | Quarto Mastery | Author professional multi-section reports | 4 hours |
+| **5** | Git Collaboration | Create, review, and merge pull requests | 4 hours |
+
+## Pre-Session Setup (Instructor)
+
+**Week Before Session 1:**
+
+1. Install software on all machines:
+   - Positron, R (≥4.3), Python (≥3.10), Quarto (≥1.4), Git, uv
+2. Clone `indicators` repository to `~/projects/` on each machine
+3. Run setup scripts:
+   - `./scripts/install-hooks.sh` (pre-commit hooks)
+   - `renv::restore()` in R (packages)
+   - `uv sync` in terminal (Python environment)
+4. Prepare 5 example datasets (CSV files) in `data/examples/`:
+   - Simple, clean data (4-6 columns, 20-50 rows)
+   - Topics relevant to each priority area (transport, economy, skills, etc.)
+   - Variables ready for plotting (year, value, category)
+5. Create practice branches for each analyst: `firstname-practice`
+
+**Data complexity progression:**
+
+- Sessions 1-2: Clean CSVs (consistent column names, no missing values, correct types, long format)
+- Session 3: Messier data (mixed case column names, missing values, wide format needing pivot, multiple files needing joins)
+- Sessions 4-5: Learners use their own real indicator data (full complexity)
+
+## Teaching Philosophy
+
+This course applies evidence-based learning science principles detailed in [Teaching Pedagogy](pedagogy.html), including cognitive load management, active learning, scaffolding, and social learning.
+
+## Assessment Strategy
+
+**Formative Assessment (During Sessions):**
+
+- Live coding participation
+- Pair programming discussions
+- Homework completion
+- Questions asked (indicator of engagement)
+
+**Summative Assessment (End of Course):**
+
+Each analyst can independently:
+
+1. Import a CSV dataset
+2. Clean and transform the data
+3. Create a chart with WECA branding
+4. Author a complete indicator section in Quarto
+5. Render the chapter without errors
+6. Create a pull request following the workflow
+
+## Success Metrics
+
+**Short-term (End of Course):**
+
+- 100% of analysts complete at least one indicator independently
+- 80%+ create PRs following the workflow
+- 100% can render a chapter without instructor help
+
+**Medium-term (1 month post-course):**
+
+- Each analyst has contributed 3+ indicators
+- PRs are created without prompting
+- Analysts help each other in team chat
+
+**Long-term (3 months post-course):**
+
+- Indicators project workflow is self-sustaining
+- Analysts propose and implement workflow improvements
+- Code quality improves (evidenced by PR reviews)
+
+## Post-Course Support
+
+- Office hours (1 hour/week for 4 weeks)
+- Dedicated team chat channel
+- Pair programming sessions available
+- Instructor code reviews for first 5 PRs

@@ -1,0 +1,105 @@
+---
+title: "Teaching Pedagogy"
+---
+
+## Evidence-Based Approaches
+
+This course is built on evidence-based pedagogical principles for teaching R and data science effectively.
+
+## Adopt a "Tidyverse-First" Approach
+
+The "tidyverse" ecosystem (including packages like ggplot2, dplyr, tidyr, and readr) is designed to be "human-centered," prioritizing the cognitive needs of the analyst over the computer's convenience.
+
+**Consistency and Readability:** The tidyverse shares a common high-level design philosophy and low-level grammar. This means that once a learner masters one package, that knowledge transfers easily to others.
+
+**Human-Readable Code:** The syntax uses intuitive verbs (e.g., filter, mutate, select) and the pipe operator (`|>` or `%>%`) to structure code as a linear sequence of actions, making it easier to read and write. This readability helps learners focus on the analysis logic rather than obscure programming syntax.
+
+**"Batteries Included":** Installing the single tidyverse meta-package provides a comprehensive toolkit for the core data science tasks—import, tidy, transform, visualise, and program—reducing the friction of managing dependencies.
+
+## Prioritise Data Visualisation
+
+Visual feedback is a powerful motivator for learners.
+
+**Start with Visualisation:** Introducing ggplot2 early allows learners to create complex, compelling graphics with relatively little code. This provides immediate gratification and helps learners spot patterns or errors in their data quickly.
+
+**Layered Complexity:** ggplot2 implements a "grammar of graphics," allowing learners to build plots layer-by-layer. They can start simple and progressively add complexity (e.g., mapping additional variables to colours or shapes, or adding smooth lines) as their understanding grows.
+
+## Centre Learning on Real-World Case Studies
+
+Traditional statistics courses often focus on theoretical properties using clean, toy datasets. Effective data science education brings applications to the forefront.
+
+**Problem-First Pedagogy:** Organise learning around diverse case studies where the primary goal is answering a specific subject-matter question (e.g., "Is there gender bias in grant funding?" or "Who will win the election?").
+
+**Real, Messy Data:** Use real-world data rather than pre-cleaned examples. This exposes learners to the reality of "data wrangling" and the necessity of cleaning and structuring data before analysis.
+
+**The "Whole Game":** Structure exercises to mimic the full lifecycle of a data scientist's work: formulating a question, gathering data, cleaning it, analyzing it, and communicating results. This teaches students to "connect" subject matter to statistical frameworks.
+
+## Integrate Literate Programming and Reproducibility
+
+Learners gain confidence when they can document their thought process alongside their code.
+
+**Literate Programming:** Tools like Quarto and R Markdown allow users to interleave narrative text, code, and output (plots/tables) in a single document. This supports rigorous thinking by encouraging learners to record why they performed an analysis, not just how.
+
+**Reproducible Workflows:** Teaching reproducibility early—using R Projects, relative paths, and version control (Git/GitHub)—helps learners manage their environment and ensures their work can be verified and built upon.
+
+**Automated Reporting:** Using tools like Quarto avoids the error-prone "copy-paste" cycle of moving results into Word or PowerPoint. This establishes a robust workflow where updating data or code automatically updates the final report.
+
+## Foster Active Learning and "Statistical Thinking"
+
+**Live Coding and Iteration:** Instructors should write code live (using literate programming tools) to demonstrate the iterative process of analysis, including how to troubleshoot errors in real-time.
+
+**Three Key Skills:** Effective instruction should aim to develop three core skills:
+
+1. **Creating** - Formulating questions and data
+2. **Connecting** - Linking questions to appropriate data and methods
+3. **Computing** - Using tools like R to execute the analysis
+
+**Minimizing Notation:** When introducing statistical concepts, relying on computational approaches (like simulation and visualisation) rather than heavy mathematical notation can make abstract concepts more accessible.
+
+## Learning Science Principles Applied
+
+### Cognitive Load Management
+
+- "Whole Game" first reduces extraneous load (see the forest before the trees)
+- Consistent patterns (load → transform → visualise) reduce cognitive overhead
+- Helper functions reduce syntax complexity
+- Spaced practice via homework spreads learning over time
+
+### Active Learning
+
+- Live coding with immediate practice (not passive lectures)
+- Minimal lecture time (< 30% of each session)
+- Real-world application from Session 1
+
+### Scaffolding
+
+- Pre-installed software eliminates setup friction
+- Helper functions abstract complexity initially
+- Example datasets are clean initially, messier in later sessions
+- Gradual release: instructor demo → guided practice → independent work
+
+### Social Learning
+
+- Pair programming options
+- Peer code review in Session 5
+- Collaborative project (shared indicators repository)
+
+### Metacognition
+
+- Reflection time in each session wrap-up
+- Debugging strategy explicitly taught
+- Error messages explained (not feared)
+
+### Transfer of Learning
+
+- All practice uses real WECA data/project structure
+- No toy examples after Session 1
+- Authentic task design (they build actual deliverables)
+
+## References
+
+This pedagogy is informed by:
+
+- [R for Data Science](https://r4ds.hadley.nz/)
+- [Modern Statistics for Modern Biology - Holmes & Huber](https://www.huber.embl.de/msmb/)
+- [Tidy design principles](https://design.tidyverse.org/)

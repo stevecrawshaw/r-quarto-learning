@@ -1,0 +1,232 @@
+---
+title: "Session 3: Data Wrangling"
+subtitle: "Clean and prepare real-world data"
+---
+
+- **Duration:** 4 hours
+- **Goal:** Master the skills to clean, reshape, and prepare messy real-world data for analysis.
+
+Real data is messy. Column names are inconsistent, values are missing, formats are wrong. Data wrangling is where analysts spend most of their time -- and it's the step that's invisible in Excel. Today you learn to do it reproducibly.
+
+## Learning Outcomes
+
+- Import data from CSV and Excel files
+- Handle missing values and data quality issues
+- Reshape data between wide and long formats
+- Join multiple datasets together
+- Apply data cleaning best practises
+- Use the `here()` package for robust file paths
+
+## Session Structure
+
+### Part 1: Homework Review & Setup (30 min)
+
+**Homework Review (25 min):**
+
+- Volunteer demos of homework indicators
+- Quick discussion: What datasets did you bring? What challenges do you anticipate?
+
+**Setting Up Your Practise Script (5 min):**
+
+As in Session 2, create a new R script for today's exercises:
+
+1. In Positron, `File > New File > R Script` (or `Ctrl+Shift+N`)
+2. Save as `scripts/R/session-03-practice.R`
+3. Add a header and load the libraries you'll need:
+
+```r
+# Session 3 Practice - Data Wrangling
+# Your name, today's date
+
+library(tidyverse)
+library(readxl)
+library(janitor)
+source(here::here("scripts", "R", "helpers.R"))
+```
+
+Run lines with `Ctrl+Enter` or highlight a block and use `Ctrl+Shift+Enter`. Keep your code as you go -- this file becomes a useful reference for your own indicator work.
+
+### Part 2: Importing Data (45 min)
+
+Your indicator starts with a CSV or Excel download. Getting it into R cleanly is the first step.
+
+**Reading CSV Files:**
+
+```r
+library(tidyverse)
+library(readxl)
+source(here::here("scripts", "R", "helpers.R"))
+
+# The WECA way
+data <- load_csv(here::here("data", "raw", "indicator_data.csv"))
+```
+
+**Reading Excel Files:**
+
+```r
+# Basic read
+data <- read_excel("data/raw/employment_data.xlsx")
+
+# Specific sheet
+data <- read_excel("data/raw/employment_data.xlsx", sheet = "Q4_2024")
+
+# Skip header rows
+data <- read_excel("data/raw/employment_data.xlsx", sheet = "Data", skip = 5)
+```
+
+**File Path Best Practises:**
+
+```r
+# ✅ Good - relative paths with here()
+data <- load_csv(here::here("data", "raw", "myfile.csv"))
+
+# ❌ Bad - absolute paths (breaks on other computers)
+data <- read_csv("C:/Users/steve/projects/indicators/data/raw/myfile.csv")
+```
+
+> **Try It (10 min):** Load your own CSV with `read_csv()`, then inspect it with `glimpse()`. How many rows and columns does it have? What types are the columns?
+
+**BREAK (15 min)**
+
+### Part 3: Data Cleaning Essentials (60 min)
+
+Real government data has messy names, missing values, and mixed types. This is how you fix them.
+
+**Cleaning Column Names:**
+
+```r
+library(janitor)
+
+data_clean <- data %>%
+  clean_names()  # Converts "Area Name" to "area_name"
+```
+
+> **Try It (5 min):** Run `clean_names()` on your dataset. Compare `names(data)` before and after.
+
+**Handling Missing Values:**
+
+```r
+# Check for missing data
+check_missing(data)
+
+# Remove rows with missing values
+data_complete <- data %>%
+  drop_na(year, value)
+
+# Replace missing values
+data_filled <- data %>%
+  mutate(
+    value = if_else(is.na(value), 0, value),
+    category = replace_na(category, "Unknown")
+  )
+```
+
+> **Try It (10 min):** Cheque your data for NAs with `check_missing()`. Decide how to handle them -- drop the rows, fill with zeros, or replace with "Unknown"?
+
+**Type Conversions:**
+
+```r
+data <- data %>%
+  mutate(
+    year = as.numeric(year),
+    date = as.Date(date, format = "%d/%m/%Y"),
+    region = factor(region, levels = c("Bristol", "Bath", "South Glos", "North Somerset"))
+  )
+```
+
+**BREAK (15 min)**
+
+### Part 4: Reshaping Data (60 min)
+
+ONS data often arrives in wide format (one column per year). Your charts need long format.
+
+**Understanding Wide vs. Long Format:**
+
+Wide format (like Excel):
+```
+year  bristol_value  bath_value  sg_value
+2020       1000         500        750
+```
+
+Long format (tidy):
+```
+year  area            value
+2020  Bristol         1000
+2020  Bath             500
+2020  South Glos       750
+```
+
+**Pivot Longer - Wide to Long:**
+
+```r
+data_long <- data_wide %>%
+  pivot_longer(
+    cols = bristol_value:sg_value,
+    names_to = "area",
+    values_to = "value"
+  ) %>%
+  mutate(
+    area = str_remove(area, "_value"),
+    area = str_to_title(area)
+  )
+```
+
+> **Try It (10 min):** Reshape a wide example dataset to long format using `pivot_longer()`. Cheque the result with `glimpse()`.
+
+**BREAK (15 min)**
+
+### Part 5: Joining Datasets (30 min)
+
+Many indicators combine data from multiple sources -- e.g. population denominators with raw counts.
+
+**Types of Joins:**
+
+```r
+# Left join - keep all rows from first table
+combined <- data1 %>%
+  left_join(data2, by = "area")
+
+# Join on multiple columns
+combined <- data1 %>%
+  left_join(data2, by = c("area", "year"))
+```
+
+### Common Pitfalls
+
+1. **`pivot_longer()` selects wrong columns** -- Use `cols = starts_with("x")` or name columns explicitly. Cheque with `names(data)` first.
+2. **Join produces more rows than expected** -- Duplicate keys in one table cause row multiplication. Cheque with `count(data, key_column)`.
+3. **`read_excel()` reads numbers as text** -- Excel formatting can trick R. Use `mutate(value = as.numeric(value))` and cheque for introduced NAs.
+4. **File not found with `here()`** -- Ensure you're in the R Project. Run `here::here()` alone to cheque the project root.
+
+### Part 6: Real Data Workshop (45 min)
+
+Before coding, write down 2-3 specific questions your indicator data could answer. Pick one to focus on. What chart type would best communicate the answer?
+
+Work in pairs. Each pair takes one dataset. Divide the work: one person handles import and cleaning, the other handles reshaping and visualisation. Review each other's code before combining.
+
+Work with real WECA datasets:
+
+1. Import the data
+2. Inspect and document issues
+3. Clean column names
+4. Handle missing values
+5. Reshape if needed
+6. Create a visualisation
+7. Calculate summary statistics
+
+### Part 7: Wrap-up & Homework (15 min)
+
+**Reflection (5 min):**
+
+Before we finish, take 2 minutes to write down:
+
+1. One thing you understand now that you didn't at the start
+2. One thing that's still unclear or you'd like more practise with
+
+What was the messiest thing about your data, and how did you fix it? Share with the group if you're comfortable.
+
+**Homework (1-2 hours):**
+
+1. **Complete:** Prepare your real indicator data (cleaned version in `data/processed/`)
+2. **Create:** A draught indicator section with data loading, cleaning, transformation, chart, and findings
+3. **Read:** CONTRIBUTING.md sections on "Code Style Guide"

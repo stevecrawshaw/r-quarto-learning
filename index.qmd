@@ -1,0 +1,80 @@
+---
+title: "WECA R & Quarto Training"
+subtitle: "From Excel to Code-First Analysis"
+---
+
+## Welcome
+
+This training course helps WECA analysts transition from Excel/PowerPoint workflows to reproducible, code-first analysis using R, Quarto, and Git.
+
+**Goal:** Enable each analyst to independently create indicator chapters using R, Quarto, and Git.
+
+## Course Structure
+
+- **Duration:** 5 sessions × 4 hours (20 hours total)
+- **Format:** In-person, consecutive weeks
+- **Audience:** 5 analysts building indicator chapters for the regional priorities report
+
+### Session Overview
+
+| Session | Focus | Key Milestone |
+|---------|-------|---------------|
+| **1** | The Whole Game | Render a complete indicator from template |
+| **2** | R Fundamentals | Transform and visualise real data |
+| **3** | Data Wrangling | Clean and prepare messy datasets |
+| **4** | Quarto Mastery | Author professional multi-section reports |
+| **5** | Git Collaboration | Create, review, and merge pull requests |
+
+## Learning Outcomes
+
+By the end of this course, you will be able to:
+
+- Navigate the command line (Git Bash) for basic file operations
+- Use Positron IDE to write and execute R code
+- Load, transform, and analyse data using tidyverse packages
+- Create publication-quality visualisations with ggplot2
+- Author reproducible reports combining code, narrative, and outputs using Quarto
+- Use Git for version control and GitHub for collaboration
+- Follow the WECA indicators project workflow independently
+
+## Course Philosophy
+
+This course follows evidence-based pedagogical principles:
+
+1. **"Whole Game First"** - Session 1 shows the complete workflow before diving into details
+2. **Tidyverse-First** - Human-centred R syntax (pipes, verbs) from the start
+3. **Visual Feedback Early** - Charts in Session 1 for immediate gratification
+4. **Real-World Application** - Build actual WECA indicators, not toy examples
+5. **Literate Programming** - Code + narrative from day one via Quarto
+6. **Active Learning** - Live coding, immediate practise, pair programming options
+7. **Low Friction** - Pre-installed software, standardised helper functions
+
+## Getting Started
+
+### Prerequisites
+
+Before Session 1, ensure:
+
+1. Software installed (see [Setup Guide](resources/setup-guide.qmd))
+2. Access to the indicators project repository
+3. Basic familiarity with Excel and data analysis concepts
+
+### Course Materials
+
+Navigate the book using the sidebar:
+
+- **Overview** - Course design and pedagogy
+- **Sessions 1-5** - Detailed lesson plans with exercises
+- **Resources** - Datasets, setup guides, troubleshooting
+
+## Navigation
+
+Use the sidebar to access:
+
+- Individual session materials
+- Practise datasets and examples
+- Reference guides and troubleshooting
+- Additional learning resources
+
+---
+

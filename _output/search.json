@@ -1,0 +1,601 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "WECA R & Quarto Training",
+    "section": "",
+    "text": "0.1 Welcome\nThis training course helps WECA analysts transition from Excel/PowerPoint workflows to reproducible, code-first analysis using R, Quarto, and Git.\nGoal: Enable each analyst to independently create indicator chapters using R, Quarto, and Git.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>WECA R & Quarto Training</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#course-structure",
+    "href": "index.html#course-structure",
+    "title": "WECA R & Quarto Training",
+    "section": "0.2 Course Structure",
+    "text": "0.2 Course Structure\n\nDuration: 5 sessions × 4 hours (20 hours total)\nFormat: In-person, consecutive weeks\nAudience: 5 analysts building indicator chapters for the regional priorities report\n\n\n0.2.1 Session Overview\n\n\n\nSession\nFocus\nKey Milestone\n\n\n\n\n1\nThe Whole Game\nRender a complete indicator from template\n\n\n2\nR Fundamentals\nTransform and visualise real data\n\n\n3\nData Wrangling\nClean and prepare messy datasets\n\n\n4\nQuarto Mastery\nAuthor professional multi-section reports\n\n\n5\nGit Collaboration\nCreate, review, and merge pull requests",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>WECA R & Quarto Training</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "WECA R & Quarto Training",
+    "section": "0.3 Learning Outcomes",
+    "text": "0.3 Learning Outcomes\nBy the end of this course, you will be able to:\n\nNavigate the command line (Git Bash) for basic file operations\nUse Positron IDE to write and execute R code\nLoad, transform, and analyse data using tidyverse packages\nCreate publication-quality visualisations with ggplot2\nAuthor reproducible reports combining code, narrative, and outputs using Quarto\nUse Git for version control and GitHub for collaboration\nFollow the WECA indicators project workflow independently",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>WECA R & Quarto Training</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#course-philosophy",
+    "href": "index.html#course-philosophy",
+    "title": "WECA R & Quarto Training",
+    "section": "0.4 Course Philosophy",
+    "text": "0.4 Course Philosophy\nThis course follows evidence-based pedagogical principles:\n\n“Whole Game First” - Session 1 shows the complete workflow before diving into details\nTidyverse-First - Human-centred R syntax (pipes, verbs) from the start\nVisual Feedback Early - Charts in Session 1 for immediate gratification\nReal-World Application - Build actual WECA indicators, not toy examples\nLiterate Programming - Code + narrative from day one via Quarto\nActive Learning - Live coding, immediate practise, pair programming options\nLow Friction - Pre-installed software, standardised helper functions",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>WECA R & Quarto Training</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "WECA R & Quarto Training",
+    "section": "0.5 Getting Started",
+    "text": "0.5 Getting Started\n\n0.5.1 Prerequisites\nBefore Session 1, ensure:\n\nSoftware installed (see Setup Guide)\nAccess to the indicators project repository\nBasic familiarity with Excel and data analysis concepts\n\n\n\n0.5.2 Course Materials\nNavigate the book using the sidebar:\n\nOverview - Course design and pedagogy\nSessions 1-5 - Detailed lesson plans with exercises\nResources - Datasets, setup guides, troubleshooting",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>WECA R & Quarto Training</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#navigation",
+    "href": "index.html#navigation",
+    "title": "WECA R & Quarto Training",
+    "section": "0.6 Navigation",
+    "text": "0.6 Navigation\nUse the sidebar to access:\n\nIndividual session materials\nPractise datasets and examples\nReference guides and troubleshooting\nAdditional learning resources",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>WECA R & Quarto Training</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html",
+    "href": "overview/course-plan.html",
+    "title": "2  Course Plan Overview",
+    "section": "",
+    "text": "2.1 Course Design Philosophy\nThis course follows evidence-based pedagogical principles:",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#course-design-philosophy",
+    "href": "overview/course-plan.html#course-design-philosophy",
+    "title": "2  Course Plan Overview",
+    "section": "",
+    "text": "“Whole Game First” - Session 1 shows the complete workflow before diving into details\nTidyverse-First - Human-centered R syntax (pipes, verbs) from the start\nVisual Feedback Early - Charts in Session 1 for immediate gratification\nReal-World Application - Build actual WECA indicators, not toy examples\nLiterate Programming - Code + narrative from day one via Quarto\nActive Learning - Live coding, immediate practice, pair programming options\nLow Friction - Pre-installed software, standardized helper functions",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#learning-outcomes",
+    "href": "overview/course-plan.html#learning-outcomes",
+    "title": "2  Course Plan Overview",
+    "section": "2.2 Learning Outcomes",
+    "text": "2.2 Learning Outcomes\nBy the end of this course, analysts will be able to:\n\nNavigate the command line (Git Bash) for basic file operations\nUse Positron IDE to write and execute R code\nLoad, transform, and analyse data using tidyverse packages\nCreate publication-quality visualisations with ggplot2\nAuthor reproducible reports combining code, narrative, and outputs using Quarto\nUse Git for version control and GitHub for collaboration\nFollow the WECA indicators project workflow independently",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#session-breakdown",
+    "href": "overview/course-plan.html#session-breakdown",
+    "title": "2  Course Plan Overview",
+    "section": "2.3 Session Breakdown",
+    "text": "2.3 Session Breakdown\n\n\n\n\n\n\n\n\n\nSession\nFocus\nKey Milestone\nDuration\n\n\n\n\n1\nThe Whole Game\nRender a complete indicator from template\n4 hours\n\n\n2\nR Fundamentals\nTransform and visualise real data\n4 hours\n\n\n3\nData Wrangling\nClean and prepare messy datasets\n4 hours\n\n\n4\nQuarto Mastery\nAuthor professional multi-section reports\n4 hours\n\n\n5\nGit Collaboration\nCreate, review, and merge pull requests\n4 hours",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#pre-session-setup-instructor",
+    "href": "overview/course-plan.html#pre-session-setup-instructor",
+    "title": "2  Course Plan Overview",
+    "section": "2.4 Pre-Session Setup (Instructor)",
+    "text": "2.4 Pre-Session Setup (Instructor)\nWeek Before Session 1:\n\nInstall software on all machines:\n\nPositron, R (≥4.3), Python (≥3.10), Quarto (≥1.4), Git, uv\n\nClone indicators repository to ~/projects/ on each machine\nRun setup scripts:\n\n./scripts/install-hooks.sh (pre-commit hooks)\nrenv::restore() in R (packages)\nuv sync in terminal (Python environment)\n\nPrepare 5 example datasets (CSV files) in data/examples/:\n\nSimple, clean data (4-6 columns, 20-50 rows)\nTopics relevant to each priority area (transport, economy, skills, etc.)\nVariables ready for plotting (year, value, category)\n\nCreate practice branches for each analyst: firstname-practice\n\nData complexity progression:\n\nSessions 1-2: Clean CSVs (consistent column names, no missing values, correct types, long format)\nSession 3: Messier data (mixed case column names, missing values, wide format needing pivot, multiple files needing joins)\nSessions 4-5: Learners use their own real indicator data (full complexity)",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#teaching-philosophy",
+    "href": "overview/course-plan.html#teaching-philosophy",
+    "title": "2  Course Plan Overview",
+    "section": "2.5 Teaching Philosophy",
+    "text": "2.5 Teaching Philosophy\nThis course applies evidence-based learning science principles detailed in Teaching Pedagogy, including cognitive load management, active learning, scaffolding, and social learning.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#assessment-strategy",
+    "href": "overview/course-plan.html#assessment-strategy",
+    "title": "2  Course Plan Overview",
+    "section": "2.6 Assessment Strategy",
+    "text": "2.6 Assessment Strategy\nFormative Assessment (During Sessions):\n\nLive coding participation\nPair programming discussions\nHomework completion\nQuestions asked (indicator of engagement)\n\nSummative Assessment (End of Course):\nEach analyst can independently:\n\nImport a CSV dataset\nClean and transform the data\nCreate a chart with WECA branding\nAuthor a complete indicator section in Quarto\nRender the chapter without errors\nCreate a pull request following the workflow",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#success-metrics",
+    "href": "overview/course-plan.html#success-metrics",
+    "title": "2  Course Plan Overview",
+    "section": "2.7 Success Metrics",
+    "text": "2.7 Success Metrics\nShort-term (End of Course):\n\n100% of analysts complete at least one indicator independently\n80%+ create PRs following the workflow\n100% can render a chapter without instructor help\n\nMedium-term (1 month post-course):\n\nEach analyst has contributed 3+ indicators\nPRs are created without prompting\nAnalysts help each other in team chat\n\nLong-term (3 months post-course):\n\nIndicators project workflow is self-sustaining\nAnalysts propose and implement workflow improvements\nCode quality improves (evidenced by PR reviews)",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/course-plan.html#post-course-support",
+    "href": "overview/course-plan.html#post-course-support",
+    "title": "2  Course Plan Overview",
+    "section": "2.8 Post-Course Support",
+    "text": "2.8 Post-Course Support\n\nOffice hours (1 hour/week for 4 weeks)\nDedicated team chat channel\nPair programming sessions available\nInstructor code reviews for first 5 PRs",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Course Plan Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html",
+    "href": "overview/pedagogy.html",
+    "title": "3  Teaching Pedagogy",
+    "section": "",
+    "text": "3.1 Evidence-Based Approaches\nThis course is built on evidence-based pedagogical principles for teaching R and data science effectively.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#adopt-a-tidyverse-first-approach",
+    "href": "overview/pedagogy.html#adopt-a-tidyverse-first-approach",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.2 Adopt a “Tidyverse-First” Approach",
+    "text": "3.2 Adopt a “Tidyverse-First” Approach\nThe “tidyverse” ecosystem (including packages like ggplot2, dplyr, tidyr, and readr) is designed to be “human-centered,” prioritizing the cognitive needs of the analyst over the computer’s convenience.\nConsistency and Readability: The tidyverse shares a common high-level design philosophy and low-level grammar. This means that once a learner masters one package, that knowledge transfers easily to others.\nHuman-Readable Code: The syntax uses intuitive verbs (e.g., filter, mutate, select) and the pipe operator (|&gt; or %&gt;%) to structure code as a linear sequence of actions, making it easier to read and write. This readability helps learners focus on the analysis logic rather than obscure programming syntax.\n“Batteries Included”: Installing the single tidyverse meta-package provides a comprehensive toolkit for the core data science tasks—import, tidy, transform, visualise, and program—reducing the friction of managing dependencies.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#prioritise-data-visualisation",
+    "href": "overview/pedagogy.html#prioritise-data-visualisation",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.3 Prioritise Data Visualisation",
+    "text": "3.3 Prioritise Data Visualisation\nVisual feedback is a powerful motivator for learners.\nStart with Visualisation: Introducing ggplot2 early allows learners to create complex, compelling graphics with relatively little code. This provides immediate gratification and helps learners spot patterns or errors in their data quickly.\nLayered Complexity: ggplot2 implements a “grammar of graphics,” allowing learners to build plots layer-by-layer. They can start simple and progressively add complexity (e.g., mapping additional variables to colours or shapes, or adding smooth lines) as their understanding grows.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#centre-learning-on-real-world-case-studies",
+    "href": "overview/pedagogy.html#centre-learning-on-real-world-case-studies",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.4 Centre Learning on Real-World Case Studies",
+    "text": "3.4 Centre Learning on Real-World Case Studies\nTraditional statistics courses often focus on theoretical properties using clean, toy datasets. Effective data science education brings applications to the forefront.\nProblem-First Pedagogy: Organise learning around diverse case studies where the primary goal is answering a specific subject-matter question (e.g., “Is there gender bias in grant funding?” or “Who will win the election?”).\nReal, Messy Data: Use real-world data rather than pre-cleaned examples. This exposes learners to the reality of “data wrangling” and the necessity of cleaning and structuring data before analysis.\nThe “Whole Game”: Structure exercises to mimic the full lifecycle of a data scientist’s work: formulating a question, gathering data, cleaning it, analyzing it, and communicating results. This teaches students to “connect” subject matter to statistical frameworks.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#integrate-literate-programming-and-reproducibility",
+    "href": "overview/pedagogy.html#integrate-literate-programming-and-reproducibility",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.5 Integrate Literate Programming and Reproducibility",
+    "text": "3.5 Integrate Literate Programming and Reproducibility\nLearners gain confidence when they can document their thought process alongside their code.\nLiterate Programming: Tools like Quarto and R Markdown allow users to interleave narrative text, code, and output (plots/tables) in a single document. This supports rigorous thinking by encouraging learners to record why they performed an analysis, not just how.\nReproducible Workflows: Teaching reproducibility early—using R Projects, relative paths, and version control (Git/GitHub)—helps learners manage their environment and ensures their work can be verified and built upon.\nAutomated Reporting: Using tools like Quarto avoids the error-prone “copy-paste” cycle of moving results into Word or PowerPoint. This establishes a robust workflow where updating data or code automatically updates the final report.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#foster-active-learning-and-statistical-thinking",
+    "href": "overview/pedagogy.html#foster-active-learning-and-statistical-thinking",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.6 Foster Active Learning and “Statistical Thinking”",
+    "text": "3.6 Foster Active Learning and “Statistical Thinking”\nLive Coding and Iteration: Instructors should write code live (using literate programming tools) to demonstrate the iterative process of analysis, including how to troubleshoot errors in real-time.\nThree Key Skills: Effective instruction should aim to develop three core skills:\n\nCreating - Formulating questions and data\nConnecting - Linking questions to appropriate data and methods\nComputing - Using tools like R to execute the analysis\n\nMinimizing Notation: When introducing statistical concepts, relying on computational approaches (like simulation and visualisation) rather than heavy mathematical notation can make abstract concepts more accessible.",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#learning-science-principles-applied",
+    "href": "overview/pedagogy.html#learning-science-principles-applied",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.7 Learning Science Principles Applied",
+    "text": "3.7 Learning Science Principles Applied\n\n3.7.1 Cognitive Load Management\n\n“Whole Game” first reduces extraneous load (see the forest before the trees)\nConsistent patterns (load → transform → visualise) reduce cognitive overhead\nHelper functions reduce syntax complexity\nSpaced practice via homework spreads learning over time\n\n\n\n3.7.2 Active Learning\n\nLive coding with immediate practice (not passive lectures)\nMinimal lecture time (&lt; 30% of each session)\nReal-world application from Session 1\n\n\n\n3.7.3 Scaffolding\n\nPre-installed software eliminates setup friction\nHelper functions abstract complexity initially\nExample datasets are clean initially, messier in later sessions\nGradual release: instructor demo → guided practice → independent work\n\n\n\n3.7.4 Social Learning\n\nPair programming options\nPeer code review in Session 5\nCollaborative project (shared indicators repository)\n\n\n\n3.7.5 Metacognition\n\nReflection time in each session wrap-up\nDebugging strategy explicitly taught\nError messages explained (not feared)\n\n\n\n3.7.6 Transfer of Learning\n\nAll practice uses real WECA data/project structure\nNo toy examples after Session 1\nAuthentic task design (they build actual deliverables)",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pedagogy.html#references",
+    "href": "overview/pedagogy.html#references",
+    "title": "3  Teaching Pedagogy",
+    "section": "3.8 References",
+    "text": "3.8 References\nThis pedagogy is informed by:\n\nR for Data Science\nModern Statistics for Modern Biology - Holmes & Huber\nTidy design principles",
+    "crumbs": [
+      "Course Overview",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Teaching Pedagogy</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-01.html",
+    "href": "sessions/session-01.html",
+    "title": "4  Session 1: The Whole Game",
+    "section": "",
+    "text": "4.1 Learning Outcomes",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Session 1: The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-01.html#learning-outcomes",
+    "href": "sessions/session-01.html#learning-outcomes",
+    "title": "4  Session 1: The Whole Game",
+    "section": "",
+    "text": "Understand the “code-first” analysis paradigm vs. Excel workflows\nNavigate the indicators project structure\nExecute an R code chunk in Quarto\nRender a chapter to HTML\nSee the role of Git in version control (conceptual)",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Session 1: The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-01.html#session-structure",
+    "href": "sessions/session-01.html#session-structure",
+    "title": "4  Session 1: The Whole Game",
+    "section": "4.2 Session Structure",
+    "text": "4.2 Session Structure\n\n4.2.1 Part 1: Welcome & Context (30 min)\nWhy are we here?\n\nThe limitations of Excel/PowerPoint workflows (manual updates, copy-paste errors, unclear provenance)\nBenefits of code-first analysis: reproducibility, automation, transparency, collaboration\nTour of the final product: rendered indicators book\n\nThe tools we’ll learn:\n\nGit Bash: Command-line interface (the “steering wheel”)\nPositron: Integrated development environment (the “dashboard”)\nR: Statistical programming language (the “engine”)\nQuarto: Literate programming system (the “publishing press”)\nGit/GitHub: Version control (the “time machine + collaboration hub”)\n\nAnalogy: If analysis were cooking:\n\nExcel is a microwave meal kit\nCode-first is a professional kitchen with recipes you can modify, share, and improve\n\n\n\n4.2.2 Part 2: The Whole Game Walkthrough (90 min)\nLive Demonstration (30 min) - Instructor creates an indicator from scratch:\n\nOpen Positron\nNavigate to chapters/02-transport/index.qmd\nWrite a simple R code chunk:\n\nlibrary(tidyverse)\nsource(here::here(\"scripts\", \"R\", \"theme_weca.R\"))\n\n# Load example data\nbus_data &lt;- read_csv(\"data/examples/bus_ridership.csv\")\n\n# Create visualisation\nggplot(bus_data, aes(x = year, y = ridership)) +\n  geom_line(colour = get_weca_color(\"forest_green\"), linewidth = 1.2) +\n  geom_point(colour = get_weca_color(\"forest_green\"), size = 3) +\n  theme_weca() +\n  labs(title = \"Annual Bus Ridership\",\n       x = \"Year\",\n       y = \"Ridership (millions)\")\n\nExecute chunk (Ctrl+Shift+Enter)\nRender chapter (Quarto: Render button)\nView output in browser\n\nGuided Practise (60 min) - Analysts follow along:\n\nOpen Positron (show how to launch from Start menu)\nOpen project: File &gt; Open Folder &gt; C:\\Users\\your.name\\projects\\weca_analysis_and_evaluation\\projects\\indicators\nOpen their assigned example chapter (pre-created templates)\nExecute the setup chunk (walk through line-by-line what it does)\nModify the plot title and colours\nRe-render and view changes\n\nCommon Issues Troubleshooting (built into this time):\n\nPackage not found → renv::restore()\nFile path errors → Emphasise here::here()\nRendering fails → Cheque R console for errors\n\nBREAK (15 min)\n\n\n4.2.3 Part 3: Understanding the Pieces (45 min)\nProject Structure Tour (15 min):\nindicators/\n├── chapters/           # Your work goes here\n│   ├── 01-economy/\n│   ├── 02-transport/\n│   └── ...\n├── data/\n│   ├── raw/           # Original data files\n│   ├── processed/     # Cleaned data\n│   └── examples/      # Practice datasets\n├── scripts/\n│   └── R/             # Shared helper functions\n├── _quarto.yml        # Book configuration\n└── .git/              # Version control (hidden)\nCode Chunk Anatomy (15 min):\n#| label: my-chart           # Unique identifier\n#| fig-cap: \"Description\"    # Figure caption\n\nlibrary(tidyverse)           # Load tools\ndata &lt;- read_csv(\"file.csv\") # Import data\nggplot(data, aes(x, y)) +    # Visualise\n  geom_line()\nQuarto Rendering Process (15 min):\n\nMarkdown → formatted text\nCode chunks → executed by R → output\nCombined → HTML/PDF\n\nShow the “Source” vs. “Visual” editor modes in Positron.\n\n\n4.2.4 Part 4: Your First Modification (60 min)\nIndividual Exercise:\nEach analyst modifies their example indicator:\n\nChange the chart title to something descriptive\nChange the line colour to \"claret\" (show show_weca_palette())\nAdd a subtitle using the subtitle argument in labs()\nAdd a text section above the chart explaining what it shows\nRe-render and verify changes\n\nStretch Goal (for faster learners):\n\nAdd a second chart using geom_point() or geom_col()\nFilter the data to show only recent years using filter(year &gt;= 2020)\n\nInstructor: Circulate, answer questions, help with errors. Expect file path issues, typos, and R syntax confusion.\n\n\n4.2.5 Part 5: Wrap-up & Homework (30 min)\nReflection (5 min):\nBefore we finish, take 2 minutes to write down:\n\nOne thing you understand now that you didn’t at the start\nOne thing that’s still unclear or you’d like more practise with\n\nWhat surprised you about the code-first workflow? Share with the group if you’re comfortable.\nWhat We Learned Today:\n\nThe complete workflow: data → code → chart → report\nHow to run R code in Quarto\nHow to render a chapter\nThe WECA project structure\n\nLooking Ahead:\n\nSession 2: Deep dive into R syntax and data manipulation\nSession 3: Cleaning messy data\nSession 4: Advanced Quarto features\nSession 5: Git collaboration\n\nHomework (1-2 hours):\n\nWatch: Positron tidyverse demo\nPractise: Modify your example indicator chapter:\n\nAdd a second visualisation (bar chart or scatter plot)\nWrite 2-3 sentences describing what the data shows\nExperiment with different WECA colours\n\nExplore: Open scripts/R/helpers.R and read the function documentation\nPrepare: Come with one question about something that confused you today\n\nOptional Reading:\n\nR for Data Science: Chapter 1 (Introduction)\nQuarto Guide: “Hello, Quarto” tutorial",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Session 1: The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-02.html",
+    "href": "sessions/session-02.html",
+    "title": "5  Session 2: R Fundamentals",
+    "section": "",
+    "text": "5.1 Learning Outcomes\nIn Session 1, you ran pre-written code. Today you learn to write your own – to ask questions of data and get visual answers. By the end, you’ll build an indicator chart from scratch.",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Session 2: R Fundamentals</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-02.html#learning-outcomes",
+    "href": "sessions/session-02.html#learning-outcomes",
+    "title": "5  Session 2: R Fundamentals",
+    "section": "",
+    "text": "Understand R’s key data structure (tibble/data frame)\nUse the pipe operator (%&gt;% or |&gt;) to chain operations\nApply core dplyr verbs: filter, select, mutate, summarise, group_by\nCreate multi-layered ggplot2 visualisations\nDebug common R errors",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Session 2: R Fundamentals</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-02.html#session-structure",
+    "href": "sessions/session-02.html#session-structure",
+    "title": "5  Session 2: R Fundamentals",
+    "section": "5.2 Session Structure",
+    "text": "5.2 Session Structure\n\n5.2.1 Part 1: Homework Review & Setup (30 min)\nHomework Review (25 min):\n\nShow-and-tell: Volunteers demonstrate their homework modifications\nAddress common questions from homework prep\nQuick poll: What was most confusing? (Adjust session focus accordingly)\n\nSetting Up Your Practise Script (5 min):\nToday you’ll write R code from scratch. You need somewhere to work:\n\nIn Positron, open the indicators project if it isn’t already open\nFile &gt; New File &gt; R Script (or Ctrl+Shift+N)\nSave it straight away as scripts/R/session-02-practice.R\nAdd a header comment at the top:\n\n# Session 2 Practice - R Fundamentals\n# Your name, today's date\nYou’ll use this file for all the “Try It” exercises today. Run individual lines with Ctrl+Enter or highlight a block and run it with Ctrl+Shift+Enter.\n\n\n5.2.2 Part 2: R Basics - Data Structures (45 min)\nYour indicator data arrives as a table of rows and columns – understanding tibbles is how R represents this.\nThe Tibble: R’s Spreadsheet\nlibrary(tidyverse)\n\n# Load a real WECA dataset\narea_data &lt;- read_csv(here::here(\"data\", \"examples\", \"area_employment.csv\"))\n\n# View it\narea_data\n\n# The $ operator accesses a single column (base R syntax)\narea_data$employment_rate\nKey Concepts:\n\nTibbles are like Excel tables with named columns\n&lt;- means “assign to” (store a value)\n$ accesses a column\nR is case-sensitive: Population ≠ population\nComments start with #\n\nBREAK (15 min)\n\n\n5.2.3 Part 3: The Tidyverse Way - Verbs and Pipes (60 min)\nBuilding an indicator means filtering to your area, calculating rates, and summarising trends – these five verbs do exactly that.\nThe Pipe Operator:\n# Old way (nested, hard to read)\nsummarise(filter(area_data, population &gt; 100000),\n          mean_pop = mean(population))\n\n# Tidyverse way (sequential, readable)\narea_data %&gt;%\n  filter(population &gt; 100000) %&gt;%\n  summarise(mean_pop = mean(population))\n\nTry It (5 min): Rewrite this nested expression using pipes: select(filter(area_data, employment_rate &gt; 0.5), area, employment_rate)\n\nThe Five Core Verbs:\n\nfilter() - Keep rows that match a condition\nselect() - Keep specific columns\nmutate() - Create new columns\nsummarise() - Calculate summary statistics\ngroup_by() - Do calculations by category\n\n\nTry It (25 min): Using your example dataset, work through each verb:\n\nfilter() – keep only rows for a specific area\nselect() – keep just the area, year, and value columns\nmutate() – add a new column calculating a rate or percentage\nsummarise() – calculate the mean and max of a numeric column\ngroup_by() %&gt;% summarise() – calculate summary statistics by area\n\nPair up for these exercises. Person A writes the filter() and select() steps; Person B writes mutate() and summarise(). Swap roles for the ggplot2 exercise in Part 4.\n\nBREAK (15 min)\n\n\n5.2.4 Part 4: ggplot2 - Grammar of Graphics (60 min)\nEvery indicator chapter needs at least one chart. This is how you build them.\n# Layer 1: Data + aesthetic mapping\nggplot(bus_data, aes(x = year, y = ridership))\n\n# Layer 2: Add geometry\nggplot(bus_data, aes(x = year, y = ridership)) +\n  geom_line()\n\n# Layer 3: Add styling\nggplot(bus_data, aes(x = year, y = ridership)) +\n  geom_line(colour = get_weca_color(\"forest_green\"), linewidth = 1) +\n  geom_point(size = 2) +\n  labs(title = \"Bus Ridership Over Time\",\n       x = \"Year\",\n       y = \"Ridership (millions)\") +\n  theme_weca()\nKey ggplot2 Geometries:\n\ngeom_line() - Line charts (trends over time)\ngeom_point() - Scatter plots (relationships)\ngeom_col() - Bar charts (comparisons)\ngeom_smooth() - Trend lines\n\n\nTry It (10 min): Create a bar chart of employment rate by area using geom_col(). Add WECA colours and labels with labs().\n\n\n\n5.2.5 Part 5: Debugging R Errors (30 min)\nCommon Error Messages and Fixes:\n\ncould not find function \"filter\" → Load library: library(tidyverse)\nobject 'data' not found → Run the chunk that loads the data first\nunexpected symbol → Cheque for missing commas, quotes, or parentheses\n'x' and 'y' lengths differ → Data columns have different numbers of rows\n\nDebugging Strategy:\n\nRead the error message (bottom-up in stack trace)\nCheque the line number mentioned\nLook for typos in variable/column names\nRun code chunk-by-chunk to isolate the problem\nUse View(data) to inspect your data frame, use the data explorer or use data |&gt; glimpse()\n\n\n\n5.2.6 Part 6: Wrap-up & Homework (15 min)\nReflection (5 min):\nBefore we finish, take 2 minutes to write down:\n\nOne thing you understand now that you didn’t at the start\nOne thing that’s still unclear or you’d like more practise with\n\nWhich dplyr verb felt most natural? Which was most confusing? Share with the group if you’re comfortable.\nHomework (1-2 hours):\n\nComplete: The “R Basics” chapter in R for Data Science\nPractise: Using your assigned example dataset:\n\nCalculate 3 summary statistics (min, max, mean)\nCreate 2 different chart types\nAdd WECA theme and appropriate labels\n\nCreate: A new indicator section that includes data loading, transformation, visualisation, and findings paragraph\nPrepare: Bring a real WECA dataset (CSV) for Session 3",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Session 2: R Fundamentals</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-03.html",
+    "href": "sessions/session-03.html",
+    "title": "6  Session 3: Data Wrangling",
+    "section": "",
+    "text": "6.1 Learning Outcomes\nReal data is messy. Column names are inconsistent, values are missing, formats are wrong. Data wrangling is where analysts spend most of their time – and it’s the step that’s invisible in Excel. Today you learn to do it reproducibly.",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Session 3: Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-03.html#learning-outcomes",
+    "href": "sessions/session-03.html#learning-outcomes",
+    "title": "6  Session 3: Data Wrangling",
+    "section": "",
+    "text": "Import data from CSV and Excel files\nHandle missing values and data quality issues\nReshape data between wide and long formats\nJoin multiple datasets together\nApply data cleaning best practises\nUse the here() package for robust file paths",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Session 3: Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-03.html#session-structure",
+    "href": "sessions/session-03.html#session-structure",
+    "title": "6  Session 3: Data Wrangling",
+    "section": "6.2 Session Structure",
+    "text": "6.2 Session Structure\n\n6.2.1 Part 1: Homework Review & Setup (30 min)\nHomework Review (25 min):\n\nVolunteer demos of homework indicators\nQuick discussion: What datasets did you bring? What challenges do you anticipate?\n\nSetting Up Your Practise Script (5 min):\nAs in Session 2, create a new R script for today’s exercises:\n\nIn Positron, File &gt; New File &gt; R Script (or Ctrl+Shift+N)\nSave as scripts/R/session-03-practice.R\nAdd a header and load the libraries you’ll need:\n\n# Session 3 Practice - Data Wrangling\n# Your name, today's date\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(janitor)\nsource(here::here(\"scripts\", \"R\", \"helpers.R\"))\nRun lines with Ctrl+Enter or highlight a block and use Ctrl+Shift+Enter. Keep your code as you go – this file becomes a useful reference for your own indicator work.\n\n\n6.2.2 Part 2: Importing Data (45 min)\nYour indicator starts with a CSV or Excel download. Getting it into R cleanly is the first step.\nReading CSV Files:\nlibrary(tidyverse)\nlibrary(readxl)\nsource(here::here(\"scripts\", \"R\", \"helpers.R\"))\n\n# The WECA way\ndata &lt;- load_csv(here::here(\"data\", \"raw\", \"indicator_data.csv\"))\nReading Excel Files:\n# Basic read\ndata &lt;- read_excel(\"data/raw/employment_data.xlsx\")\n\n# Specific sheet\ndata &lt;- read_excel(\"data/raw/employment_data.xlsx\", sheet = \"Q4_2024\")\n\n# Skip header rows\ndata &lt;- read_excel(\"data/raw/employment_data.xlsx\", sheet = \"Data\", skip = 5)\nFile Path Best Practises:\n# ✅ Good - relative paths with here()\ndata &lt;- load_csv(here::here(\"data\", \"raw\", \"myfile.csv\"))\n\n# ❌ Bad - absolute paths (breaks on other computers)\ndata &lt;- read_csv(\"C:/Users/steve/projects/indicators/data/raw/myfile.csv\")\n\nTry It (10 min): Load your own CSV with read_csv(), then inspect it with glimpse(). How many rows and columns does it have? What types are the columns?\n\nBREAK (15 min)\n\n\n6.2.3 Part 3: Data Cleaning Essentials (60 min)\nReal government data has messy names, missing values, and mixed types. This is how you fix them.\nCleaning Column Names:\nlibrary(janitor)\n\ndata_clean &lt;- data %&gt;%\n  clean_names()  # Converts \"Area Name\" to \"area_name\"\n\nTry It (5 min): Run clean_names() on your dataset. Compare names(data) before and after.\n\nHandling Missing Values:\n# Check for missing data\ncheck_missing(data)\n\n# Remove rows with missing values\ndata_complete &lt;- data %&gt;%\n  drop_na(year, value)\n\n# Replace missing values\ndata_filled &lt;- data %&gt;%\n  mutate(\n    value = if_else(is.na(value), 0, value),\n    category = replace_na(category, \"Unknown\")\n  )\n\nTry It (10 min): Cheque your data for NAs with check_missing(). Decide how to handle them – drop the rows, fill with zeros, or replace with “Unknown”?\n\nType Conversions:\ndata &lt;- data %&gt;%\n  mutate(\n    year = as.numeric(year),\n    date = as.Date(date, format = \"%d/%m/%Y\"),\n    region = factor(region, levels = c(\"Bristol\", \"Bath\", \"South Glos\", \"North Somerset\"))\n  )\nBREAK (15 min)\n\n\n6.2.4 Part 4: Reshaping Data (60 min)\nONS data often arrives in wide format (one column per year). Your charts need long format.\nUnderstanding Wide vs. Long Format:\nWide format (like Excel):\nyear  bristol_value  bath_value  sg_value\n2020       1000         500        750\nLong format (tidy):\nyear  area            value\n2020  Bristol         1000\n2020  Bath             500\n2020  South Glos       750\nPivot Longer - Wide to Long:\ndata_long &lt;- data_wide %&gt;%\n  pivot_longer(\n    cols = bristol_value:sg_value,\n    names_to = \"area\",\n    values_to = \"value\"\n  ) %&gt;%\n  mutate(\n    area = str_remove(area, \"_value\"),\n    area = str_to_title(area)\n  )\n\nTry It (10 min): Reshape a wide example dataset to long format using pivot_longer(). Cheque the result with glimpse().\n\nBREAK (15 min)\n\n\n6.2.5 Part 5: Joining Datasets (30 min)\nMany indicators combine data from multiple sources – e.g. population denominators with raw counts.\nTypes of Joins:\n# Left join - keep all rows from first table\ncombined &lt;- data1 %&gt;%\n  left_join(data2, by = \"area\")\n\n# Join on multiple columns\ncombined &lt;- data1 %&gt;%\n  left_join(data2, by = c(\"area\", \"year\"))\n\n\n6.2.6 Common Pitfalls\n\npivot_longer() selects wrong columns – Use cols = starts_with(\"x\") or name columns explicitly. Cheque with names(data) first.\nJoin produces more rows than expected – Duplicate keys in one table cause row multiplication. Cheque with count(data, key_column).\nread_excel() reads numbers as text – Excel formatting can trick R. Use mutate(value = as.numeric(value)) and cheque for introduced NAs.\nFile not found with here() – Ensure you’re in the R Project. Run here::here() alone to cheque the project root.\n\n\n\n6.2.7 Part 6: Real Data Workshop (45 min)\nBefore coding, write down 2-3 specific questions your indicator data could answer. Pick one to focus on. What chart type would best communicate the answer?\nWork in pairs. Each pair takes one dataset. Divide the work: one person handles import and cleaning, the other handles reshaping and visualisation. Review each other’s code before combining.\nWork with real WECA datasets:\n\nImport the data\nInspect and document issues\nClean column names\nHandle missing values\nReshape if needed\nCreate a visualisation\nCalculate summary statistics\n\n\n\n6.2.8 Part 7: Wrap-up & Homework (15 min)\nReflection (5 min):\nBefore we finish, take 2 minutes to write down:\n\nOne thing you understand now that you didn’t at the start\nOne thing that’s still unclear or you’d like more practise with\n\nWhat was the messiest thing about your data, and how did you fix it? Share with the group if you’re comfortable.\nHomework (1-2 hours):\n\nComplete: Prepare your real indicator data (cleaned version in data/processed/)\nCreate: A draught indicator section with data loading, cleaning, transformation, chart, and findings\nRead: CONTRIBUTING.md sections on “Code Style Guide”",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Session 3: Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-04.html",
+    "href": "sessions/session-04.html",
+    "title": "7  Session 4: Quarto Mastery",
+    "section": "",
+    "text": "7.1 Learning Outcomes\nSo far you’ve written code that produces charts. Today you turn that into a professional document – one that updates itself when data changes, never has a copy-paste error, and can produce HTML and PDF from the same source.",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Session 4: Quarto Mastery</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-04.html#learning-outcomes",
+    "href": "sessions/session-04.html#learning-outcomes",
+    "title": "7  Session 4: Quarto Mastery",
+    "section": "",
+    "text": "Structure multi-section Quarto documents\nControl code chunk execution and output\nFormat text with Markdown syntax\nCreate professional tables\nUse cross-references for figures and tables\nUnderstand the “freeze” workflow for collaboration\nRender both HTML and PDF outputs",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Session 4: Quarto Mastery</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-04.html#session-structure",
+    "href": "sessions/session-04.html#session-structure",
+    "title": "7  Session 4: Quarto Mastery",
+    "section": "7.2 Session Structure",
+    "text": "7.2 Session Structure\n\n7.2.1 Part 1: Homework Review (30 min)\n\nShow-and-tell: Volunteers share their cleaned datasets and draught indicators\nDiscussion: What data cleaning challenges did you encounter?\n\n\n\n7.2.2 Part 2: Markdown Essentials (45 min)\nYour indicator chapter needs headings, formatted text, and structured findings – not just code.\nBasic Syntax:\n# Heading 1\n## Heading 2\n### Heading 3\n\n**Bold text**\n*Italic text*\n\n- Bullet point\n- Another point\n  - Nested point\n\n1. Numbered list\n2. Second item\n\n[Link text](https://example.com)\n\n&gt; Block quote - for highlighting key findings\n\n`inline code` for variable names like `employment_rate`\nGuided Practise (20 min):\nAdd section headings, format key numbers, create bulleted lists, and add block quotes to your chapter.\n\n\n7.2.3 Part 3: Quarto Code Chunks (60 min)\nControl what readers see: hide the data wrangling, show the chart, embed key numbers in your narrative.\nAnatomy of a Code Chunk:\n```{r}\n#| label: my-analysis\n#| echo: false\n#| warning: false\n#| message: false\n#| fig-cap: \"Employment trends across the region\"\n#| fig-width: 8\n#| fig-height: 5\n\n# Your R code here\nggplot(data, aes(x = year, y = value)) +\n  geom_line() +\n  theme_weca()\n```\nKey Chunk Options:\n\n\n\nOption\nEffect\nWhen to Use\n\n\n\n\necho: false\nHide code, show output\nFinal reports\n\n\necho: true\nShow code and output\nTeaching, documentation\n\n\neval: false\nShow code, don’t run\nExample code\n\n\ninclude: false\nRun code, hide everything\nSetup chunks\n\n\nwarning: false\nSuppress warnings\nKnown harmless warnings\n\n\nfig-cap: \"...\"\nFigure caption\nAll charts (for accessibility)\n\n\nlabel: my-chunk\nChunk identifier\nRequired for cross-references\n\n\n\n\nTry It (10 min): Add echo: false and fig-cap to your existing chart chunk, then re-render. Notice the difference in the output.\n\nBREAK (15 min)\nInline R Code:\nUse inline R expressions to embed computed values directly in your narrative text.\nExample syntax:\nIn your .qmd file you would write:\n\nThe employment rate increased from `r min(data$employment_rate)`% in 2015 to `r max(data$employment_rate)`% in 2024.\n\nHow it works:\n\nWrap R expressions with backtick-r-space: `r expr`\nThe code executes when rendering\nResults appear inline in your text\n\nBenefits:\n\nNumbers update automatically when data changes\nNo copy-paste errors\nEnsures text matches visualisations\n\n\nTry It (10 min): Write a sentence with an inline R expression for a summary statistic from your indicator data (e.g. the mean, min, or max of a key column).\n\nBREAK (15 min)\n\n\n7.2.4 Part 4: Tables in Quarto (45 min)\nSummary tables alongside charts make your indicator section complete.\nCreating Tables from Data:\n# Basic table\ndata %&gt;%\n  select(area, population, employment_rate) %&gt;%\n  knitr::kable(\n    col.names = c(\"Area\", \"Population\", \"Employment Rate (%)\"),\n    digits = 1,\n    format.args = list(big.mark = \",\")\n  )\n\nTry It (10 min): Create a knitr::kable() table from your indicator data, with formatted column names and appropriate decimal places.\n\n\n\n7.2.5 Part 5: Document Structure & Cross-References (45 min)\nProfessional reports reference “see Figure 1” not “see the chart above”.\nYAML Frontmatter:\n---\ntitle: \"Public Transport Connectivity\"\nsubtitle: \"Connecting the region through better public transport\"\nauthor: \"Your Name\"\ndate: last-modified\n---\nCross-References to Figures:\n```{r}\n#| label: fig-employment-trend\n#| fig-cap: \"Employment rate trends 2015-2024\"\n\nggplot(data, aes(x = year, y = employment_rate)) +\n  geom_line() +\n  theme_weca()\n```\n\nAs shown in @fig-employment-trend, employment rates have\nsteadily increased over the past decade.\n\nTry It (10 min): Add a label to your figure chunk (e.g. #| label: fig-my-chart) and reference it in your text with @fig-my-chart. Re-render and cheque the link works.\n\n\n\n7.2.6 Common Pitfalls\n\nCross-reference doesn’t link – Label must start with fig- or tbl- prefix. Cheque: #| label: fig-my-chart not #| label: my-chart.\nYAML error on render – Indentation matters. Use 2 spaces, never tabs. Cheque colons have a space after them.\nInline R shows code instead of result – Ensure backtick-r-space syntax is correct and the referenced object exists in an earlier chunk.\nFigure caption missing from output – Need both #| label: and #| fig-cap: in the same chunk.\n\n\n\n7.2.7 Part 6: The Freeze Workflow for Collaboration (30 min)\nHow It Works:\n\nYou render your chapter with your local data\nQuarto saves outputs to _freeze/ directory\nYou commit both source (.qmd) and cache (_freeze/) to Git\nOthers pull your changes and render the full book using your cached outputs\n\nWorkflow in Practise:\n# After editing your chapter\nquarto render chapters/02-transport/index.qmd\n\n# Commit BOTH source and cache\ngit add chapters/02-transport/index.qmd\ngit add _freeze/html/chapters/02-transport/\ngit commit -m \"Add bus ridership indicator\"\ngit push\nImportant: Always commit the _freeze/ directory alongside your .qmd file!\n\n\n7.2.8 Part 7: Rendering Options (15 min)\n# HTML (default)\nquarto render chapters/02-transport/index.qmd\n\n# PDF\nquarto render chapters/02-transport/index.qmd --to pdf\n\n# Preview with live reload\nquarto preview\n\n\n7.2.9 Part 8: Practical Exercise (45 min)\nWrite a “Key Question” for your indicator section. Your analysis should answer this question. Your Key Findings section should directly address it.\nWork in pairs. Review each other’s Quarto source for: missing figure captions, chunk labels, cross-references, and narrative quality.\nCreate a complete indicator section with:\n\nYAML frontmatter with title, author, date\nContext section explaining the indicator\nData section with code folding\nAnalysis section with visualisations, tables, and cross-references\nKey findings section with bulleted insights\nData source citation\n\n\n\n7.2.10 Part 9: Wrap-up & Homework (15 min)\nReflection (5 min):\nBefore we finish, take 2 minutes to write down:\n\nOne thing you understand now that you didn’t at the start\nOne thing that’s still unclear or you’d like more practise with\n\nWhat’s the biggest advantage of Quarto over copy-paste reporting? Share with the group if you’re comfortable.\nHomework (1-2 hours):\n\nComplete: Your indicator section following the structure\nCreate: A second indicator using a different dataset\nRefine: Ensure all charts have captions, add inline R code to narrative\nRead: CONTRIBUTING.md sections on “Collaborative Rendering”",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Session 4: Quarto Mastery</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-05.html",
+    "href": "sessions/session-05.html",
+    "title": "8  Session 5: Git Collaboration",
+    "section": "",
+    "text": "8.1 Learning Outcomes",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Session 5: Git Collaboration</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-05.html#learning-outcomes",
+    "href": "sessions/session-05.html#learning-outcomes",
+    "title": "8  Session 5: Git Collaboration",
+    "section": "",
+    "text": "Understand version control concepts (commits, branches, merges)\nUse Git Bash for basic version control operations\nCreate and switch between branches\nStage, commit, and push changes\nCreate and review pull requests on GitHub\nResolve basic merge conflicts\nFollow the WECA project Git workflow",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Session 5: Git Collaboration</span>"
+    ]
+  },
+  {
+    "objectID": "sessions/session-05.html#session-structure",
+    "href": "sessions/session-05.html#session-structure",
+    "title": "8  Session 5: Git Collaboration",
+    "section": "8.2 Session Structure",
+    "text": "8.2 Session Structure\n\n8.2.1 Part 1: Homework Review & Version Control Intro (45 min)\nShow-and-tell (20 min): Volunteers present completed indicator sections.\nWhy Version Control? (25 min)\nThe Problem:\nindicator_analysis_v1.qmd\nindicator_analysis_v2.qmd\nindicator_analysis_v2_final.qmd\nindicator_analysis_v2_final_ACTUAL.qmd\nGit Concepts:\n\n\n\n\n\n\n\n\nConcept\nAnalogy\nPurpose\n\n\n\n\nRepository\nProject folder + time machine\nContains all files + history\n\n\nCommit\nSnapshot/checkpoint\nSave point you can return to\n\n\nBranch\nParallel timeline\nWork without affecting main\n\n\nMerge\nCombine timelines\nIntegrate your work back to main\n\n\nRemote (GitHub)\nCloud backup + collaboration hub\nShare work, collaborate\n\n\n\n\n\n8.2.2 Part 2: Git Basics in Git Bash (60 min)\nEssential Commands:\n1. Cheque Status:\ngit status\n2. View Changes:\ngit diff chapters/02-transport/index.qmd\n3. Stage Changes:\ngit add chapters/02-transport/index.qmd\ngit add _freeze/html/chapters/02-transport/\n4. Commit:\ngit commit -m \"Add bus ridership indicator to transport chapter\"\ngit log --oneline\n5. Push:\ngit push\nBREAK (15 min)\nGuided Practise (30 min):\n\nOpen Git Bash in the indicators project\nMake a small change to your chapter\nCheque status: git status\nView changes: git diff\nStage: git add chapters/XX-topic/index.qmd\nCommit: git commit -m \"Update chapter introduction\"\nView history: git log --oneline\n\n\n\n8.2.3 Part 3: Branching Workflow (60 min)\nWhy Branches?\n\nWork on your indicator without affecting others\nExperiment safely\nRequired for pull request workflow\n\nBranch Naming Convention:\nyourname/chapter-or-feature\n\nExamples:\nheather/transport\nalex/environment-update\nsarah/fix-chart-colours\nCreating and Using Branches:\n# See current branch\ngit branch\n\n# Create and switch to new branch\ngit checkout -b yourname/transport\n\n# Make changes, stage, and commit\ngit add chapters/02-transport/index.qmd\ngit commit -m \"Add bus ridership indicator\"\n\n# Push branch to GitHub\ngit push -u origin yourname/transport\n\n# Switch branches\ngit checkout main\ngit checkout yourname/transport\nBREAK (15 min)\nGuided Practise (30 min):\n\nCreate a new branch: git checkout -b firstname/chapter-name\nMake a change to your chapter\nStage and commit\nPush: git push -u origin firstname/chapter-name\nSwitch to main: git checkout main\nSwitch back: git checkout firstname/chapter-name\n\n\n\n8.2.4 Part 4: Pull Requests on GitHub (60 min)\nWhat is a Pull Request?\nA formal request to merge your branch into main. Enables:\n\nCode review before merging\nDiscussion and feedback\nQuality control\nDocumentation of changes\n\nCreating a Pull Request:\nStep 1: Push your branch (already done)\nStep 2: Go to GitHub and create PR\nStep 3: Fill in PR template with:\n\nTitle: “Add bus ridership indicator to transport chapter”\nSummary of changes\nData sources\nChecklist (code runs, charts labelled, etc.)\n\nStep 4: Request review\nStep 5: Submit\nBREAK (15 min)\nReviewing a Pull Request:\n\nGo to “Pull Requests” tab on GitHub\nClick on a PR\nClick “Files changed” tab\nReview code quality, chart labels, documentation\nLeave comments\nSubmit review: Approve, Request changes, or Comment\n\nGuided Practise (40 min):\nPart A: Each analyst creates a PR for their branch (20 min)\nPart B: Peer review in pairs (20 min)\n\n\n8.2.5 Part 5: Merging and Updating (30 min)\nMerging a Pull Request:\n\nClick “Merge pull request” on GitHub\nConfirm the merge\nDelete the branch\n\nLocally, update your main:\n# Switch to main\ngit checkout main\n\n# Pull latest changes\ngit pull\n\n# Delete local feature branch\ngit branch -d yourname/chapter-name\n\n\n8.2.6 Part 6: Merge Conflicts (Basic) (30 min)\nWhat is a Merge Conflict?\nOccurs when two people edit the same lines of the same file.\nConflict Markers:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nBus ridership increased by 15% over the period.\n=======\nBus ridership showed steady growth, increasing by 12% overall.\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; yourname/transport\nResolution Process:\n\nIdentify the conflict\nOpen the file in Positron\nReview both versions\nChoose or combine the changes\nRemove conflict markers\nSave, stage, and commit\n\n\n\n8.2.7 Part 7: WECA Project Git Workflow (20 min)\nStandard Workflow:\n# 1. Start from main, get latest\ngit checkout main\ngit pull\n\n# 2. Create feature branch\ngit checkout -b yourname/feature-name\n\n# 3. Do your work\n\n# 4. Stage and commit\ngit add file1.qmd\ngit commit -m \"Clear, descriptive message\"\n\n# 5. Push branch\ngit push -u origin yourname/feature-name\n\n# 6. Create Pull Request on GitHub\n\n# 7. After merge, update main\ngit checkout main\ngit pull\ngit branch -d yourname/feature-name\nCommit Message Best Practises:\n✅ Good: “Add bus ridership indicator to transport chapter” ❌ Bad: “Updates”, “Fixed stuff”, “WIP”\n\n\n8.2.8 Part 8: Final Practise - Full Workflow (45 min)\nComplete the full Git workflow end-to-end:\n\nUpdate main branch\nCreate a new branch for a new indicator\nAdd content to your chapter\nCommit changes (remember freeze files!)\nPush branch\nCreate Pull Request on GitHub\nReview a peer’s PR\n\n\n\n8.2.9 Part 9: Course Wrap-up (30 min)\nReflection (5 min):\nBefore we finish, take 2 minutes to write down:\n\nOne thing you understand now that you didn’t at the start\nOne thing that’s still unclear or you’d like more practise with\n\nWhat part of the Git workflow would you want to practise more? Share with the group if you’re comfortable.\nWhat We’ve Accomplished:\nOver 5 sessions, you’ve learned to:\n\n✅ Navigate the command line with Git Bash\n✅ Use Positron IDE for R development\n✅ Write R code using tidyverse\n✅ Create visualisations with ggplot2\n✅ Author reproducible reports with Quarto\n✅ Use Git and GitHub for collaboration\n\nNext Steps:\n\nContinue building indicators for your assigned priority areas\nAsk for help in team chat or via PR reviews\nReference documentation\nPractise regularly\n\nFeedback Session (15 min):\n\nWhat worked well?\nWhat was most challenging?\nWhat additional support would be helpful?\n\nQ&A (15 min)",
+    "crumbs": [
+      "Training Sessions",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Session 5: Git Collaboration</span>"
+    ]
+  },
+  {
+    "objectID": "resources/datasets.html",
+    "href": "resources/datasets.html",
+    "title": "9  Practice Datasets",
+    "section": "",
+    "text": "9.1 Example Datasets\nTwo small, clean datasets are provided for practice exercises in Sessions 1-2. From Session 3 onwards, analysts work with their own real indicator data.",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practice Datasets</span>"
+    ]
+  },
+  {
+    "objectID": "resources/datasets.html#example-datasets",
+    "href": "resources/datasets.html#example-datasets",
+    "title": "9  Practice Datasets",
+    "section": "",
+    "text": "9.1.1 Bus Ridership\nFile: bus_ridership.csv\nDescription: Annual bus ridership data for the WECA region\nColumns:\n\nyear - Year (2015-2024)\nridership - Annual ridership in millions\nroutes - Number of bus routes\nregion - Geographic area\n\nUse cases:\n\nSession 1: Creating first visualisation\nSession 2: Line charts and trends with ggplot2\n\n\n\n9.1.2 Area Employment\nFile: area_employment.csv\nDescription: Employment rate statistics by WECA local authority (2019-2023)\nColumns:\n\narea - Local authority name (Bath and North East Somerset, Bristol, North Somerset, South Gloucestershire)\nyear - Year (2019-2023)\nemployment_rate - Proportion employed, 16-64 age group (0-1 scale)\npopulation - Total population\n\nUse cases:\n\nSession 2: Filtering, grouping, summarising with dplyr verbs\nSession 2: Bar charts and comparisons with ggplot2",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practice Datasets</span>"
+    ]
+  },
+  {
+    "objectID": "resources/datasets.html#real-indicator-data",
+    "href": "resources/datasets.html#real-indicator-data",
+    "title": "9  Practice Datasets",
+    "section": "9.2 Real Indicator Data",
+    "text": "9.2 Real Indicator Data\nFrom Session 3 onwards, analysts bring their own real WECA datasets. These will typically be messier than the example data above – see Data Cleaning Notes below for common issues and solutions.",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practice Datasets</span>"
+    ]
+  },
+  {
+    "objectID": "resources/datasets.html#data-cleaning-notes",
+    "href": "resources/datasets.html#data-cleaning-notes",
+    "title": "9  Practice Datasets",
+    "section": "9.3 Data Cleaning Notes",
+    "text": "9.3 Data Cleaning Notes\nCommon issues to watch for:\n\nColumn naming:\n\nMixed case: “Area Name”, “area_name”, “AREA_NAME”\nSpecial characters: “Year (2023)”, “Percentage (%)”\nSolution: Use janitor::clean_names()\n\nMissing values:\n\nCoded as: “N/A”, “n/a”, “-”, “*“, empty cells\nSolution: Explicit is.na() checks and replace_na()\n\nDate formats:\n\n“31/12/2023”, “2023-12-31”, “December 2023”\nSolution: Use as.Date() with appropriate format strings\n\nNumeric values as text:\n\n“1,234”, “£50.00”, “12.5%”\nSolution: str_remove_all() non-numeric characters, then as.numeric()\n\nExcel header rows:\n\nTitle rows, merged cells, footnotes\nSolution: Use skip = parameter in read_excel()",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practice Datasets</span>"
+    ]
+  },
+  {
+    "objectID": "resources/datasets.html#dataset-documentation-template",
+    "href": "resources/datasets.html#dataset-documentation-template",
+    "title": "9  Practice Datasets",
+    "section": "9.4 Dataset Documentation Template",
+    "text": "9.4 Dataset Documentation Template\nWhen adding new practice datasets, document them using this template:\n### Dataset Name\n\n**File:** `filename.csv`\n\n**Description:** Brief description of what the data contains\n\n**Columns:**\n\n- `column1` - Description\n- `column2` - Description\n\n**Source:** Data source and URL\n\n**Date range:** YYYY-YYYY\n\n**Use cases:** Which sessions/exercises use this data\n\n**Known issues:** Any data quality notes",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practice Datasets</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html",
+    "href": "resources/setup-guide.html",
+    "title": "10  Setup Guide",
+    "section": "",
+    "text": "10.1 Pre-Session Setup Checklist\nComplete this setup before Session 1 to ensure smooth training delivery.",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#software-installation",
+    "href": "resources/setup-guide.html#software-installation",
+    "title": "10  Setup Guide",
+    "section": "10.2 Software Installation",
+    "text": "10.2 Software Installation\n\n10.2.1 Required Software\nInstall the following on all analyst machines:\n\nR (version ≥ 4.3)\n\nDownload: https://cran.r-project.org/\nWindows: Use default installation options\nVerify: Open R console, check version with R.version.string\n\nPositron (Recommended IDE)\n\nDownload: https://github.com/posit-dev/positron/releases\nAlternative: RStudio if Positron unavailable\nVerify: Launch Positron, create new R file\n\nQuarto (version ≥ 1.4)\n\nDownload: https://quarto.org/docs/get-started/\nVerify: Open terminal, run quarto --version\n\nPython (version ≥ 3.10)\n\nDownload: https://www.python.org/\nWindows: Check “Add Python to PATH” during installation\nVerify: python --version\n\nuv (Python package manager)\n\nInstall: pip install uv or download from https://github.com/astral-sh/uv\nVerify: uv --version\n\nGit (version control)\n\nDownload: https://git-scm.com/\nWindows: Install Git Bash with default options\nVerify: Open Git Bash, run git --version",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#project-setup",
+    "href": "resources/setup-guide.html#project-setup",
+    "title": "10  Setup Guide",
+    "section": "10.3 Project Setup",
+    "text": "10.3 Project Setup\n\n10.3.1 Clone the Indicators Repository\ncd ~/projects\ngit clone https://github.com/your-org/indicators.git\n\n\n10.3.2 Install R Packages\n\nOpen Positron\nNavigate to: File &gt; Open Folder &gt; indicators\nIn R console, run:\n\n# Install renv (if not already installed)\ninstall.packages(\"renv\")\n\n# Restore project packages\nrenv::restore()\nThis will install all required R packages listed in renv.lock.\nExpected packages include:\n\ntidyverse (data manipulation and visualisation)\nhere (robust file paths)\nreadxl (Excel file import)\njanitor (data cleaning)\ngt (publication tables)\nAnd other project-specific packages\n\n\n\n10.3.3 Install Python Dependencies\n\nOpen Git Bash in the indicators project folder\nRun:\n\n# Create virtual environment and install packages\nuv sync\nThis installs Python packages listed in pyproject.toml.\n\n\n10.3.4 Install Pre-Commit Hooks\nRun the hook installation script:\ncd indicators\nbash scripts/hooks/install-hooks.sh\nThis sets up secret scanning to prevent accidental credential commits.",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#verify-setup",
+    "href": "resources/setup-guide.html#verify-setup",
+    "title": "10  Setup Guide",
+    "section": "10.4 Verify Setup",
+    "text": "10.4 Verify Setup\n\n10.4.1 Check R Environment\nIn Positron R console:\n# Load core packages\nlibrary(tidyverse)\nlibrary(here)\n\n# Check project root\nhere::here()  # Should show indicators project path\n\n# Check WECA helpers\nsource(here::here(\"scripts\", \"R\", \"helpers.R\"))\nshow_weca_palette()\n\n\n10.4.2 Check Quarto Rendering\ncd indicators\nquarto render index.qmd\nShould produce HTML output in _output/ directory without errors.\n\n\n10.4.3 Check Git Configuration\ngit config user.name\ngit config user.email\nIf not set, configure:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"your.email@example.com\"\n\n\n10.4.4 Test Full Workflow\n\nOpen chapters/01-economy/index.qmd in Positron\nRun the first code chunk (Ctrl+Shift+Enter)\nRender the chapter: Click “Render” button\nVerify HTML output opens in browser",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#prepare-practice-data",
+    "href": "resources/setup-guide.html#prepare-practice-data",
+    "title": "10  Setup Guide",
+    "section": "10.5 Prepare Practice Data",
+    "text": "10.5 Prepare Practice Data\n\n10.5.1 Example Datasets\nEnsure these files exist in indicators/data/examples/:\n\nbus_ridership.csv\narea_employment.csv\n\nThese are small, clean datasets (4 columns, 20 rows) used for practice exercises in Sessions 1-2. From Session 3 onwards, analysts work with their own real indicator data.\n\n\n10.5.2 Create Practice Branches\nFor each analyst, create a practice branch:\ngit checkout -b helen-practice\ngit push -u origin helen-practice\ngit checkout main\n\ngit checkout -b alex-practice\ngit push -u origin alex-practice\ngit checkout main\n\n# Repeat for each analyst",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#troubleshooting-setup",
+    "href": "resources/setup-guide.html#troubleshooting-setup",
+    "title": "10  Setup Guide",
+    "section": "10.6 Troubleshooting Setup",
+    "text": "10.6 Troubleshooting Setup\nIf you encounter problems during setup, see the Troubleshooting Guide — particularly the Setup Issues section.",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#post-setup-verification",
+    "href": "resources/setup-guide.html#post-setup-verification",
+    "title": "10  Setup Guide",
+    "section": "10.7 Post-Setup Verification",
+    "text": "10.7 Post-Setup Verification\nBefore Session 1, verify each machine:\n\nR opens and shows correct version\nPositron launches without errors\nIndicators project opens in Positron\nlibrary(tidyverse) loads without errors\nhere::here() shows correct project path\nTest chapter renders to HTML\nGit Bash opens and shows correct git version\ngit status works in indicators folder\nExample datasets are present in data/examples/",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/setup-guide.html#support-resources",
+    "href": "resources/setup-guide.html#support-resources",
+    "title": "10  Setup Guide",
+    "section": "10.8 Support Resources",
+    "text": "10.8 Support Resources\nDuring setup:\n\nInstallation guides: Check software websites\nIT support: Contact your IT department\nCourse instructor: Email for specific issues\n\nDuring course:\n\nR help: ?function_name or help(package_name)\nTidyverse docs: https://www.tidyverse.org/\nQuarto guide: https://quarto.org/docs/guide/\nGit reference: https://git-scm.com/doc",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Setup Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/troubleshooting.html",
+    "href": "resources/troubleshooting.html",
+    "title": "11  Troubleshooting Guide",
+    "section": "",
+    "text": "11.1 Setup Issues\nThese problems typically occur during initial installation and project setup.",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Troubleshooting Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/troubleshooting.html#setup-issues",
+    "href": "resources/troubleshooting.html#setup-issues",
+    "title": "11  Troubleshooting Guide",
+    "section": "",
+    "text": "11.1.1 “Quarto not found”\nSymptom: quarto: command not found\nSolution:\n\nRestart terminal/Positron after Quarto installation\nCheck PATH includes Quarto installation directory\nWindows: May need to add to PATH manually\n\n\n\n11.1.2 “Python package installation fails”\nSymptom: uv sync errors\nSolution:\n# Update uv\npip install --upgrade uv\n\n# Clear cache and retry\nuv cache clear\nuv sync\n\n\n11.1.3 “renv restore hangs”\nSymptom: Package restoration taking very long or hanging\nSolution:\n\nCheck internet connection\nTry individual package installation\nClear renv cache: renv::purge()",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Troubleshooting Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/troubleshooting.html#common-issues-and-solutions",
+    "href": "resources/troubleshooting.html#common-issues-and-solutions",
+    "title": "11  Troubleshooting Guide",
+    "section": "11.2 Common Issues and Solutions",
+    "text": "11.2 Common Issues and Solutions\n\n11.2.1 R Issues\n\n11.2.1.1 “Package not found”\nError message:\nError in library(tidyverse): there is no package called 'tidyverse'\nSolution:\n# Restore all project packages\nrenv::restore()\n\n# Or install individually\ninstall.packages(\"tidyverse\")\nPrevention: Run renv::restore() after cloning the repository.\n\n\n11.2.1.2 “File not found”\nError message:\nError: 'data/myfile.csv' does not exist\nCause: Hardcoded paths or wrong working directory\nSolution:\n# Always use here::here() for file paths\ndata &lt;- read_csv(here::here(\"data\", \"raw\", \"myfile.csv\"))\n\n# Check your project root\nhere::here()  # Should show indicators project directory\nPrevention: Never use absolute paths like C:/Users/name/...\n\n\n11.2.1.3 “Object not found”\nError message:\nError: object 'my_data' not found\nCause: Code chunks run out of order\nSolution:\n\nRestart R session: Session &gt; Restart R in Positron\nRun code chunks sequentially from top to bottom\nCheck for typos in variable names (R is case-sensitive)\n\n\n\n11.2.1.4 Rendering errors\nError message:\nError in eval(expr, envir, enclos): could not find function...\nSolution:\n\nCheck R console for specific error message\nEnsure all required packages are loaded\nVerify all code chunks before the error run successfully\nTry rendering in a clean R session\n\nDebug strategy:\n# Restart R session\n.rs.restartR()\n\n# Run chunks one-by-one until you find the problematic chunk\n\n\n\n11.2.2 Git Issues\n\n11.2.2.1 “Permission denied (publickey)”\nError message:\nPermission denied (publickey).\nfatal: Could not read from remote repository.\nCause: SSH keys not configured\nSolution: Use HTTPS instead of SSH\n# Check current remote URL\ngit remote -v\n\n# If using SSH (git@github.com:...), switch to HTTPS\ngit remote set-url origin https://github.com/your-org/indicators.git\n\n\n11.2.2.2 “Merge conflict”\nSymptom: Git refuses to merge, shows conflict markers in file\nWhat it looks like:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nYour changes\n=======\nSomeone else's changes\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name\nSolution:\n\nOpen the file in Positron\nFind the conflict markers (&lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, &gt;&gt;&gt;&gt;&gt;&gt;&gt;)\nDecide which version to keep (or combine both)\nDelete the conflict markers\nSave the file\nStage and commit:\n\ngit add filename.qmd\ngit commit -m \"Resolve merge conflict\"\nPrevention:\n\nPull from main before creating new branches\nCommunicate with team about who’s working on what\nWork on different sections when possible\n\n\n\n11.2.2.3 “Your branch is behind origin/main”\nError message:\nYour branch is behind 'origin/main' by 3 commits\nSolution:\n# Pull latest changes before continuing work\ngit pull\n\n# If you have local commits, this will create a merge commit\n# Or use rebase for cleaner history (advanced)\ngit pull --rebase\n\n\n11.2.2.4 Can’t push (rejected)\nError message:\n! [rejected] main -&gt; main (fetch first)\nCause: Remote has commits you don’t have locally\nSolution:\n# Pull first, then push\ngit pull\ngit push\n\n\n\n11.2.3 Quarto Issues\n\n11.2.3.1 “Kernel error”\nError message:\nKernel error: Cannot start kernel\nCause: R/Python kernel not found by Quarto\nSolution:\n\nVerify R/Python installation\nRestart Positron\nCheck Quarto can find R:\n\nquarto check\n\n\n11.2.3.2 “LaTeX error” (PDF rendering)\nError message:\n! LaTeX Error: File 'xyz.sty' not found\nCause: Missing LaTeX installation for PDF output\nSolution:\n# Install TinyTeX\nquarto install tinytex\nAlternative: Focus on HTML output (PDF is optional)\n\n\n11.2.3.3 Freeze cache issues\nSymptom: Changes to code don’t appear in rendered output\nSolution:\n# Force re-render of chapter\nquarto render chapters/XX-topic/index.qmd --execute-freeze refresh\n\n# Or delete freeze cache\nrm -rf _freeze/html/chapters/XX-topic/\nquarto render chapters/XX-topic/index.qmd\nWhen cache conflicts in merge:\n\nDelete local _freeze/ for that chapter\nPull latest from GitHub\nRe-render the chapter\n\n\n\n\n11.2.4 Positron Issues\n\n11.2.4.1 Code chunks don’t execute\nSymptom: Pressing Ctrl+Shift+Enter does nothing\nSolution:\n\nCheck R session is active (look for R console at bottom)\nTry Session &gt; Restart R\nVerify renv is activated (session info should show renv)\nClose and reopen the .qmd file\n\n\n\n11.2.4.2 File doesn’t open\nSymptom: File shows as binary or doesn’t open properly\nSolution:\n\nCheck file path is correct (use tab completion)\nTry File &gt; Open Project and reopening project\nCheck file encoding (should be UTF-8)\n\n\n\n\n11.2.5 Data Issues\n\n11.2.5.1 CSV encoding problems\nSymptom: Strange characters (Ã©, Â£, etc.) in imported data\nSolution:\n# Specify encoding explicitly\ndata &lt;- read_csv(\"file.csv\", locale = locale(encoding = \"Latin1\"))\n# or\ndata &lt;- read_csv(\"file.csv\", locale = locale(encoding = \"UTF-8\"))\n\n\n11.2.5.2 Excel sheets not importing\nSymptom: read_excel() fails or imports wrong data\nSolution:\n# Check available sheet names\nexcel_sheets(\"file.xlsx\")\n\n# Read specific sheet\ndata &lt;- read_excel(\"file.xlsx\", sheet = \"Sheet1\")\n\n# Skip header rows\ndata &lt;- read_excel(\"file.xlsx\", sheet = \"Data\", skip = 5)\n\n# Specify range\ndata &lt;- read_excel(\"file.xlsx\", sheet = \"Data\", range = \"A5:D50\")\n\n\n11.2.5.3 Type conversion errors\nSymptom: Numbers treated as text, dates not parsing\nSolution:\n# Check column types\nglimpse(data)\n\n# Convert text to numeric\ndata &lt;- data %&gt;%\n  mutate(\n    year = as.numeric(year),\n    value = as.numeric(value)\n  )\n\n# Convert to dates\ndata &lt;- data %&gt;%\n  mutate(\n    date = as.Date(date, format = \"%d/%m/%Y\")\n  )\n\n\n\n11.2.6 Performance Issues\n\n11.2.6.1 Rendering very slow\nSymptom: quarto render takes minutes\nCause: Large datasets or complex computations\nSolution:\n\nUse freeze: auto (already configured)\nCache expensive operations:\n\n# Save processed data\nwrite_rds(processed_data, here::here(\"data\", \"processed\", \"cached_data.rds\"))\n\n# Load cached version\nprocessed_data &lt;- read_rds(here::here(\"data\", \"processed\", \"cached_data.rds\"))\n\nSample data during development:\n\n# Use smaller sample during development\ndata_sample &lt;- data %&gt;% slice_sample(n = 1000)\n\n\n11.2.6.2 R session crashes\nSymptom: Positron becomes unresponsive\nCause: Memory issues with large datasets\nSolution:\n\nRestart R session frequently\nRemove large objects when done:\n\nrm(large_object)\ngc()  # Garbage collection\n\nWork with smaller data subsets during development",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Troubleshooting Guide</span>"
+    ]
+  },
+  {
+    "objectID": "resources/troubleshooting.html#getting-help",
+    "href": "resources/troubleshooting.html#getting-help",
+    "title": "11  Troubleshooting Guide",
+    "section": "11.3 Getting Help",
+    "text": "11.3 Getting Help\n\n11.3.1 Self-Help Resources\n\nR documentation:\n?function_name\nhelp(package = \"packagename\")\nPackage vignettes:\nvignette(\"dplyr\")\nbrowseVignettes(\"ggplot2\")\nOnline resources:\n\nR for Data Science\nQuarto documentation\nGit documentation\n\n\n\n\n11.3.2 Asking for Help\nWhen posting questions to team chat or asking instructor:\nGood question format:\nProblem: When I try to render my chapter, I get error X\n\nWhat I tried:\n- Restarted R session\n- Ran renv::restore()\n- Checked the code in the chunk before error\n\nError message:\n[paste full error message]\n\nReproducible example:\n[paste minimal code that reproduces error]\nInformation to include:\n\nWhat you were trying to do\nWhat you expected to happen\nWhat actually happened (including full error message)\nWhat you’ve already tried\nYour R version (R.version.string)\nPackage versions (packageVersion(\"package_name\"))\n\n\n\n11.3.3 Office Hours\nPost-course office hours schedule:\n\nWhen: Wednesdays, 2-3pm\nWhere: Team meeting room / Video call\nBook: Email instructor or post in team chat\n\n\n\n11.3.4 Team Support\n\nTeam chat: #indicators-project channel\nPeer support: Pair programming sessions\nCode review: PR comments and discussions",
+    "crumbs": [
+      "Resources",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Troubleshooting Guide</span>"
+    ]
+  }
+]

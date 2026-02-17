@@ -1,0 +1,318 @@
+---
+title: "Session 5: Git Collaboration"
+subtitle: "Version control and code review"
+---
+
+- **Duration:** 4 hours
+- **Goal:** Use Git and GitHub for version control, collaboration, and code review in the WECA indicators project.
+
+## Learning Outcomes
+
+- Understand version control concepts (commits, branches, merges)
+- Use Git Bash for basic version control operations
+- Create and switch between branches
+- Stage, commit, and push changes
+- Create and review pull requests on GitHub
+- Resolve basic merge conflicts
+- Follow the WECA project Git workflow
+
+## Session Structure
+
+### Part 1: Homework Review & Version Control Intro (45 min)
+
+**Show-and-tell (20 min):**
+Volunteers present completed indicator sections.
+
+**Why Version Control? (25 min)**
+
+**The Problem:**
+
+```
+indicator_analysis_v1.qmd
+indicator_analysis_v2.qmd
+indicator_analysis_v2_final.qmd
+indicator_analysis_v2_final_ACTUAL.qmd
+```
+
+**Git Concepts:**
+
+| Concept | Analogy | Purpose |
+|---------|---------|---------|
+| **Repository** | Project folder + time machine | Contains all files + history |
+| **Commit** | Snapshot/checkpoint | Save point you can return to |
+| **Branch** | Parallel timeline | Work without affecting main |
+| **Merge** | Combine timelines | Integrate your work back to main |
+| **Remote (GitHub)** | Cloud backup + collaboration hub | Share work, collaborate |
+
+### Part 2: Git Basics in Git Bash (60 min)
+
+**Essential Commands:**
+
+**1. Cheque Status:**
+
+```bash
+git status
+```
+
+**2. View Changes:**
+
+```bash
+git diff chapters/02-transport/index.qmd
+```
+
+**3. Stage Changes:**
+
+```bash
+git add chapters/02-transport/index.qmd
+git add _freeze/html/chapters/02-transport/
+```
+
+**4. Commit:**
+
+```bash
+git commit -m "Add bus ridership indicator to transport chapter"
+git log --oneline
+```
+
+**5. Push:**
+
+```bash
+git push
+```
+
+**BREAK (15 min)**
+
+**Guided Practise (30 min):**
+
+1. Open Git Bash in the indicators project
+2. Make a small change to your chapter
+3. Cheque status: `git status`
+4. View changes: `git diff`
+5. Stage: `git add chapters/XX-topic/index.qmd`
+6. Commit: `git commit -m "Update chapter introduction"`
+7. View history: `git log --oneline`
+
+### Part 3: Branching Workflow (60 min)
+
+**Why Branches?**
+
+- Work on your indicator without affecting others
+- Experiment safely
+- Required for pull request workflow
+
+**Branch Naming Convention:**
+
+```
+yourname/chapter-or-feature
+
+Examples:
+heather/transport
+alex/environment-update
+sarah/fix-chart-colours
+```
+
+**Creating and Using Branches:**
+
+```bash
+# See current branch
+git branch
+
+# Create and switch to new branch
+git checkout -b yourname/transport
+
+# Make changes, stage, and commit
+git add chapters/02-transport/index.qmd
+git commit -m "Add bus ridership indicator"
+
+# Push branch to GitHub
+git push -u origin yourname/transport
+
+# Switch branches
+git checkout main
+git checkout yourname/transport
+```
+
+**BREAK (15 min)**
+
+**Guided Practise (30 min):**
+
+1. Create a new branch: `git checkout -b firstname/chapter-name`
+2. Make a change to your chapter
+3. Stage and commit
+4. Push: `git push -u origin firstname/chapter-name`
+5. Switch to main: `git checkout main`
+6. Switch back: `git checkout firstname/chapter-name`
+
+### Part 4: Pull Requests on GitHub (60 min)
+
+**What is a Pull Request?**
+
+A formal request to merge your branch into main. Enables:
+
+- Code review before merging
+- Discussion and feedback
+- Quality control
+- Documentation of changes
+
+**Creating a Pull Request:**
+
+**Step 1:** Push your branch (already done)
+
+**Step 2:** Go to GitHub and create PR
+
+**Step 3:** Fill in PR template with:
+
+- Title: "Add bus ridership indicator to transport chapter"
+- Summary of changes
+- Data sources
+- Checklist (code runs, charts labelled, etc.)
+
+**Step 4:** Request review
+
+**Step 5:** Submit
+
+**BREAK (15 min)**
+
+**Reviewing a Pull Request:**
+
+1. Go to "Pull Requests" tab on GitHub
+2. Click on a PR
+3. Click "Files changed" tab
+4. Review code quality, chart labels, documentation
+5. Leave comments
+6. Submit review: Approve, Request changes, or Comment
+
+**Guided Practise (40 min):**
+
+**Part A:** Each analyst creates a PR for their branch (20 min)
+
+**Part B:** Peer review in pairs (20 min)
+
+### Part 5: Merging and Updating (30 min)
+
+**Merging a Pull Request:**
+
+1. Click "Merge pull request" on GitHub
+2. Confirm the merge
+3. Delete the branch
+
+**Locally, update your main:**
+
+```bash
+# Switch to main
+git checkout main
+
+# Pull latest changes
+git pull
+
+# Delete local feature branch
+git branch -d yourname/chapter-name
+```
+
+### Part 6: Merge Conflicts (Basic) (30 min)
+
+**What is a Merge Conflict?**
+
+Occurs when two people edit the same lines of the same file.
+
+**Conflict Markers:**
+
+```markdown
+<<<<<<< HEAD
+Bus ridership increased by 15% over the period.
+=======
+Bus ridership showed steady growth, increasing by 12% overall.
+>>>>>>> yourname/transport
+```
+
+**Resolution Process:**
+
+1. Identify the conflict
+2. Open the file in Positron
+3. Review both versions
+4. Choose or combine the changes
+5. Remove conflict markers
+6. Save, stage, and commit
+
+### Part 7: WECA Project Git Workflow (20 min)
+
+**Standard Workflow:**
+
+```bash
+# 1. Start from main, get latest
+git checkout main
+git pull
+
+# 2. Create feature branch
+git checkout -b yourname/feature-name
+
+# 3. Do your work
+
+# 4. Stage and commit
+git add file1.qmd
+git commit -m "Clear, descriptive message"
+
+# 5. Push branch
+git push -u origin yourname/feature-name
+
+# 6. Create Pull Request on GitHub
+
+# 7. After merge, update main
+git checkout main
+git pull
+git branch -d yourname/feature-name
+```
+
+**Commit Message Best Practises:**
+
+✅ Good: "Add bus ridership indicator to transport chapter"
+❌ Bad: "Updates", "Fixed stuff", "WIP"
+
+### Part 8: Final Practise - Full Workflow (45 min)
+
+Complete the full Git workflow end-to-end:
+
+1. Update main branch
+2. Create a new branch for a new indicator
+3. Add content to your chapter
+4. Commit changes (remember freeze files!)
+5. Push branch
+6. Create Pull Request on GitHub
+7. Review a peer's PR
+
+### Part 9: Course Wrap-up (30 min)
+
+**Reflection (5 min):**
+
+Before we finish, take 2 minutes to write down:
+
+1. One thing you understand now that you didn't at the start
+2. One thing that's still unclear or you'd like more practise with
+
+What part of the Git workflow would you want to practise more? Share with the group if you're comfortable.
+
+**What We've Accomplished:**
+
+Over 5 sessions, you've learned to:
+
+- ✅ Navigate the command line with Git Bash
+- ✅ Use Positron IDE for R development
+- ✅ Write R code using tidyverse
+- ✅ Create visualisations with ggplot2
+- ✅ Author reproducible reports with Quarto
+- ✅ Use Git and GitHub for collaboration
+
+**Next Steps:**
+
+1. Continue building indicators for your assigned priority areas
+2. Ask for help in team chat or via PR reviews
+3. Reference documentation
+4. Practise regularly
+
+**Feedback Session (15 min):**
+
+- What worked well?
+- What was most challenging?
+- What additional support would be helpful?
+
+**Q&A (15 min)**

@@ -1,0 +1,468 @@
+---
+title: "Troubleshooting Guide"
+---
+
+## Setup Issues
+
+These problems typically occur during initial installation and project setup.
+
+### "Quarto not found"
+
+**Symptom:** `quarto: command not found`
+
+**Solution:**
+
+- Restart terminal/Positron after Quarto installation
+- Check PATH includes Quarto installation directory
+- Windows: May need to add to PATH manually
+
+### "Python package installation fails"
+
+**Symptom:** `uv sync` errors
+
+**Solution:**
+
+```bash
+# Update uv
+pip install --upgrade uv
+
+# Clear cache and retry
+uv cache clear
+uv sync
+```
+
+### "renv restore hangs"
+
+**Symptom:** Package restoration taking very long or hanging
+
+**Solution:**
+
+- Check internet connection
+- Try individual package installation
+- Clear renv cache: `renv::purge()`
+
+## Common Issues and Solutions
+
+### R Issues
+
+#### "Package not found"
+
+**Error message:**
+```
+Error in library(tidyverse): there is no package called 'tidyverse'
+```
+
+**Solution:**
+
+```r
+# Restore all project packages
+renv::restore()
+
+# Or install individually
+install.packages("tidyverse")
+```
+
+**Prevention:** Run `renv::restore()` after cloning the repository.
+
+#### "File not found"
+
+**Error message:**
+```
+Error: 'data/myfile.csv' does not exist
+```
+
+**Cause:** Hardcoded paths or wrong working directory
+
+**Solution:**
+
+```r
+# Always use here::here() for file paths
+data <- read_csv(here::here("data", "raw", "myfile.csv"))
+
+# Check your project root
+here::here()  # Should show indicators project directory
+```
+
+**Prevention:** Never use absolute paths like `C:/Users/name/...`
+
+#### "Object not found"
+
+**Error message:**
+```
+Error: object 'my_data' not found
+```
+
+**Cause:** Code chunks run out of order
+
+**Solution:**
+
+1. Restart R session: `Session > Restart R` in Positron
+2. Run code chunks sequentially from top to bottom
+3. Check for typos in variable names (R is case-sensitive)
+
+#### Rendering errors
+
+**Error message:**
+```
+Error in eval(expr, envir, enclos): could not find function...
+```
+
+**Solution:**
+
+1. Check R console for specific error message
+2. Ensure all required packages are loaded
+3. Verify all code chunks before the error run successfully
+4. Try rendering in a clean R session
+
+**Debug strategy:**
+
+```r
+# Restart R session
+.rs.restartR()
+
+# Run chunks one-by-one until you find the problematic chunk
+```
+
+### Git Issues
+
+#### "Permission denied (publickey)"
+
+**Error message:**
+```
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+```
+
+**Cause:** SSH keys not configured
+
+**Solution:** Use HTTPS instead of SSH
+
+```bash
+# Check current remote URL
+git remote -v
+
+# If using SSH (git@github.com:...), switch to HTTPS
+git remote set-url origin https://github.com/your-org/indicators.git
+```
+
+#### "Merge conflict"
+
+**Symptom:** Git refuses to merge, shows conflict markers in file
+
+**What it looks like:**
+
+```markdown
+<<<<<<< HEAD
+Your changes
+=======
+Someone else's changes
+>>>>>>> branch-name
+```
+
+**Solution:**
+
+1. Open the file in Positron
+2. Find the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+3. Decide which version to keep (or combine both)
+4. Delete the conflict markers
+5. Save the file
+6. Stage and commit:
+
+```bash
+git add filename.qmd
+git commit -m "Resolve merge conflict"
+```
+
+**Prevention:**
+
+- Pull from main before creating new branches
+- Communicate with team about who's working on what
+- Work on different sections when possible
+
+#### "Your branch is behind origin/main"
+
+**Error message:**
+```
+Your branch is behind 'origin/main' by 3 commits
+```
+
+**Solution:**
+
+```bash
+# Pull latest changes before continuing work
+git pull
+
+# If you have local commits, this will create a merge commit
+# Or use rebase for cleaner history (advanced)
+git pull --rebase
+```
+
+#### Can't push (rejected)
+
+**Error message:**
+```
+! [rejected] main -> main (fetch first)
+```
+
+**Cause:** Remote has commits you don't have locally
+
+**Solution:**
+
+```bash
+# Pull first, then push
+git pull
+git push
+```
+
+### Quarto Issues
+
+#### "Kernel error"
+
+**Error message:**
+```
+Kernel error: Cannot start kernel
+```
+
+**Cause:** R/Python kernel not found by Quarto
+
+**Solution:**
+
+1. Verify R/Python installation
+2. Restart Positron
+3. Check Quarto can find R:
+
+```bash
+quarto check
+```
+
+#### "LaTeX error" (PDF rendering)
+
+**Error message:**
+```
+! LaTeX Error: File 'xyz.sty' not found
+```
+
+**Cause:** Missing LaTeX installation for PDF output
+
+**Solution:**
+
+```bash
+# Install TinyTeX
+quarto install tinytex
+```
+
+**Alternative:** Focus on HTML output (PDF is optional)
+
+#### Freeze cache issues
+
+**Symptom:** Changes to code don't appear in rendered output
+
+**Solution:**
+
+```bash
+# Force re-render of chapter
+quarto render chapters/XX-topic/index.qmd --execute-freeze refresh
+
+# Or delete freeze cache
+rm -rf _freeze/html/chapters/XX-topic/
+quarto render chapters/XX-topic/index.qmd
+```
+
+**When cache conflicts in merge:**
+
+1. Delete local `_freeze/` for that chapter
+2. Pull latest from GitHub
+3. Re-render the chapter
+
+### Positron Issues
+
+#### Code chunks don't execute
+
+**Symptom:** Pressing Ctrl+Shift+Enter does nothing
+
+**Solution:**
+
+1. Check R session is active (look for R console at bottom)
+2. Try `Session > Restart R`
+3. Verify renv is activated (session info should show renv)
+4. Close and reopen the `.qmd` file
+
+#### File doesn't open
+
+**Symptom:** File shows as binary or doesn't open properly
+
+**Solution:**
+
+1. Check file path is correct (use tab completion)
+2. Try `File > Open Project` and reopening project
+3. Check file encoding (should be UTF-8)
+
+### Data Issues
+
+#### CSV encoding problems
+
+**Symptom:** Strange characters (Ã©, Â£, etc.) in imported data
+
+**Solution:**
+
+```r
+# Specify encoding explicitly
+data <- read_csv("file.csv", locale = locale(encoding = "Latin1"))
+# or
+data <- read_csv("file.csv", locale = locale(encoding = "UTF-8"))
+```
+
+#### Excel sheets not importing
+
+**Symptom:** `read_excel()` fails or imports wrong data
+
+**Solution:**
+
+```r
+# Check available sheet names
+excel_sheets("file.xlsx")
+
+# Read specific sheet
+data <- read_excel("file.xlsx", sheet = "Sheet1")
+
+# Skip header rows
+data <- read_excel("file.xlsx", sheet = "Data", skip = 5)
+
+# Specify range
+data <- read_excel("file.xlsx", sheet = "Data", range = "A5:D50")
+```
+
+#### Type conversion errors
+
+**Symptom:** Numbers treated as text, dates not parsing
+
+**Solution:**
+
+```r
+# Check column types
+glimpse(data)
+
+# Convert text to numeric
+data <- data %>%
+  mutate(
+    year = as.numeric(year),
+    value = as.numeric(value)
+  )
+
+# Convert to dates
+data <- data %>%
+  mutate(
+    date = as.Date(date, format = "%d/%m/%Y")
+  )
+```
+
+### Performance Issues
+
+#### Rendering very slow
+
+**Symptom:** `quarto render` takes minutes
+
+**Cause:** Large datasets or complex computations
+
+**Solution:**
+
+1. Use `freeze: auto` (already configured)
+2. Cache expensive operations:
+
+```r
+# Save processed data
+write_rds(processed_data, here::here("data", "processed", "cached_data.rds"))
+
+# Load cached version
+processed_data <- read_rds(here::here("data", "processed", "cached_data.rds"))
+```
+
+3. Sample data during development:
+
+```r
+# Use smaller sample during development
+data_sample <- data %>% slice_sample(n = 1000)
+```
+
+#### R session crashes
+
+**Symptom:** Positron becomes unresponsive
+
+**Cause:** Memory issues with large datasets
+
+**Solution:**
+
+1. Restart R session frequently
+2. Remove large objects when done:
+
+```r
+rm(large_object)
+gc()  # Garbage collection
+```
+
+3. Work with smaller data subsets during development
+
+## Getting Help
+
+### Self-Help Resources
+
+1. **R documentation:**
+   ```r
+   ?function_name
+   help(package = "packagename")
+   ```
+
+2. **Package vignettes:**
+   ```r
+   vignette("dplyr")
+   browseVignettes("ggplot2")
+   ```
+
+3. **Online resources:**
+   - [R for Data Science](https://r4ds.hadley.nz/)
+   - [Quarto documentation](https://quarto.org/docs/guide/)
+   - [Git documentation](https://git-scm.com/doc)
+
+### Asking for Help
+
+When posting questions to team chat or asking instructor:
+
+**Good question format:**
+
+```
+Problem: When I try to render my chapter, I get error X
+
+What I tried:
+- Restarted R session
+- Ran renv::restore()
+- Checked the code in the chunk before error
+
+Error message:
+[paste full error message]
+
+Reproducible example:
+[paste minimal code that reproduces error]
+```
+
+**Information to include:**
+
+- What you were trying to do
+- What you expected to happen
+- What actually happened (including full error message)
+- What you've already tried
+- Your R version (`R.version.string`)
+- Package versions (`packageVersion("package_name")`)
+
+### Office Hours
+
+Post-course office hours schedule:
+
+- **When:** Wednesdays, 2-3pm
+- **Where:** Team meeting room / Video call
+- **Book:** Email instructor or post in team chat
+
+### Team Support
+
+- **Team chat:** `#indicators-project` channel
+- **Peer support:** Pair programming sessions
+- **Code review:** PR comments and discussions

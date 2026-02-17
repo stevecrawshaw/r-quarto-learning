@@ -1,0 +1,183 @@
+---
+title: "Session 1: The Whole Game"
+subtitle: "Experience the complete workflow"
+---
+
+- **Duration:** 4 hours
+- **Goal:** Experience the complete workflow - from data to published report - to understand *why* we're learning each tool.
+
+## Learning Outcomes
+
+- Understand the "code-first" analysis paradigm vs. Excel workflows
+- Navigate the indicators project structure
+- Execute an R code chunk in Quarto
+- Render a chapter to HTML
+- See the role of Git in version control (conceptual)
+
+## Session Structure
+
+### Part 1: Welcome & Context (30 min)
+
+**Why are we here?**
+
+- The limitations of Excel/PowerPoint workflows (manual updates, copy-paste errors, unclear provenance)
+- Benefits of code-first analysis: reproducibility, automation, transparency, collaboration
+- Tour of the final product: rendered indicators book
+
+**The tools we'll learn:**
+
+- **Git Bash**: Command-line interface (the "steering wheel")
+- **Positron**: Integrated development environment (the "dashboard")
+- **R**: Statistical programming language (the "engine")
+- **Quarto**: Literate programming system (the "publishing press")
+- **Git/GitHub**: Version control (the "time machine + collaboration hub")
+
+**Analogy:** If analysis were cooking:
+
+- Excel is a microwave meal kit
+- Code-first is a professional kitchen with recipes you can modify, share, and improve
+
+### Part 2: The Whole Game Walkthrough (90 min)
+
+**Live Demonstration (30 min)** - Instructor creates an indicator from scratch:
+
+1. Open Positron
+2. Navigate to `chapters/02-transport/index.qmd`
+3. Write a simple R code chunk:
+
+```r
+library(tidyverse)
+source(here::here("scripts", "R", "theme_weca.R"))
+
+# Load example data
+bus_data <- read_csv("data/examples/bus_ridership.csv")
+
+# Create visualisation
+ggplot(bus_data, aes(x = year, y = ridership)) +
+  geom_line(colour = get_weca_color("forest_green"), linewidth = 1.2) +
+  geom_point(colour = get_weca_color("forest_green"), size = 3) +
+  theme_weca() +
+  labs(title = "Annual Bus Ridership",
+       x = "Year",
+       y = "Ridership (millions)")
+```
+
+4. Execute chunk (Ctrl+Shift+Enter)
+5. Render chapter (Quarto: Render button)
+6. View output in browser
+
+**Guided Practise (60 min)** - Analysts follow along:
+
+1. Open Positron (show how to launch from Start menu)
+2. Open project: `File > Open Folder > C:\Users\your.name\projects\weca_analysis_and_evaluation\projects\indicators`
+3. Open their assigned example chapter (pre-created templates)
+4. Execute the setup chunk (walk through line-by-line what it does)
+5. Modify the plot title and colours
+6. Re-render and view changes
+
+**Common Issues Troubleshooting (built into this time):**
+
+- Package not found → `renv::restore()`
+- File path errors → Emphasise `here::here()`
+- Rendering fails → Cheque R console for errors
+
+**BREAK (15 min)**
+
+### Part 3: Understanding the Pieces (45 min)
+
+**Project Structure Tour (15 min):**
+
+```
+indicators/
+├── chapters/           # Your work goes here
+│   ├── 01-economy/
+│   ├── 02-transport/
+│   └── ...
+├── data/
+│   ├── raw/           # Original data files
+│   ├── processed/     # Cleaned data
+│   └── examples/      # Practice datasets
+├── scripts/
+│   └── R/             # Shared helper functions
+├── _quarto.yml        # Book configuration
+└── .git/              # Version control (hidden)
+```
+
+**Code Chunk Anatomy (15 min):**
+
+```r
+#| label: my-chart           # Unique identifier
+#| fig-cap: "Description"    # Figure caption
+
+library(tidyverse)           # Load tools
+data <- read_csv("file.csv") # Import data
+ggplot(data, aes(x, y)) +    # Visualise
+  geom_line()
+```
+
+**Quarto Rendering Process (15 min):**
+
+- Markdown → formatted text
+- Code chunks → executed by R → output
+- Combined → HTML/PDF
+
+Show the "Source" vs. "Visual" editor modes in Positron.
+
+### Part 4: Your First Modification (60 min)
+
+**Individual Exercise:**
+
+Each analyst modifies their example indicator:
+
+1. Change the chart title to something descriptive
+2. Change the line colour to `"claret"` (show `show_weca_palette()`)
+3. Add a subtitle using the `subtitle` argument in `labs()`
+4. Add a text section above the chart explaining what it shows
+5. Re-render and verify changes
+
+**Stretch Goal** (for faster learners):
+
+- Add a second chart using `geom_point()` or `geom_col()`
+- Filter the data to show only recent years using `filter(year >= 2020)`
+
+**Instructor:** Circulate, answer questions, help with errors. Expect file path issues, typos, and R syntax confusion.
+
+### Part 5: Wrap-up & Homework (30 min)
+
+**Reflection (5 min):**
+
+Before we finish, take 2 minutes to write down:
+
+1. One thing you understand now that you didn't at the start
+2. One thing that's still unclear or you'd like more practise with
+
+What surprised you about the code-first workflow? Share with the group if you're comfortable.
+
+**What We Learned Today:**
+
+- The complete workflow: data → code → chart → report
+- How to run R code in Quarto
+- How to render a chapter
+- The WECA project structure
+
+**Looking Ahead:**
+
+- Session 2: Deep dive into R syntax and data manipulation
+- Session 3: Cleaning messy data
+- Session 4: Advanced Quarto features
+- Session 5: Git collaboration
+
+**Homework (1-2 hours):**
+
+1. **Watch:** [Positron tidyverse demo](https://www.youtube.com/watch?v=ndq2Mm3Dju8&t=748s)
+2. **Practise:** Modify your example indicator chapter:
+   - Add a second visualisation (bar chart or scatter plot)
+   - Write 2-3 sentences describing what the data shows
+   - Experiment with different WECA colours
+3. **Explore:** Open `scripts/R/helpers.R` and read the function documentation
+4. **Prepare:** Come with one question about something that confused you today
+
+**Optional Reading:**
+
+- [R for Data Science: Chapter 1 (Introduction)](https://r4ds.hadley.nz/)
+- [Quarto Guide: "Hello, Quarto" tutorial](https://quarto.org/docs/get-started/hello/text-editor.html)

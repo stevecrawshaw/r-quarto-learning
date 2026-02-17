@@ -1,0 +1,75 @@
+project:
+  type: book
+  output-dir: _output
+  execute-dir: project
+
+execute:
+  freeze: auto
+  error: true
+  warning: false
+  message: false
+
+book:
+  title: "WECA R & Quarto Training"
+  subtitle: "From Excel to Code-First Analysis"
+  author: "WECA Analysis Team"
+  date: last-modified
+
+  chapters:
+    - index.qmd
+
+    - part: "Course Overview"
+      chapters:
+        - overview/course-plan.qmd
+        - overview/pedagogy.qmd
+
+    - part: "Training Sessions"
+      chapters:
+        - sessions/session-01.qmd
+        - sessions/session-02.qmd
+        - sessions/session-03.qmd
+        - sessions/session-04.qmd
+        - sessions/session-05.qmd
+
+    - part: "Resources"
+      chapters:
+        - resources/datasets.qmd
+        - resources/setup-guide.qmd
+        - resources/troubleshooting.qmd
+
+  sidebar:
+    style: "floating"
+    search: true
+    collapse-level: 2
+    title: "WECA Training"
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    code-fold: false          # Show code by default for training
+    code-summary: "Hide code"
+    code-tools: true          # Enable code tools
+    code-link: true           # Link to function docs
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    embed-resources: false
+    fig-responsive: true
+    page-layout: full
+    link-external-newwindow: true
+
+  pdf:
+    documentclass: report
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+
+knitr:
+  opts_chunk:
+    message: false
+    warning: false
+    comment: "#>"
+    fig.align: "center"
+
+jupyter: python3

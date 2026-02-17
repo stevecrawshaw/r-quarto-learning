@@ -1,0 +1,181 @@
+---
+title: "Session 2: R Fundamentals"
+subtitle: "Master data transformation and visualisation"
+---
+
+- **Duration:** 4 hours
+- **Goal:** Gain confidence with R syntax, data transformation, and visualisation using the tidyverse.
+
+In Session 1, you ran pre-written code. Today you learn to write your own -- to ask questions of data and get visual answers. By the end, you'll build an indicator chart from scratch.
+
+## Learning Outcomes
+
+- Understand R's key data structure (tibble/data frame)
+- Use the pipe operator (`%>%` or `|>`) to chain operations
+- Apply core dplyr verbs: `filter`, `select`, `mutate`, `summarise`, `group_by`
+- Create multi-layered ggplot2 visualisations
+- Debug common R errors
+
+## Session Structure
+
+### Part 1: Homework Review & Setup (30 min)
+
+**Homework Review (25 min):**
+
+- Show-and-tell: Volunteers demonstrate their homework modifications
+- Address common questions from homework prep
+- Quick poll: What was most confusing? (Adjust session focus accordingly)
+
+**Setting Up Your Practise Script (5 min):**
+
+Today you'll write R code from scratch. You need somewhere to work:
+
+1. In Positron, open the indicators project if it isn't already open
+2. `File > New File > R Script` (or `Ctrl+Shift+N`)
+3. Save it straight away as `scripts/R/session-02-practice.R`
+4. Add a header comment at the top:
+
+```r
+# Session 2 Practice - R Fundamentals
+# Your name, today's date
+```
+
+You'll use this file for all the "Try It" exercises today. Run individual lines with `Ctrl+Enter` or highlight a block and run it with `Ctrl+Shift+Enter`.
+
+### Part 2: R Basics - Data Structures (45 min)
+
+Your indicator data arrives as a table of rows and columns -- understanding tibbles is how R represents this.
+
+**The Tibble: R's Spreadsheet**
+
+```r
+library(tidyverse)
+
+# Load a real WECA dataset
+area_data <- read_csv(here::here("data", "examples", "area_employment.csv"))
+
+# View it
+area_data
+
+# The $ operator accesses a single column (base R syntax)
+area_data$employment_rate
+```
+
+**Key Concepts:**
+
+- Tibbles are like Excel tables with named columns
+- `<-` means "assign to" (store a value)
+- `$` accesses a column
+- R is case-sensitive: `Population` ≠ `population`
+- Comments start with `#`
+
+**BREAK (15 min)**
+
+### Part 3: The Tidyverse Way - Verbs and Pipes (60 min)
+
+Building an indicator means filtering to your area, calculating rates, and summarising trends -- these five verbs do exactly that.
+
+**The Pipe Operator:**
+
+```r
+# Old way (nested, hard to read)
+summarise(filter(area_data, population > 100000),
+          mean_pop = mean(population))
+
+# Tidyverse way (sequential, readable)
+area_data %>%
+  filter(population > 100000) %>%
+  summarise(mean_pop = mean(population))
+```
+
+> **Try It (5 min):** Rewrite this nested expression using pipes:
+> `select(filter(area_data, employment_rate > 0.5), area, employment_rate)`
+
+**The Five Core Verbs:**
+
+1. **`filter()`** - Keep rows that match a condition
+2. **`select()`** - Keep specific columns
+3. **`mutate()`** - Create new columns
+4. **`summarise()`** - Calculate summary statistics
+5. **`group_by()`** - Do calculations by category
+
+> **Try It (25 min):** Using your example dataset, work through each verb:
+>
+> 1. `filter()` -- keep only rows for a specific area
+> 2. `select()` -- keep just the area, year, and value columns
+> 3. `mutate()` -- add a new column calculating a rate or percentage
+> 4. `summarise()` -- calculate the mean and max of a numeric column
+> 5. `group_by() %>% summarise()` -- calculate summary statistics by area
+>
+> Pair up for these exercises. Person A writes the `filter()` and `select()` steps; Person B writes `mutate()` and `summarise()`. Swap roles for the ggplot2 exercise in Part 4.
+
+**BREAK (15 min)**
+
+### Part 4: ggplot2 - Grammar of Graphics (60 min)
+
+Every indicator chapter needs at least one chart. This is how you build them.
+
+```r
+# Layer 1: Data + aesthetic mapping
+ggplot(bus_data, aes(x = year, y = ridership))
+
+# Layer 2: Add geometry
+ggplot(bus_data, aes(x = year, y = ridership)) +
+  geom_line()
+
+# Layer 3: Add styling
+ggplot(bus_data, aes(x = year, y = ridership)) +
+  geom_line(colour = get_weca_color("forest_green"), linewidth = 1) +
+  geom_point(size = 2) +
+  labs(title = "Bus Ridership Over Time",
+       x = "Year",
+       y = "Ridership (millions)") +
+  theme_weca()
+```
+
+**Key ggplot2 Geometries:**
+
+- `geom_line()` - Line charts (trends over time)
+- `geom_point()` - Scatter plots (relationships)
+- `geom_col()` - Bar charts (comparisons)
+- `geom_smooth()` - Trend lines
+
+> **Try It (10 min):** Create a bar chart of employment rate by area using `geom_col()`. Add WECA colours and labels with `labs()`.
+
+### Part 5: Debugging R Errors (30 min)
+
+**Common Error Messages and Fixes:**
+
+1. **`could not find function "filter"`** → Load library: `library(tidyverse)`
+2. **`object 'data' not found`** → Run the chunk that loads the data first
+3. **`unexpected symbol`** → Cheque for missing commas, quotes, or parentheses
+4. **`'x' and 'y' lengths differ`** → Data columns have different numbers of rows
+
+**Debugging Strategy:**
+
+1. Read the error message (bottom-up in stack trace)
+2. Cheque the line number mentioned
+3. Look for typos in variable/column names
+4. Run code chunk-by-chunk to isolate the problem
+5. Use `View(data)` to inspect your data frame, use the data explorer or use data |> glimpse()
+
+### Part 6: Wrap-up & Homework (15 min)
+
+**Reflection (5 min):**
+
+Before we finish, take 2 minutes to write down:
+
+1. One thing you understand now that you didn't at the start
+2. One thing that's still unclear or you'd like more practise with
+
+Which dplyr verb felt most natural? Which was most confusing? Share with the group if you're comfortable.
+
+**Homework (1-2 hours):**
+
+1. **Complete:** The "R Basics" chapter in R for Data Science
+2. **Practise:** Using your assigned example dataset:
+   - Calculate 3 summary statistics (min, max, mean)
+   - Create 2 different chart types
+   - Add WECA theme and appropriate labels
+3. **Create:** A new indicator section that includes data loading, transformation, visualisation, and findings paragraph
+4. **Prepare:** Bring a real WECA dataset (CSV) for Session 3

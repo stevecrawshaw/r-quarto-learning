@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Troubleshooting Guide – WECA R &amp; Quarto Training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../resources/setup-guide.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ba49aae5a029aaffbd3f8d05e76d9a53.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources/datasets.html">Resources</a></li><li class="breadcrumb-item"><a href="../resources/troubleshooting.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Troubleshooting Guide</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">WECA Training</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">WECA R &amp; Quarto Training</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/course-plan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Plan Overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/pedagogy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teaching Pedagogy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Training Sessions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/session-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 1: The Whole Game</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/session-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 2: R Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/session-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/session-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 4: Quarto Mastery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/session-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 5: Git Collaboration</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practice Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/setup-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Setup Guide</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/troubleshooting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Troubleshooting Guide</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#setup-issues" id="toc-setup-issues" class="nav-link active" data-scroll-target="#setup-issues"><span class="header-section-number">11.1</span> Setup Issues</a>
+  <ul class="collapse">
+  <li><a href="#quarto-not-found" id="toc-quarto-not-found" class="nav-link" data-scroll-target="#quarto-not-found"><span class="header-section-number">11.1.1</span> “Quarto not found”</a></li>
+  <li><a href="#python-package-installation-fails" id="toc-python-package-installation-fails" class="nav-link" data-scroll-target="#python-package-installation-fails"><span class="header-section-number">11.1.2</span> “Python package installation fails”</a></li>
+  <li><a href="#renv-restore-hangs" id="toc-renv-restore-hangs" class="nav-link" data-scroll-target="#renv-restore-hangs"><span class="header-section-number">11.1.3</span> “renv restore hangs”</a></li>
+  </ul></li>
+  <li><a href="#common-issues-and-solutions" id="toc-common-issues-and-solutions" class="nav-link" data-scroll-target="#common-issues-and-solutions"><span class="header-section-number">11.2</span> Common Issues and Solutions</a>
+  <ul class="collapse">
+  <li><a href="#r-issues" id="toc-r-issues" class="nav-link" data-scroll-target="#r-issues"><span class="header-section-number">11.2.1</span> R Issues</a></li>
+  <li><a href="#git-issues" id="toc-git-issues" class="nav-link" data-scroll-target="#git-issues"><span class="header-section-number">11.2.2</span> Git Issues</a></li>
+  <li><a href="#quarto-issues" id="toc-quarto-issues" class="nav-link" data-scroll-target="#quarto-issues"><span class="header-section-number">11.2.3</span> Quarto Issues</a></li>
+  <li><a href="#positron-issues" id="toc-positron-issues" class="nav-link" data-scroll-target="#positron-issues"><span class="header-section-number">11.2.4</span> Positron Issues</a></li>
+  <li><a href="#data-issues" id="toc-data-issues" class="nav-link" data-scroll-target="#data-issues"><span class="header-section-number">11.2.5</span> Data Issues</a></li>
+  <li><a href="#performance-issues" id="toc-performance-issues" class="nav-link" data-scroll-target="#performance-issues"><span class="header-section-number">11.2.6</span> Performance Issues</a></li>
+  </ul></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">11.3</span> Getting Help</a>
+  <ul class="collapse">
+  <li><a href="#self-help-resources" id="toc-self-help-resources" class="nav-link" data-scroll-target="#self-help-resources"><span class="header-section-number">11.3.1</span> Self-Help Resources</a></li>
+  <li><a href="#asking-for-help" id="toc-asking-for-help" class="nav-link" data-scroll-target="#asking-for-help"><span class="header-section-number">11.3.2</span> Asking for Help</a></li>
+  <li><a href="#office-hours" id="toc-office-hours" class="nav-link" data-scroll-target="#office-hours"><span class="header-section-number">11.3.3</span> Office Hours</a></li>
+  <li><a href="#team-support" id="toc-team-support" class="nav-link" data-scroll-target="#team-support"><span class="header-section-number">11.3.4</span> Team Support</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources/datasets.html">Resources</a></li><li class="breadcrumb-item"><a href="../resources/troubleshooting.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Troubleshooting Guide</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Troubleshooting Guide</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="setup-issues" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="setup-issues"><span class="header-section-number">11.1</span> Setup Issues</h2>
+<p>These problems typically occur during initial installation and project setup.</p>
+<section id="quarto-not-found" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="quarto-not-found"><span class="header-section-number">11.1.1</span> “Quarto not found”</h3>
+<p><strong>Symptom:</strong> <code>quarto: command not found</code></p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Restart terminal/Positron after Quarto installation</li>
+<li>Check PATH includes Quarto installation directory</li>
+<li>Windows: May need to add to PATH manually</li>
+</ul>
+</section>
+<section id="python-package-installation-fails" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="python-package-installation-fails"><span class="header-section-number">11.1.2</span> “Python package installation fails”</h3>
+<p><strong>Symptom:</strong> <code>uv sync</code> errors</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update uv</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> uv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clear cache and retry</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> cache clear</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="renv-restore-hangs" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="renv-restore-hangs"><span class="header-section-number">11.1.3</span> “renv restore hangs”</h3>
+<p><strong>Symptom:</strong> Package restoration taking very long or hanging</p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Check internet connection</li>
+<li>Try individual package installation</li>
+<li>Clear renv cache: <code>renv::purge()</code></li>
+</ul>
+</section>
+</section>
+<section id="common-issues-and-solutions" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="common-issues-and-solutions"><span class="header-section-number">11.2</span> Common Issues and Solutions</h2>
+<section id="r-issues" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="r-issues"><span class="header-section-number">11.2.1</span> R Issues</h3>
+<section id="package-not-found" class="level4" data-number="11.2.1.1">
+<h4 data-number="11.2.1.1" class="anchored" data-anchor-id="package-not-found"><span class="header-section-number">11.2.1.1</span> “Package not found”</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Error in library(tidyverse): there is no package called 'tidyverse'</code></pre>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore all project packages</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or install individually</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prevention:</strong> Run <code>renv::restore()</code> after cloning the repository.</p>
+</section>
+<section id="file-not-found" class="level4" data-number="11.2.1.2">
+<h4 data-number="11.2.1.2" class="anchored" data-anchor-id="file-not-found"><span class="header-section-number">11.2.1.2</span> “File not found”</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Error: 'data/myfile.csv' does not exist</code></pre>
+<p><strong>Cause:</strong> Hardcoded paths or wrong working directory</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always use here::here() for file paths</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"myfile.csv"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check your project root</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()  <span class="co"># Should show indicators project directory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prevention:</strong> Never use absolute paths like <code>C:/Users/name/...</code></p>
+</section>
+<section id="object-not-found" class="level4" data-number="11.2.1.3">
+<h4 data-number="11.2.1.3" class="anchored" data-anchor-id="object-not-found"><span class="header-section-number">11.2.1.3</span> “Object not found”</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Error: object 'my_data' not found</code></pre>
+<p><strong>Cause:</strong> Code chunks run out of order</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Restart R session: <code>Session &gt; Restart R</code> in Positron</li>
+<li>Run code chunks sequentially from top to bottom</li>
+<li>Check for typos in variable names (R is case-sensitive)</li>
+</ol>
+</section>
+<section id="rendering-errors" class="level4" data-number="11.2.1.4">
+<h4 data-number="11.2.1.4" class="anchored" data-anchor-id="rendering-errors"><span class="header-section-number">11.2.1.4</span> Rendering errors</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Error in eval(expr, envir, enclos): could not find function...</code></pre>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Check R console for specific error message</li>
+<li>Ensure all required packages are loaded</li>
+<li>Verify all code chunks before the error run successfully</li>
+<li>Try rendering in a clean R session</li>
+</ol>
+<p><strong>Debug strategy:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restart R session</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.rs.restartR</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run chunks one-by-one until you find the problematic chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="git-issues" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="git-issues"><span class="header-section-number">11.2.2</span> Git Issues</h3>
+<section id="permission-denied-publickey" class="level4" data-number="11.2.2.1">
+<h4 data-number="11.2.2.1" class="anchored" data-anchor-id="permission-denied-publickey"><span class="header-section-number">11.2.2.1</span> “Permission denied (publickey)”</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Permission denied (publickey).
+fatal: Could not read from remote repository.</code></pre>
+<p><strong>Cause:</strong> SSH keys not configured</p>
+<p><strong>Solution:</strong> Use HTTPS instead of SSH</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check current remote URL</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If using SSH (git@github.com:...), switch to HTTPS</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin https://github.com/your-org/indicators.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="merge-conflict" class="level4" data-number="11.2.2.2">
+<h4 data-number="11.2.2.2" class="anchored" data-anchor-id="merge-conflict"><span class="header-section-number">11.2.2.2</span> “Merge conflict”</h4>
+<p><strong>Symptom:</strong> Git refuses to merge, shows conflict markers in file</p>
+<p><strong>What it looks like:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Your changes</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">=======</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Someone else's changes</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Open the file in Positron</li>
+<li>Find the conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>)</li>
+<li>Decide which version to keep (or combine both)</li>
+<li>Delete the conflict markers</li>
+<li>Save the file</li>
+<li>Stage and commit:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add filename.qmd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Resolve merge conflict"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prevention:</strong></p>
+<ul>
+<li>Pull from main before creating new branches</li>
+<li>Communicate with team about who’s working on what</li>
+<li>Work on different sections when possible</li>
+</ul>
+</section>
+<section id="your-branch-is-behind-originmain" class="level4" data-number="11.2.2.3">
+<h4 data-number="11.2.2.3" class="anchored" data-anchor-id="your-branch-is-behind-originmain"><span class="header-section-number">11.2.2.3</span> “Your branch is behind origin/main”</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Your branch is behind 'origin/main' by 3 commits</code></pre>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull latest changes before continuing work</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have local commits, this will create a merge commit</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Or use rebase for cleaner history (advanced)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--rebase</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="cant-push-rejected" class="level4" data-number="11.2.2.4">
+<h4 data-number="11.2.2.4" class="anchored" data-anchor-id="cant-push-rejected"><span class="header-section-number">11.2.2.4</span> Can’t push (rejected)</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>! [rejected] main -&gt; main (fetch first)</code></pre>
+<p><strong>Cause:</strong> Remote has commits you don’t have locally</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull first, then push</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="quarto-issues" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="quarto-issues"><span class="header-section-number">11.2.3</span> Quarto Issues</h3>
+<section id="kernel-error" class="level4" data-number="11.2.3.1">
+<h4 data-number="11.2.3.1" class="anchored" data-anchor-id="kernel-error"><span class="header-section-number">11.2.3.1</span> “Kernel error”</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>Kernel error: Cannot start kernel</code></pre>
+<p><strong>Cause:</strong> R/Python kernel not found by Quarto</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Verify R/Python installation</li>
+<li>Restart Positron</li>
+<li>Check Quarto can find R:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="latex-error-pdf-rendering" class="level4" data-number="11.2.3.2">
+<h4 data-number="11.2.3.2" class="anchored" data-anchor-id="latex-error-pdf-rendering"><span class="header-section-number">11.2.3.2</span> “LaTeX error” (PDF rendering)</h4>
+<p><strong>Error message:</strong></p>
+<pre><code>! LaTeX Error: File 'xyz.sty' not found</code></pre>
+<p><strong>Cause:</strong> Missing LaTeX installation for PDF output</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install TinyTeX</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Alternative:</strong> Focus on HTML output (PDF is optional)</p>
+</section>
+<section id="freeze-cache-issues" class="level4" data-number="11.2.3.3">
+<h4 data-number="11.2.3.3" class="anchored" data-anchor-id="freeze-cache-issues"><span class="header-section-number">11.2.3.3</span> Freeze cache issues</h4>
+<p><strong>Symptom:</strong> Changes to code don’t appear in rendered output</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Force re-render of chapter</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render chapters/XX-topic/index.qmd <span class="at">--execute-freeze</span> refresh</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or delete freeze cache</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> _freeze/html/chapters/XX-topic/</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render chapters/XX-topic/index.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When cache conflicts in merge:</strong></p>
+<ol type="1">
+<li>Delete local <code>_freeze/</code> for that chapter</li>
+<li>Pull latest from GitHub</li>
+<li>Re-render the chapter</li>
+</ol>
+</section>
+</section>
+<section id="positron-issues" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="positron-issues"><span class="header-section-number">11.2.4</span> Positron Issues</h3>
+<section id="code-chunks-dont-execute" class="level4" data-number="11.2.4.1">
+<h4 data-number="11.2.4.1" class="anchored" data-anchor-id="code-chunks-dont-execute"><span class="header-section-number">11.2.4.1</span> Code chunks don’t execute</h4>
+<p><strong>Symptom:</strong> Pressing Ctrl+Shift+Enter does nothing</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Check R session is active (look for R console at bottom)</li>
+<li>Try <code>Session &gt; Restart R</code></li>
+<li>Verify renv is activated (session info should show renv)</li>
+<li>Close and reopen the <code>.qmd</code> file</li>
+</ol>
+</section>
+<section id="file-doesnt-open" class="level4" data-number="11.2.4.2">
+<h4 data-number="11.2.4.2" class="anchored" data-anchor-id="file-doesnt-open"><span class="header-section-number">11.2.4.2</span> File doesn’t open</h4>
+<p><strong>Symptom:</strong> File shows as binary or doesn’t open properly</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Check file path is correct (use tab completion)</li>
+<li>Try <code>File &gt; Open Project</code> and reopening project</li>
+<li>Check file encoding (should be UTF-8)</li>
+</ol>
+</section>
+</section>
+<section id="data-issues" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="data-issues"><span class="header-section-number">11.2.5</span> Data Issues</h3>
+<section id="csv-encoding-problems" class="level4" data-number="11.2.5.1">
+<h4 data-number="11.2.5.1" class="anchored" data-anchor-id="csv-encoding-problems"><span class="header-section-number">11.2.5.1</span> CSV encoding problems</h4>
+<p><strong>Symptom:</strong> Strange characters (Ã©, Â£, etc.) in imported data</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify encoding explicitly</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"file.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Latin1"</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"file.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="excel-sheets-not-importing" class="level4" data-number="11.2.5.2">
+<h4 data-number="11.2.5.2" class="anchored" data-anchor-id="excel-sheets-not-importing"><span class="header-section-number">11.2.5.2</span> Excel sheets not importing</h4>
+<p><strong>Symptom:</strong> <code>read_excel()</code> fails or imports wrong data</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check available sheet names</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"file.xlsx"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read specific sheet</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"file.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Sheet1"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip header rows</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"file.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Data"</span>, <span class="at">skip =</span> <span class="dv">5</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify range</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"file.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Data"</span>, <span class="at">range =</span> <span class="st">"A5:D50"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="type-conversion-errors" class="level4" data-number="11.2.5.3">
+<h4 data-number="11.2.5.3" class="anchored" data-anchor-id="type-conversion-errors"><span class="header-section-number">11.2.5.3</span> Type conversion errors</h4>
+<p><strong>Symptom:</strong> Numbers treated as text, dates not parsing</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column types</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert text to numeric</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.numeric</span>(year),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">as.numeric</span>(value)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dates</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="performance-issues" class="level3" data-number="11.2.6">
+<h3 data-number="11.2.6" class="anchored" data-anchor-id="performance-issues"><span class="header-section-number">11.2.6</span> Performance Issues</h3>
+<section id="rendering-very-slow" class="level4" data-number="11.2.6.1">
+<h4 data-number="11.2.6.1" class="anchored" data-anchor-id="rendering-very-slow"><span class="header-section-number">11.2.6.1</span> Rendering very slow</h4>
+<p><strong>Symptom:</strong> <code>quarto render</code> takes minutes</p>
+<p><strong>Cause:</strong> Large datasets or complex computations</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Use <code>freeze: auto</code> (already configured)</li>
+<li>Cache expensive operations:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save processed data</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(processed_data, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>, <span class="st">"cached_data.rds"</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cached version</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>processed_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>, <span class="st">"cached_data.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Sample data during development:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use smaller sample during development</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>data_sample <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="r-session-crashes" class="level4" data-number="11.2.6.2">
+<h4 data-number="11.2.6.2" class="anchored" data-anchor-id="r-session-crashes"><span class="header-section-number">11.2.6.2</span> R session crashes</h4>
+<p><strong>Symptom:</strong> Positron becomes unresponsive</p>
+<p><strong>Cause:</strong> Memory issues with large datasets</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Restart R session frequently</li>
+<li>Remove large objects when done:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(large_object)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()  <span class="co"># Garbage collection</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Work with smaller data subsets during development</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="getting-help" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">11.3</span> Getting Help</h2>
+<section id="self-help-resources" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="self-help-resources"><span class="header-section-number">11.3.1</span> Self-Help Resources</h3>
+<ol type="1">
+<li><p><strong>R documentation:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>?function_name</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> <span class="st">"packagename"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Package vignettes:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Online resources:</strong></p>
+<ul>
+<li><a href="https://r4ds.hadley.nz/">R for Data Science</a></li>
+<li><a href="https://quarto.org/docs/guide/">Quarto documentation</a></li>
+<li><a href="https://git-scm.com/doc">Git documentation</a></li>
+</ul></li>
+</ol>
+</section>
+<section id="asking-for-help" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="asking-for-help"><span class="header-section-number">11.3.2</span> Asking for Help</h3>
+<p>When posting questions to team chat or asking instructor:</p>
+<p><strong>Good question format:</strong></p>
+<pre><code>Problem: When I try to render my chapter, I get error X
+
+What I tried:
+- Restarted R session
+- Ran renv::restore()
+- Checked the code in the chunk before error
+
+Error message:
+[paste full error message]
+
+Reproducible example:
+[paste minimal code that reproduces error]</code></pre>
+<p><strong>Information to include:</strong></p>
+<ul>
+<li>What you were trying to do</li>
+<li>What you expected to happen</li>
+<li>What actually happened (including full error message)</li>
+<li>What you’ve already tried</li>
+<li>Your R version (<code>R.version.string</code>)</li>
+<li>Package versions (<code>packageVersion("package_name")</code>)</li>
+</ul>
+</section>
+<section id="office-hours" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="office-hours"><span class="header-section-number">11.3.3</span> Office Hours</h3>
+<p>Post-course office hours schedule:</p>
+<ul>
+<li><strong>When:</strong> Wednesdays, 2-3pm</li>
+<li><strong>Where:</strong> Team meeting room / Video call</li>
+<li><strong>Book:</strong> Email instructor or post in team chat</li>
+</ul>
+</section>
+<section id="team-support" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="team-support"><span class="header-section-number">11.3.4</span> Team Support</h3>
+<ul>
+<li><strong>Team chat:</strong> <code>#indicators-project</code> channel</li>
+<li><strong>Peer support:</strong> Pair programming sessions</li>
+<li><strong>Code review:</strong> PR comments and discussions</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../resources/setup-guide.html" class="pagination-link" aria-label="Setup Guide">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Setup Guide</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Troubleshooting Guide"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup Issues</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>These problems typically occur during initial installation and project setup.</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### "Quarto not found"</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>**Symptom:** <span class="in">`quarto: command not found`</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Restart terminal/Positron after Quarto installation</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check PATH includes Quarto installation directory</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Windows: May need to add to PATH manually</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### "Python package installation fails"</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>**Symptom:** <span class="in">`uv sync`</span> errors</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Update uv</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> uv</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Clear cache and retry</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> cache clear</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### "renv restore hangs"</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>**Symptom:** Package restoration taking very long or hanging</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check internet connection</span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try individual package installation</span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clear renv cache: <span class="in">`renv::purge()`</span></span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Issues and Solutions</span></span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### R Issues</span></span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "Package not found"</span></span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a><span class="in">Error in library(tidyverse): there is no package called 'tidyverse'</span></span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore all project packages</span></span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Or install individually</span></span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb31-63"><a href="#cb31-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-64"><a href="#cb31-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-65"><a href="#cb31-65" aria-hidden="true" tabindex="-1"></a>**Prevention:** Run <span class="in">`renv::restore()`</span> after cloning the repository.</span>
+<span id="cb31-66"><a href="#cb31-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-67"><a href="#cb31-67" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "File not found"</span></span>
+<span id="cb31-68"><a href="#cb31-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-69"><a href="#cb31-69" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-70"><a href="#cb31-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-71"><a href="#cb31-71" aria-hidden="true" tabindex="-1"></a><span class="in">Error: 'data/myfile.csv' does not exist</span></span>
+<span id="cb31-72"><a href="#cb31-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-73"><a href="#cb31-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-74"><a href="#cb31-74" aria-hidden="true" tabindex="-1"></a>**Cause:** Hardcoded paths or wrong working directory</span>
+<span id="cb31-75"><a href="#cb31-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-76"><a href="#cb31-76" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-77"><a href="#cb31-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-78"><a href="#cb31-78" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-79"><a href="#cb31-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Always use here::here() for file paths</span></span>
+<span id="cb31-80"><a href="#cb31-80" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"myfile.csv"</span>))</span>
+<span id="cb31-81"><a href="#cb31-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-82"><a href="#cb31-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Check your project root</span></span>
+<span id="cb31-83"><a href="#cb31-83" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()  <span class="co"># Should show indicators project directory</span></span>
+<span id="cb31-84"><a href="#cb31-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-85"><a href="#cb31-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-86"><a href="#cb31-86" aria-hidden="true" tabindex="-1"></a>**Prevention:** Never use absolute paths like <span class="in">`C:/Users/name/...`</span></span>
+<span id="cb31-87"><a href="#cb31-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-88"><a href="#cb31-88" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "Object not found"</span></span>
+<span id="cb31-89"><a href="#cb31-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-90"><a href="#cb31-90" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-91"><a href="#cb31-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-92"><a href="#cb31-92" aria-hidden="true" tabindex="-1"></a><span class="in">Error: object 'my_data' not found</span></span>
+<span id="cb31-93"><a href="#cb31-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-94"><a href="#cb31-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-95"><a href="#cb31-95" aria-hidden="true" tabindex="-1"></a>**Cause:** Code chunks run out of order</span>
+<span id="cb31-96"><a href="#cb31-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-97"><a href="#cb31-97" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-99"><a href="#cb31-99" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Restart R session: <span class="in">`Session &gt; Restart R`</span> in Positron</span>
+<span id="cb31-100"><a href="#cb31-100" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Run code chunks sequentially from top to bottom</span>
+<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check for typos in variable names (R is case-sensitive)</span>
+<span id="cb31-102"><a href="#cb31-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-103"><a href="#cb31-103" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Rendering errors</span></span>
+<span id="cb31-104"><a href="#cb31-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-105"><a href="#cb31-105" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-106"><a href="#cb31-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-107"><a href="#cb31-107" aria-hidden="true" tabindex="-1"></a><span class="in">Error in eval(expr, envir, enclos): could not find function...</span></span>
+<span id="cb31-108"><a href="#cb31-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-109"><a href="#cb31-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-110"><a href="#cb31-110" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-111"><a href="#cb31-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check R console for specific error message</span>
+<span id="cb31-113"><a href="#cb31-113" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Ensure all required packages are loaded</span>
+<span id="cb31-114"><a href="#cb31-114" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify all code chunks before the error run successfully</span>
+<span id="cb31-115"><a href="#cb31-115" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Try rendering in a clean R session</span>
+<span id="cb31-116"><a href="#cb31-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-117"><a href="#cb31-117" aria-hidden="true" tabindex="-1"></a>**Debug strategy:**</span>
+<span id="cb31-118"><a href="#cb31-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-119"><a href="#cb31-119" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-120"><a href="#cb31-120" aria-hidden="true" tabindex="-1"></a><span class="co"># Restart R session</span></span>
+<span id="cb31-121"><a href="#cb31-121" aria-hidden="true" tabindex="-1"></a><span class="fu">.rs.restartR</span>()</span>
+<span id="cb31-122"><a href="#cb31-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-123"><a href="#cb31-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Run chunks one-by-one until you find the problematic chunk</span></span>
+<span id="cb31-124"><a href="#cb31-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-125"><a href="#cb31-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-126"><a href="#cb31-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### Git Issues</span></span>
+<span id="cb31-127"><a href="#cb31-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-128"><a href="#cb31-128" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "Permission denied (publickey)"</span></span>
+<span id="cb31-129"><a href="#cb31-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-130"><a href="#cb31-130" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-131"><a href="#cb31-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-132"><a href="#cb31-132" aria-hidden="true" tabindex="-1"></a><span class="in">Permission denied (publickey).</span></span>
+<span id="cb31-133"><a href="#cb31-133" aria-hidden="true" tabindex="-1"></a><span class="in">fatal: Could not read from remote repository.</span></span>
+<span id="cb31-134"><a href="#cb31-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-135"><a href="#cb31-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-136"><a href="#cb31-136" aria-hidden="true" tabindex="-1"></a>**Cause:** SSH keys not configured</span>
+<span id="cb31-137"><a href="#cb31-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-138"><a href="#cb31-138" aria-hidden="true" tabindex="-1"></a>**Solution:** Use HTTPS instead of SSH</span>
+<span id="cb31-139"><a href="#cb31-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-140"><a href="#cb31-140" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-141"><a href="#cb31-141" aria-hidden="true" tabindex="-1"></a><span class="co"># Check current remote URL</span></span>
+<span id="cb31-142"><a href="#cb31-142" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb31-143"><a href="#cb31-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-144"><a href="#cb31-144" aria-hidden="true" tabindex="-1"></a><span class="co"># If using SSH (git@github.com:...), switch to HTTPS</span></span>
+<span id="cb31-145"><a href="#cb31-145" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin https://github.com/your-org/indicators.git</span>
+<span id="cb31-146"><a href="#cb31-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-147"><a href="#cb31-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-148"><a href="#cb31-148" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "Merge conflict"</span></span>
+<span id="cb31-149"><a href="#cb31-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-150"><a href="#cb31-150" aria-hidden="true" tabindex="-1"></a>**Symptom:** Git refuses to merge, shows conflict markers in file</span>
+<span id="cb31-151"><a href="#cb31-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-152"><a href="#cb31-152" aria-hidden="true" tabindex="-1"></a>**What it looks like:**</span>
+<span id="cb31-153"><a href="#cb31-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-154"><a href="#cb31-154" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
+<span id="cb31-155"><a href="#cb31-155" aria-hidden="true" tabindex="-1"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span id="cb31-156"><a href="#cb31-156" aria-hidden="true" tabindex="-1"></a>Your changes</span>
+<span id="cb31-157"><a href="#cb31-157" aria-hidden="true" tabindex="-1"></a><span class="fu">=======</span></span>
+<span id="cb31-158"><a href="#cb31-158" aria-hidden="true" tabindex="-1"></a>Someone else's changes</span>
+<span id="cb31-159"><a href="#cb31-159" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</span></span>
+<span id="cb31-160"><a href="#cb31-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-161"><a href="#cb31-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-162"><a href="#cb31-162" aria-hidden="true" tabindex="-1"></a><span class="in">**Solution:**</span></span>
+<span id="cb31-163"><a href="#cb31-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-164"><a href="#cb31-164" aria-hidden="true" tabindex="-1"></a><span class="in">1. Open the file in Positron</span></span>
+<span id="cb31-165"><a href="#cb31-165" aria-hidden="true" tabindex="-1"></a><span class="in">2. Find the conflict markers (`&lt;&lt;&lt;&lt;&lt;&lt;&lt;`, `=======`, `&gt;&gt;&gt;&gt;&gt;&gt;&gt;`)</span></span>
+<span id="cb31-166"><a href="#cb31-166" aria-hidden="true" tabindex="-1"></a><span class="in">3. Decide which version to keep (or combine both)</span></span>
+<span id="cb31-167"><a href="#cb31-167" aria-hidden="true" tabindex="-1"></a><span class="in">4. Delete the conflict markers</span></span>
+<span id="cb31-168"><a href="#cb31-168" aria-hidden="true" tabindex="-1"></a><span class="in">5. Save the file</span></span>
+<span id="cb31-169"><a href="#cb31-169" aria-hidden="true" tabindex="-1"></a><span class="in">6. Stage and commit:</span></span>
+<span id="cb31-170"><a href="#cb31-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-171"><a href="#cb31-171" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-172"><a href="#cb31-172" aria-hidden="true" tabindex="-1"></a><span class="in">git add filename.qmd</span></span>
+<span id="cb31-173"><a href="#cb31-173" aria-hidden="true" tabindex="-1"></a><span class="in">git commit -m "Resolve merge conflict"</span></span>
+<span id="cb31-174"><a href="#cb31-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-175"><a href="#cb31-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-176"><a href="#cb31-176" aria-hidden="true" tabindex="-1"></a>**Prevention:**</span>
+<span id="cb31-177"><a href="#cb31-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-178"><a href="#cb31-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pull from main before creating new branches</span>
+<span id="cb31-179"><a href="#cb31-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Communicate with team about who's working on what</span>
+<span id="cb31-180"><a href="#cb31-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Work on different sections when possible</span>
+<span id="cb31-181"><a href="#cb31-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-182"><a href="#cb31-182" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "Your branch is behind origin/main"</span></span>
+<span id="cb31-183"><a href="#cb31-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-184"><a href="#cb31-184" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-185"><a href="#cb31-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-186"><a href="#cb31-186" aria-hidden="true" tabindex="-1"></a>Your branch is behind 'origin/main' by 3 commits</span>
+<span id="cb31-187"><a href="#cb31-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-188"><a href="#cb31-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-189"><a href="#cb31-189" aria-hidden="true" tabindex="-1"></a><span class="in">**Solution:**</span></span>
+<span id="cb31-190"><a href="#cb31-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-191"><a href="#cb31-191" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-192"><a href="#cb31-192" aria-hidden="true" tabindex="-1"></a><span class="in"># Pull latest changes before continuing work</span></span>
+<span id="cb31-193"><a href="#cb31-193" aria-hidden="true" tabindex="-1"></a><span class="in">git pull</span></span>
+<span id="cb31-194"><a href="#cb31-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-195"><a href="#cb31-195" aria-hidden="true" tabindex="-1"></a><span class="in"># If you have local commits, this will create a merge commit</span></span>
+<span id="cb31-196"><a href="#cb31-196" aria-hidden="true" tabindex="-1"></a><span class="in"># Or use rebase for cleaner history (advanced)</span></span>
+<span id="cb31-197"><a href="#cb31-197" aria-hidden="true" tabindex="-1"></a><span class="in">git pull --rebase</span></span>
+<span id="cb31-198"><a href="#cb31-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-199"><a href="#cb31-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-200"><a href="#cb31-200" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Can't push (rejected)</span></span>
+<span id="cb31-201"><a href="#cb31-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-202"><a href="#cb31-202" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-203"><a href="#cb31-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-204"><a href="#cb31-204" aria-hidden="true" tabindex="-1"></a><span class="in">! [rejected] main -&gt; main (fetch first)</span></span>
+<span id="cb31-205"><a href="#cb31-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-206"><a href="#cb31-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-207"><a href="#cb31-207" aria-hidden="true" tabindex="-1"></a>**Cause:** Remote has commits you don't have locally</span>
+<span id="cb31-208"><a href="#cb31-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-209"><a href="#cb31-209" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-210"><a href="#cb31-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-211"><a href="#cb31-211" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-212"><a href="#cb31-212" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull first, then push</span></span>
+<span id="cb31-213"><a href="#cb31-213" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb31-214"><a href="#cb31-214" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb31-215"><a href="#cb31-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-216"><a href="#cb31-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-217"><a href="#cb31-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quarto Issues</span></span>
+<span id="cb31-218"><a href="#cb31-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-219"><a href="#cb31-219" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "Kernel error"</span></span>
+<span id="cb31-220"><a href="#cb31-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-221"><a href="#cb31-221" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-222"><a href="#cb31-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-223"><a href="#cb31-223" aria-hidden="true" tabindex="-1"></a><span class="in">Kernel error: Cannot start kernel</span></span>
+<span id="cb31-224"><a href="#cb31-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-225"><a href="#cb31-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-226"><a href="#cb31-226" aria-hidden="true" tabindex="-1"></a>**Cause:** R/Python kernel not found by Quarto</span>
+<span id="cb31-227"><a href="#cb31-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-228"><a href="#cb31-228" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-229"><a href="#cb31-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-230"><a href="#cb31-230" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Verify R/Python installation</span>
+<span id="cb31-231"><a href="#cb31-231" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Restart Positron</span>
+<span id="cb31-232"><a href="#cb31-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check Quarto can find R:</span>
+<span id="cb31-233"><a href="#cb31-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-234"><a href="#cb31-234" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-235"><a href="#cb31-235" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span>
+<span id="cb31-236"><a href="#cb31-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-237"><a href="#cb31-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-238"><a href="#cb31-238" aria-hidden="true" tabindex="-1"></a><span class="fu">#### "LaTeX error" (PDF rendering)</span></span>
+<span id="cb31-239"><a href="#cb31-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-240"><a href="#cb31-240" aria-hidden="true" tabindex="-1"></a>**Error message:**</span>
+<span id="cb31-241"><a href="#cb31-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-242"><a href="#cb31-242" aria-hidden="true" tabindex="-1"></a><span class="in">! LaTeX Error: File 'xyz.sty' not found</span></span>
+<span id="cb31-243"><a href="#cb31-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-244"><a href="#cb31-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-245"><a href="#cb31-245" aria-hidden="true" tabindex="-1"></a>**Cause:** Missing LaTeX installation for PDF output</span>
+<span id="cb31-246"><a href="#cb31-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-247"><a href="#cb31-247" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-248"><a href="#cb31-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-249"><a href="#cb31-249" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-250"><a href="#cb31-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Install TinyTeX</span></span>
+<span id="cb31-251"><a href="#cb31-251" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span>
+<span id="cb31-252"><a href="#cb31-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-253"><a href="#cb31-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-254"><a href="#cb31-254" aria-hidden="true" tabindex="-1"></a>**Alternative:** Focus on HTML output (PDF is optional)</span>
+<span id="cb31-255"><a href="#cb31-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-256"><a href="#cb31-256" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Freeze cache issues</span></span>
+<span id="cb31-257"><a href="#cb31-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-258"><a href="#cb31-258" aria-hidden="true" tabindex="-1"></a>**Symptom:** Changes to code don't appear in rendered output</span>
+<span id="cb31-259"><a href="#cb31-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-260"><a href="#cb31-260" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-261"><a href="#cb31-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-262"><a href="#cb31-262" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb31-263"><a href="#cb31-263" aria-hidden="true" tabindex="-1"></a><span class="co"># Force re-render of chapter</span></span>
+<span id="cb31-264"><a href="#cb31-264" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render chapters/XX-topic/index.qmd <span class="at">--execute-freeze</span> refresh</span>
+<span id="cb31-265"><a href="#cb31-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-266"><a href="#cb31-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Or delete freeze cache</span></span>
+<span id="cb31-267"><a href="#cb31-267" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> _freeze/html/chapters/XX-topic/</span>
+<span id="cb31-268"><a href="#cb31-268" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render chapters/XX-topic/index.qmd</span>
+<span id="cb31-269"><a href="#cb31-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-270"><a href="#cb31-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-271"><a href="#cb31-271" aria-hidden="true" tabindex="-1"></a>**When cache conflicts in merge:**</span>
+<span id="cb31-272"><a href="#cb31-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-273"><a href="#cb31-273" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Delete local <span class="in">`_freeze/`</span> for that chapter</span>
+<span id="cb31-274"><a href="#cb31-274" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Pull latest from GitHub</span>
+<span id="cb31-275"><a href="#cb31-275" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Re-render the chapter</span>
+<span id="cb31-276"><a href="#cb31-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-277"><a href="#cb31-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### Positron Issues</span></span>
+<span id="cb31-278"><a href="#cb31-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-279"><a href="#cb31-279" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Code chunks don't execute</span></span>
+<span id="cb31-280"><a href="#cb31-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-281"><a href="#cb31-281" aria-hidden="true" tabindex="-1"></a>**Symptom:** Pressing Ctrl+Shift+Enter does nothing</span>
+<span id="cb31-282"><a href="#cb31-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-283"><a href="#cb31-283" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-284"><a href="#cb31-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-285"><a href="#cb31-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check R session is active (look for R console at bottom)</span>
+<span id="cb31-286"><a href="#cb31-286" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Try <span class="in">`Session &gt; Restart R`</span></span>
+<span id="cb31-287"><a href="#cb31-287" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify renv is activated (session info should show renv)</span>
+<span id="cb31-288"><a href="#cb31-288" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Close and reopen the <span class="in">`.qmd`</span> file</span>
+<span id="cb31-289"><a href="#cb31-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-290"><a href="#cb31-290" aria-hidden="true" tabindex="-1"></a><span class="fu">#### File doesn't open</span></span>
+<span id="cb31-291"><a href="#cb31-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-292"><a href="#cb31-292" aria-hidden="true" tabindex="-1"></a>**Symptom:** File shows as binary or doesn't open properly</span>
+<span id="cb31-293"><a href="#cb31-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-294"><a href="#cb31-294" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-295"><a href="#cb31-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-296"><a href="#cb31-296" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check file path is correct (use tab completion)</span>
+<span id="cb31-297"><a href="#cb31-297" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Try <span class="in">`File &gt; Open Project`</span> and reopening project</span>
+<span id="cb31-298"><a href="#cb31-298" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check file encoding (should be UTF-8)</span>
+<span id="cb31-299"><a href="#cb31-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-300"><a href="#cb31-300" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Issues</span></span>
+<span id="cb31-301"><a href="#cb31-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-302"><a href="#cb31-302" aria-hidden="true" tabindex="-1"></a><span class="fu">#### CSV encoding problems</span></span>
+<span id="cb31-303"><a href="#cb31-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-304"><a href="#cb31-304" aria-hidden="true" tabindex="-1"></a>**Symptom:** Strange characters (Ã©, Â£, etc.) in imported data</span>
+<span id="cb31-305"><a href="#cb31-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-306"><a href="#cb31-306" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-307"><a href="#cb31-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-308"><a href="#cb31-308" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-309"><a href="#cb31-309" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify encoding explicitly</span></span>
+<span id="cb31-310"><a href="#cb31-310" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"file.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Latin1"</span>))</span>
+<span id="cb31-311"><a href="#cb31-311" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb31-312"><a href="#cb31-312" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"file.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>))</span>
+<span id="cb31-313"><a href="#cb31-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-314"><a href="#cb31-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-315"><a href="#cb31-315" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Excel sheets not importing</span></span>
+<span id="cb31-316"><a href="#cb31-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-317"><a href="#cb31-317" aria-hidden="true" tabindex="-1"></a>**Symptom:** <span class="in">`read_excel()`</span> fails or imports wrong data</span>
+<span id="cb31-318"><a href="#cb31-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-319"><a href="#cb31-319" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-320"><a href="#cb31-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-321"><a href="#cb31-321" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-322"><a href="#cb31-322" aria-hidden="true" tabindex="-1"></a><span class="co"># Check available sheet names</span></span>
+<span id="cb31-323"><a href="#cb31-323" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"file.xlsx"</span>)</span>
+<span id="cb31-324"><a href="#cb31-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-325"><a href="#cb31-325" aria-hidden="true" tabindex="-1"></a><span class="co"># Read specific sheet</span></span>
+<span id="cb31-326"><a href="#cb31-326" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"file.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Sheet1"</span>)</span>
+<span id="cb31-327"><a href="#cb31-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-328"><a href="#cb31-328" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip header rows</span></span>
+<span id="cb31-329"><a href="#cb31-329" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"file.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Data"</span>, <span class="at">skip =</span> <span class="dv">5</span>)</span>
+<span id="cb31-330"><a href="#cb31-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-331"><a href="#cb31-331" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify range</span></span>
+<span id="cb31-332"><a href="#cb31-332" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"file.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Data"</span>, <span class="at">range =</span> <span class="st">"A5:D50"</span>)</span>
+<span id="cb31-333"><a href="#cb31-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-334"><a href="#cb31-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-335"><a href="#cb31-335" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Type conversion errors</span></span>
+<span id="cb31-336"><a href="#cb31-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-337"><a href="#cb31-337" aria-hidden="true" tabindex="-1"></a>**Symptom:** Numbers treated as text, dates not parsing</span>
+<span id="cb31-338"><a href="#cb31-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-339"><a href="#cb31-339" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-340"><a href="#cb31-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-341"><a href="#cb31-341" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-342"><a href="#cb31-342" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column types</span></span>
+<span id="cb31-343"><a href="#cb31-343" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span>
+<span id="cb31-344"><a href="#cb31-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-345"><a href="#cb31-345" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert text to numeric</span></span>
+<span id="cb31-346"><a href="#cb31-346" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb31-347"><a href="#cb31-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-348"><a href="#cb31-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.numeric</span>(year),</span>
+<span id="cb31-349"><a href="#cb31-349" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">as.numeric</span>(value)</span>
+<span id="cb31-350"><a href="#cb31-350" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-351"><a href="#cb31-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-352"><a href="#cb31-352" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dates</span></span>
+<span id="cb31-353"><a href="#cb31-353" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb31-354"><a href="#cb31-354" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-355"><a href="#cb31-355" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)</span>
+<span id="cb31-356"><a href="#cb31-356" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-357"><a href="#cb31-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-358"><a href="#cb31-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-359"><a href="#cb31-359" aria-hidden="true" tabindex="-1"></a><span class="fu">### Performance Issues</span></span>
+<span id="cb31-360"><a href="#cb31-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-361"><a href="#cb31-361" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Rendering very slow</span></span>
+<span id="cb31-362"><a href="#cb31-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-363"><a href="#cb31-363" aria-hidden="true" tabindex="-1"></a>**Symptom:** <span class="in">`quarto render`</span> takes minutes</span>
+<span id="cb31-364"><a href="#cb31-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-365"><a href="#cb31-365" aria-hidden="true" tabindex="-1"></a>**Cause:** Large datasets or complex computations</span>
+<span id="cb31-366"><a href="#cb31-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-367"><a href="#cb31-367" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-368"><a href="#cb31-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-369"><a href="#cb31-369" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Use <span class="in">`freeze: auto`</span> (already configured)</span>
+<span id="cb31-370"><a href="#cb31-370" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Cache expensive operations:</span>
+<span id="cb31-371"><a href="#cb31-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-372"><a href="#cb31-372" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-373"><a href="#cb31-373" aria-hidden="true" tabindex="-1"></a><span class="co"># Save processed data</span></span>
+<span id="cb31-374"><a href="#cb31-374" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(processed_data, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>, <span class="st">"cached_data.rds"</span>))</span>
+<span id="cb31-375"><a href="#cb31-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-376"><a href="#cb31-376" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cached version</span></span>
+<span id="cb31-377"><a href="#cb31-377" aria-hidden="true" tabindex="-1"></a>processed_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>, <span class="st">"cached_data.rds"</span>))</span>
+<span id="cb31-378"><a href="#cb31-378" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-379"><a href="#cb31-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-380"><a href="#cb31-380" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Sample data during development:</span>
+<span id="cb31-381"><a href="#cb31-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-382"><a href="#cb31-382" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-383"><a href="#cb31-383" aria-hidden="true" tabindex="-1"></a><span class="co"># Use smaller sample during development</span></span>
+<span id="cb31-384"><a href="#cb31-384" aria-hidden="true" tabindex="-1"></a>data_sample <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb31-385"><a href="#cb31-385" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-386"><a href="#cb31-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-387"><a href="#cb31-387" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R session crashes</span></span>
+<span id="cb31-388"><a href="#cb31-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-389"><a href="#cb31-389" aria-hidden="true" tabindex="-1"></a>**Symptom:** Positron becomes unresponsive</span>
+<span id="cb31-390"><a href="#cb31-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-391"><a href="#cb31-391" aria-hidden="true" tabindex="-1"></a>**Cause:** Memory issues with large datasets</span>
+<span id="cb31-392"><a href="#cb31-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-393"><a href="#cb31-393" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb31-394"><a href="#cb31-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-395"><a href="#cb31-395" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Restart R session frequently</span>
+<span id="cb31-396"><a href="#cb31-396" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Remove large objects when done:</span>
+<span id="cb31-397"><a href="#cb31-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-398"><a href="#cb31-398" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb31-399"><a href="#cb31-399" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(large_object)</span>
+<span id="cb31-400"><a href="#cb31-400" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()  <span class="co"># Garbage collection</span></span>
+<span id="cb31-401"><a href="#cb31-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-402"><a href="#cb31-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-403"><a href="#cb31-403" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Work with smaller data subsets during development</span>
+<span id="cb31-404"><a href="#cb31-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-405"><a href="#cb31-405" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Help</span></span>
+<span id="cb31-406"><a href="#cb31-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-407"><a href="#cb31-407" aria-hidden="true" tabindex="-1"></a><span class="fu">### Self-Help Resources</span></span>
+<span id="cb31-408"><a href="#cb31-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-409"><a href="#cb31-409" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**R documentation:**</span>
+<span id="cb31-410"><a href="#cb31-410" aria-hidden="true" tabindex="-1"></a>   <span class="in">```r</span></span>
+<span id="cb31-411"><a href="#cb31-411" aria-hidden="true" tabindex="-1"></a>   ?function_name</span>
+<span id="cb31-412"><a href="#cb31-412" aria-hidden="true" tabindex="-1"></a>   <span class="fu">help</span>(<span class="at">package =</span> <span class="st">"packagename"</span>)</span>
+<span id="cb31-413"><a href="#cb31-413" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb31-414"><a href="#cb31-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-415"><a href="#cb31-415" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Package vignettes:**</span>
+<span id="cb31-416"><a href="#cb31-416" aria-hidden="true" tabindex="-1"></a>   <span class="in">```r</span></span>
+<span id="cb31-417"><a href="#cb31-417" aria-hidden="true" tabindex="-1"></a>   <span class="fu">vignette</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb31-418"><a href="#cb31-418" aria-hidden="true" tabindex="-1"></a>   <span class="fu">browseVignettes</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb31-419"><a href="#cb31-419" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb31-420"><a href="#cb31-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-421"><a href="#cb31-421" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Online resources:**</span>
+<span id="cb31-422"><a href="#cb31-422" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.hadley.nz/)</span></span>
+<span id="cb31-423"><a href="#cb31-423" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Quarto documentation</span><span class="co">](https://quarto.org/docs/guide/)</span></span>
+<span id="cb31-424"><a href="#cb31-424" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Git documentation</span><span class="co">](https://git-scm.com/doc)</span></span>
+<span id="cb31-425"><a href="#cb31-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-426"><a href="#cb31-426" aria-hidden="true" tabindex="-1"></a><span class="fu">### Asking for Help</span></span>
+<span id="cb31-427"><a href="#cb31-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-428"><a href="#cb31-428" aria-hidden="true" tabindex="-1"></a>When posting questions to team chat or asking instructor:</span>
+<span id="cb31-429"><a href="#cb31-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-430"><a href="#cb31-430" aria-hidden="true" tabindex="-1"></a>**Good question format:**</span>
+<span id="cb31-431"><a href="#cb31-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-432"><a href="#cb31-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-433"><a href="#cb31-433" aria-hidden="true" tabindex="-1"></a><span class="in">Problem: When I try to render my chapter, I get error X</span></span>
+<span id="cb31-434"><a href="#cb31-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-435"><a href="#cb31-435" aria-hidden="true" tabindex="-1"></a><span class="in">What I tried:</span></span>
+<span id="cb31-436"><a href="#cb31-436" aria-hidden="true" tabindex="-1"></a><span class="in">- Restarted R session</span></span>
+<span id="cb31-437"><a href="#cb31-437" aria-hidden="true" tabindex="-1"></a><span class="in">- Ran renv::restore()</span></span>
+<span id="cb31-438"><a href="#cb31-438" aria-hidden="true" tabindex="-1"></a><span class="in">- Checked the code in the chunk before error</span></span>
+<span id="cb31-439"><a href="#cb31-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-440"><a href="#cb31-440" aria-hidden="true" tabindex="-1"></a><span class="in">Error message:</span></span>
+<span id="cb31-441"><a href="#cb31-441" aria-hidden="true" tabindex="-1"></a><span class="in">[paste full error message]</span></span>
+<span id="cb31-442"><a href="#cb31-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-443"><a href="#cb31-443" aria-hidden="true" tabindex="-1"></a><span class="in">Reproducible example:</span></span>
+<span id="cb31-444"><a href="#cb31-444" aria-hidden="true" tabindex="-1"></a><span class="in">[paste minimal code that reproduces error]</span></span>
+<span id="cb31-445"><a href="#cb31-445" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-446"><a href="#cb31-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-447"><a href="#cb31-447" aria-hidden="true" tabindex="-1"></a>**Information to include:**</span>
+<span id="cb31-448"><a href="#cb31-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-449"><a href="#cb31-449" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you were trying to do</span>
+<span id="cb31-450"><a href="#cb31-450" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you expected to happen</span>
+<span id="cb31-451"><a href="#cb31-451" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What actually happened (including full error message)</span>
+<span id="cb31-452"><a href="#cb31-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you've already tried</span>
+<span id="cb31-453"><a href="#cb31-453" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your R version (<span class="in">`R.version.string`</span>)</span>
+<span id="cb31-454"><a href="#cb31-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package versions (<span class="in">`packageVersion("package_name")`</span>)</span>
+<span id="cb31-455"><a href="#cb31-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-456"><a href="#cb31-456" aria-hidden="true" tabindex="-1"></a><span class="fu">### Office Hours</span></span>
+<span id="cb31-457"><a href="#cb31-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-458"><a href="#cb31-458" aria-hidden="true" tabindex="-1"></a>Post-course office hours schedule:</span>
+<span id="cb31-459"><a href="#cb31-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-460"><a href="#cb31-460" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**When:** Wednesdays, 2-3pm</span>
+<span id="cb31-461"><a href="#cb31-461" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Where:** Team meeting room / Video call</span>
+<span id="cb31-462"><a href="#cb31-462" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Book:** Email instructor or post in team chat</span>
+<span id="cb31-463"><a href="#cb31-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-464"><a href="#cb31-464" aria-hidden="true" tabindex="-1"></a><span class="fu">### Team Support</span></span>
+<span id="cb31-465"><a href="#cb31-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-466"><a href="#cb31-466" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Team chat:** <span class="in">`#indicators-project`</span> channel</span>
+<span id="cb31-467"><a href="#cb31-467" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Peer support:** Pair programming sessions</span>
+<span id="cb31-468"><a href="#cb31-468" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Code review:** PR comments and discussions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

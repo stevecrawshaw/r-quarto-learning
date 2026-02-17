@@ -1,0 +1,97 @@
+---
+title: "Practice Datasets"
+---
+
+## Example Datasets
+
+Two small, clean datasets are provided for practice exercises in Sessions 1-2. From Session 3 onwards, analysts work with their own real indicator data.
+
+### Bus Ridership
+
+**File:** `bus_ridership.csv`
+
+**Description:** Annual bus ridership data for the WECA region
+
+**Columns:**
+
+- `year` - Year (2015-2024)
+- `ridership` - Annual ridership in millions
+- `routes` - Number of bus routes
+- `region` - Geographic area
+
+**Use cases:**
+
+- Session 1: Creating first visualisation
+- Session 2: Line charts and trends with ggplot2
+
+### Area Employment
+
+**File:** `area_employment.csv`
+
+**Description:** Employment rate statistics by WECA local authority (2019-2023)
+
+**Columns:**
+
+- `area` - Local authority name (Bath and North East Somerset, Bristol, North Somerset, South Gloucestershire)
+- `year` - Year (2019-2023)
+- `employment_rate` - Proportion employed, 16-64 age group (0-1 scale)
+- `population` - Total population
+
+**Use cases:**
+
+- Session 2: Filtering, grouping, summarising with dplyr verbs
+- Session 2: Bar charts and comparisons with ggplot2
+
+## Real Indicator Data
+
+From Session 3 onwards, analysts bring their own real WECA datasets. These will typically be messier than the example data above -- see Data Cleaning Notes below for common issues and solutions.
+
+## Data Cleaning Notes
+
+**Common issues to watch for:**
+
+1. **Column naming:**
+   - Mixed case: "Area Name", "area_name", "AREA_NAME"
+   - Special characters: "Year (2023)", "Percentage (%)"
+   - Solution: Use `janitor::clean_names()`
+
+2. **Missing values:**
+   - Coded as: "N/A", "n/a", "-", "*", empty cells
+   - Solution: Explicit `is.na()` checks and `replace_na()`
+
+3. **Date formats:**
+   - "31/12/2023", "2023-12-31", "December 2023"
+   - Solution: Use `as.Date()` with appropriate format strings
+
+4. **Numeric values as text:**
+   - "1,234", "£50.00", "12.5%"
+   - Solution: `str_remove_all()` non-numeric characters, then `as.numeric()`
+
+5. **Excel header rows:**
+   - Title rows, merged cells, footnotes
+   - Solution: Use `skip =` parameter in `read_excel()`
+
+## Dataset Documentation Template
+
+When adding new practice datasets, document them using this template:
+
+```markdown
+### Dataset Name
+
+**File:** `filename.csv`
+
+**Description:** Brief description of what the data contains
+
+**Columns:**
+
+- `column1` - Description
+- `column2` - Description
+
+**Source:** Data source and URL
+
+**Date range:** YYYY-YYYY
+
+**Use cases:** Which sessions/exercises use this data
+
+**Known issues:** Any data quality notes
+```

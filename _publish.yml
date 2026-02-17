@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: d347d322-2825-457d-b8de-c12d5aceac87
+      url: https://stevecrawshaw.quarto.pub/weca-r--quarto-training

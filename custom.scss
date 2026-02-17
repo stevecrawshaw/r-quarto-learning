@@ -1,0 +1,90 @@
+/*-- scss:defaults --*/
+
+// WECA Brand Colors (matching indicators project)
+$weca-purple: #4B1E78;
+$weca-claret: #971B2F;
+$weca-forest-green: #006747;
+$weca-light-blue: #009FE3;
+
+// Typography
+$font-family-sans-serif: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !default;
+$headings-font-weight: 500 !default;
+
+// Colors
+$primary: $weca-purple !default;
+$link-color: $weca-purple !default;
+
+/*-- scss:rules --*/
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-sans-serif;
+  font-weight: $headings-font-weight;
+  color: $weca-purple;
+}
+
+// Code blocks
+pre {
+  background-color: #f8f9fa;
+  border-left: 3px solid $weca-purple;
+  padding: 1rem;
+}
+
+// Inline code
+code {
+  color: $weca-claret;
+  background-color: #f8f9fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+// Tables
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table thead {
+  background-color: $weca-purple;
+  color: white;
+}
+
+table thead th {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+table tbody td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+// Blockquotes (for key findings)
+blockquote {
+  border-left: 4px solid $weca-forest-green;
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: #495057;
+}
+
+// Links
+a {
+  color: $weca-purple;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $weca-claret;
+  text-decoration: underline;
+}
+
+// Sidebar
+.sidebar-title {
+  color: $weca-purple;
+  font-weight: 600;
+}
