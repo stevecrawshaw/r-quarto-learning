@@ -1,6 +1,6 @@
 # WECA R & Quarto Training
 
-A 5-session training course helping WECA analysts transition from Excel/PowerPoint workflows to reproducible, code-first analysis using R, Quarto, and Git.
+A 5-session [training course](https://r-quarto-learning.vercel.app/) helping WECA analysts transition from Excel/PowerPoint workflows to reproducible, code-first analysis using R, Quarto, and Git.
 
 ## Course Overview
 

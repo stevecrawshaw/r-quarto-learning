@@ -21,6 +21,13 @@ quarto render sessions/session-03.qmd
 
 No tests, linters, or build pipelines exist for this project.
 
+## Deployment
+
+- **Repo:** `stevecrawshaw/r-quarto-learning` (standalone repo, not nested)
+- **Hosting:** Vercel — serves pre-rendered static files from `_output/`
+- **Workflow:** render locally with `quarto render`, commit `_output/`, push to deploy
+- See `VERCEL-DEPLOY.md` for full setup details
+
 ## Architecture
 
 - **Quarto book** configured in `_quarto.yml` (type: book, output to `_output/`)
