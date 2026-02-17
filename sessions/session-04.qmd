@@ -22,7 +22,7 @@ So far you've written code that produces charts. Today you turn that into a prof
 
 ### Part 1: Homework Review (30 min)
 
-- Show-and-tell: Volunteers share their cleaned datasets and draught indicators
+- Show-and-tell: Volunteers share their cleaned datasets and draft indicators
 - Discussion: What data cleaning challenges did you encounter?
 
 ### Part 2: Markdown Essentials (45 min)

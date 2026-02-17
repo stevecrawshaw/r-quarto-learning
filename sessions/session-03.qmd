@@ -228,5 +228,5 @@ What was the messiest thing about your data, and how did you fix it? Share with 
 **Homework (1-2 hours):**
 
 1. **Complete:** Prepare your real indicator data (cleaned version in `data/processed/`)
-2. **Create:** A draught indicator section with data loading, cleaning, transformation, chart, and findings
+2. **Create:** A draft indicator section with data loading, cleaning, transformation, chart, and findings
 3. **Read:** CONTRIBUTING.md sections on "Code Style Guide"
