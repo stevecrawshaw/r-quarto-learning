@@ -458,11 +458,11 @@ Reproducible example:
 Post-course office hours schedule:
 
 - **When:** Wednesdays, 2-3pm
-- **Where:** Team meeting room / Video call
-- **Book:** Email instructor or post in team chat
+- **Where:** Teams Video call or office
+- **Book:** Email steve or post in team chat
 
 ### Team Support
 
-- **Team chat:** `#indicators-project` channel
+- **Team chat:** `#Analysts team chat` channel
 - **Peer support:** Pair programming sessions
 - **Code review:** PR comments and discussions
