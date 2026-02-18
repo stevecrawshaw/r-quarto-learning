@@ -136,6 +136,7 @@
   // --- Heading Styles ---
   // H1: Forest Green, 20pt bold, with underline accent
   show heading.where(level: 1): it => {
+    pagebreak(weak: true)
     set text(
       font: heading-family,
       fill: weca-forest-green,
