@@ -58,12 +58,12 @@ format:
     page-layout: full
     link-external-newwindow: true
 
-  pdf:
-    documentclass: report
-    papersize: a4
-    toc: true
-    number-sections: true
-    colorlinks: true
+  # pdf:
+  #   documentclass: report
+  #   papersize: a4
+  #   toc: true
+  #   number-sections: true
+  #   colorlinks: true
 
 knitr:
   opts_chunk:
