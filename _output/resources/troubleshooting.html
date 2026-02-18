@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Solution:</strong></p>
 <ul>
 <li>Restart terminal/Positron after Quarto installation</li>
-<li>Check PATH includes Quarto installation directory</li>
+<li>Cheque PATH includes Quarto installation directory</li>
 <li>Windows: May need to add to PATH manually</li>
 </ul>
 </section>
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Symptom:</strong> Package restoration taking very long or hanging</p>
 <p><strong>Solution:</strong></p>
 <ul>
-<li>Check internet connection</li>
+<li>Cheque internet connection</li>
 <li>Try individual package installation</li>
 <li>Clear renv cache: <code>renv::purge()</code></li>
 </ul>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Restart R session: <code>Session &gt; Restart R</code> in Positron</li>
 <li>Run code chunks sequentially from top to bottom</li>
-<li>Check for typos in variable names (R is case-sensitive)</li>
+<li>Cheque for typos in variable names (R is case-sensitive)</li>
 </ol>
 </section>
 <section id="rendering-errors" class="level4" data-number="11.2.1.4">
@@ -380,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Error in eval(expr, envir, enclos): could not find function...</code></pre>
 <p><strong>Solution:</strong></p>
 <ol type="1">
-<li>Check R console for specific error message</li>
+<li>Cheque R console for specific error message</li>
 <li>Ensure all required packages are loaded</li>
 <li>Verify all code chunks before the error run successfully</li>
 <li>Try rendering in a clean R session</li>
@@ -468,7 +468,7 @@ fatal: Could not read from remote repository.</code></pre>
 <ol type="1">
 <li>Verify R/Python installation</li>
 <li>Restart Positron</li>
-<li>Check Quarto can find R:</li>
+<li>Cheque Quarto can find R:</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -507,7 +507,7 @@ fatal: Could not read from remote repository.</code></pre>
 <p><strong>Symptom:</strong> Pressing Ctrl+Shift+Enter does nothing</p>
 <p><strong>Solution:</strong></p>
 <ol type="1">
-<li>Check R session is active (look for R console at bottom)</li>
+<li>Cheque R session is active (look for R console at bottom)</li>
 <li>Try <code>Session &gt; Restart R</code></li>
 <li>Verify renv is activated (session info should show renv)</li>
 <li>Close and reopen the <code>.qmd</code> file</li>
@@ -518,9 +518,9 @@ fatal: Could not read from remote repository.</code></pre>
 <p><strong>Symptom:</strong> File shows as binary or doesn’t open properly</p>
 <p><strong>Solution:</strong></p>
 <ol type="1">
-<li>Check file path is correct (use tab completion)</li>
+<li>Cheque file path is correct (use tab completion)</li>
 <li>Try <code>File &gt; Open Project</code> and reopening project</li>
-<li>Check file encoding (should be UTF-8)</li>
+<li>Cheque file encoding (should be UTF-8)</li>
 </ol>
 </section>
 </section>
@@ -622,13 +622,18 @@ fatal: Could not read from remote repository.</code></pre>
 <li><p><strong>Package vignettes:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"dplyr"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Online resources:</strong></p>
+<li><p><strong>Online resources:</strong></p></li>
+</ol>
 <ul>
+<li><a href="https://r-quarto-learning.vercel.app/">Course materials (rendered)</a></li>
+<li><a href="https://github.com/westofengland-ca/weca_regional_indicators">Indicators project repository</a></li>
+<li><a href="../playgrounds/bash-learning-playground.html" target="_blank">Bash Learning Playground</a> — interactive terminal command simulator</li>
+<li><a href="../playgrounds/git-learning-playground.html" target="_blank">Git Learning Playground</a> — interactive Git and GitHub simulator</li>
 <li><a href="https://r4ds.hadley.nz/">R for Data Science</a></li>
 <li><a href="https://quarto.org/docs/guide/">Quarto documentation</a></li>
 <li><a href="https://git-scm.com/doc">Git documentation</a></li>
-</ul></li>
-</ol>
+<li><a href="https://raindrop.io/murrayjarvis/beginner-resources-r-tidyverse-quarto-git-and-bash-67078609">Steve’s Getting Started Bookmarks</a></li>
+</ul>
 </section>
 <section id="asking-for-help" class="level3" data-number="11.3.2">
 <h3 data-number="11.3.2" class="anchored" data-anchor-id="asking-for-help"><span class="header-section-number">11.3.2</span> Asking for Help</h3>
@@ -1160,7 +1165,7 @@ Reproducible example:
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Restart terminal/Positron after Quarto installation</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check PATH includes Quarto installation directory</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cheque PATH includes Quarto installation directory</span>
 <span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Windows: May need to add to PATH manually</span>
 <span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### "Python package installation fails"</span></span>
@@ -1184,7 +1189,7 @@ Reproducible example:
 <span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check internet connection</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cheque internet connection</span>
 <span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try individual package installation</span>
 <span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clear renv cache: <span class="in">`renv::purge()`</span></span>
 <span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a></span>
@@ -1245,7 +1250,7 @@ Reproducible example:
 <span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-99"><a href="#cb31-99" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Restart R session: <span class="in">`Session &gt; Restart R`</span> in Positron</span>
 <span id="cb31-100"><a href="#cb31-100" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Run code chunks sequentially from top to bottom</span>
-<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check for typos in variable names (R is case-sensitive)</span>
+<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cheque for typos in variable names (R is case-sensitive)</span>
 <span id="cb31-102"><a href="#cb31-102" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-103"><a href="#cb31-103" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Rendering errors</span></span>
 <span id="cb31-104"><a href="#cb31-104" aria-hidden="true" tabindex="-1"></a></span>
@@ -1256,7 +1261,7 @@ Reproducible example:
 <span id="cb31-109"><a href="#cb31-109" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-110"><a href="#cb31-110" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-111"><a href="#cb31-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check R console for specific error message</span>
+<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cheque R console for specific error message</span>
 <span id="cb31-113"><a href="#cb31-113" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Ensure all required packages are loaded</span>
 <span id="cb31-114"><a href="#cb31-114" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify all code chunks before the error run successfully</span>
 <span id="cb31-115"><a href="#cb31-115" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Try rendering in a clean R session</span>
@@ -1376,7 +1381,7 @@ Reproducible example:
 <span id="cb31-229"><a href="#cb31-229" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-230"><a href="#cb31-230" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Verify R/Python installation</span>
 <span id="cb31-231"><a href="#cb31-231" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Restart Positron</span>
-<span id="cb31-232"><a href="#cb31-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check Quarto can find R:</span>
+<span id="cb31-232"><a href="#cb31-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cheque Quarto can find R:</span>
 <span id="cb31-233"><a href="#cb31-233" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-234"><a href="#cb31-234" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
 <span id="cb31-235"><a href="#cb31-235" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span>
@@ -1429,7 +1434,7 @@ Reproducible example:
 <span id="cb31-282"><a href="#cb31-282" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-283"><a href="#cb31-283" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-284"><a href="#cb31-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-285"><a href="#cb31-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check R session is active (look for R console at bottom)</span>
+<span id="cb31-285"><a href="#cb31-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cheque R session is active (look for R console at bottom)</span>
 <span id="cb31-286"><a href="#cb31-286" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Try <span class="in">`Session &gt; Restart R`</span></span>
 <span id="cb31-287"><a href="#cb31-287" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify renv is activated (session info should show renv)</span>
 <span id="cb31-288"><a href="#cb31-288" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Close and reopen the <span class="in">`.qmd`</span> file</span>
@@ -1440,9 +1445,9 @@ Reproducible example:
 <span id="cb31-293"><a href="#cb31-293" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-294"><a href="#cb31-294" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-295"><a href="#cb31-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-296"><a href="#cb31-296" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check file path is correct (use tab completion)</span>
+<span id="cb31-296"><a href="#cb31-296" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cheque file path is correct (use tab completion)</span>
 <span id="cb31-297"><a href="#cb31-297" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Try <span class="in">`File &gt; Open Project`</span> and reopening project</span>
-<span id="cb31-298"><a href="#cb31-298" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check file encoding (should be UTF-8)</span>
+<span id="cb31-298"><a href="#cb31-298" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cheque file encoding (should be UTF-8)</span>
 <span id="cb31-299"><a href="#cb31-299" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-300"><a href="#cb31-300" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Issues</span></span>
 <span id="cb31-301"><a href="#cb31-301" aria-hidden="true" tabindex="-1"></a></span>
@@ -1566,53 +1571,59 @@ Reproducible example:
 <span id="cb31-419"><a href="#cb31-419" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
 <span id="cb31-420"><a href="#cb31-420" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-421"><a href="#cb31-421" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Online resources:**</span>
-<span id="cb31-422"><a href="#cb31-422" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.hadley.nz/)</span></span>
-<span id="cb31-423"><a href="#cb31-423" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Quarto documentation</span><span class="co">](https://quarto.org/docs/guide/)</span></span>
-<span id="cb31-424"><a href="#cb31-424" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Git documentation</span><span class="co">](https://git-scm.com/doc)</span></span>
-<span id="cb31-425"><a href="#cb31-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-426"><a href="#cb31-426" aria-hidden="true" tabindex="-1"></a><span class="fu">### Asking for Help</span></span>
-<span id="cb31-427"><a href="#cb31-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-428"><a href="#cb31-428" aria-hidden="true" tabindex="-1"></a>When posting questions to team chat or asking instructor:</span>
-<span id="cb31-429"><a href="#cb31-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-430"><a href="#cb31-430" aria-hidden="true" tabindex="-1"></a>**Good question format:**</span>
+<span id="cb31-422"><a href="#cb31-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-423"><a href="#cb31-423" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Course materials (rendered)</span><span class="co">](https://r-quarto-learning.vercel.app/)</span></span>
+<span id="cb31-424"><a href="#cb31-424" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Indicators project repository</span><span class="co">](https://github.com/westofengland-ca/weca_regional_indicators)</span></span>
+<span id="cb31-425"><a href="#cb31-425" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Bash Learning Playground</span><span class="co">](../playgrounds/bash-learning-playground.html)</span>{target="_blank"} — interactive terminal command simulator</span>
+<span id="cb31-426"><a href="#cb31-426" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Git Learning Playground</span><span class="co">](../playgrounds/git-learning-playground.html)</span>{target="_blank"} — interactive Git and GitHub simulator</span>
+<span id="cb31-427"><a href="#cb31-427" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.hadley.nz/)</span></span>
+<span id="cb31-428"><a href="#cb31-428" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Quarto documentation</span><span class="co">](https://quarto.org/docs/guide/)</span></span>
+<span id="cb31-429"><a href="#cb31-429" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Git documentation</span><span class="co">](https://git-scm.com/doc)</span></span>
+<span id="cb31-430"><a href="#cb31-430" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Steve's Getting Started Bookmarks</span><span class="co">](https://raindrop.io/murrayjarvis/beginner-resources-r-tidyverse-quarto-git-and-bash-67078609)</span></span>
 <span id="cb31-431"><a href="#cb31-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-432"><a href="#cb31-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb31-433"><a href="#cb31-433" aria-hidden="true" tabindex="-1"></a><span class="in">Problem: When I try to render my chapter, I get error X</span></span>
-<span id="cb31-434"><a href="#cb31-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-435"><a href="#cb31-435" aria-hidden="true" tabindex="-1"></a><span class="in">What I tried:</span></span>
-<span id="cb31-436"><a href="#cb31-436" aria-hidden="true" tabindex="-1"></a><span class="in">- Restarted R session</span></span>
-<span id="cb31-437"><a href="#cb31-437" aria-hidden="true" tabindex="-1"></a><span class="in">- Ran renv::restore()</span></span>
-<span id="cb31-438"><a href="#cb31-438" aria-hidden="true" tabindex="-1"></a><span class="in">- Checked the code in the chunk before error</span></span>
-<span id="cb31-439"><a href="#cb31-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-440"><a href="#cb31-440" aria-hidden="true" tabindex="-1"></a><span class="in">Error message:</span></span>
-<span id="cb31-441"><a href="#cb31-441" aria-hidden="true" tabindex="-1"></a><span class="in">[paste full error message]</span></span>
-<span id="cb31-442"><a href="#cb31-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-443"><a href="#cb31-443" aria-hidden="true" tabindex="-1"></a><span class="in">Reproducible example:</span></span>
-<span id="cb31-444"><a href="#cb31-444" aria-hidden="true" tabindex="-1"></a><span class="in">[paste minimal code that reproduces error]</span></span>
-<span id="cb31-445"><a href="#cb31-445" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb31-446"><a href="#cb31-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-447"><a href="#cb31-447" aria-hidden="true" tabindex="-1"></a>**Information to include:**</span>
+<span id="cb31-432"><a href="#cb31-432" aria-hidden="true" tabindex="-1"></a><span class="fu">### Asking for Help</span></span>
+<span id="cb31-433"><a href="#cb31-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-434"><a href="#cb31-434" aria-hidden="true" tabindex="-1"></a>When posting questions to team chat or asking instructor:</span>
+<span id="cb31-435"><a href="#cb31-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-436"><a href="#cb31-436" aria-hidden="true" tabindex="-1"></a>**Good question format:**</span>
+<span id="cb31-437"><a href="#cb31-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-438"><a href="#cb31-438" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-439"><a href="#cb31-439" aria-hidden="true" tabindex="-1"></a><span class="in">Problem: When I try to render my chapter, I get error X</span></span>
+<span id="cb31-440"><a href="#cb31-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-441"><a href="#cb31-441" aria-hidden="true" tabindex="-1"></a><span class="in">What I tried:</span></span>
+<span id="cb31-442"><a href="#cb31-442" aria-hidden="true" tabindex="-1"></a><span class="in">- Restarted R session</span></span>
+<span id="cb31-443"><a href="#cb31-443" aria-hidden="true" tabindex="-1"></a><span class="in">- Ran renv::restore()</span></span>
+<span id="cb31-444"><a href="#cb31-444" aria-hidden="true" tabindex="-1"></a><span class="in">- Checked the code in the chunk before error</span></span>
+<span id="cb31-445"><a href="#cb31-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-446"><a href="#cb31-446" aria-hidden="true" tabindex="-1"></a><span class="in">Error message:</span></span>
+<span id="cb31-447"><a href="#cb31-447" aria-hidden="true" tabindex="-1"></a><span class="in">[paste full error message]</span></span>
 <span id="cb31-448"><a href="#cb31-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-449"><a href="#cb31-449" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you were trying to do</span>
-<span id="cb31-450"><a href="#cb31-450" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you expected to happen</span>
-<span id="cb31-451"><a href="#cb31-451" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What actually happened (including full error message)</span>
-<span id="cb31-452"><a href="#cb31-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you've already tried</span>
-<span id="cb31-453"><a href="#cb31-453" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your R version (<span class="in">`R.version.string`</span>)</span>
-<span id="cb31-454"><a href="#cb31-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package versions (<span class="in">`packageVersion("package_name")`</span>)</span>
-<span id="cb31-455"><a href="#cb31-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-456"><a href="#cb31-456" aria-hidden="true" tabindex="-1"></a><span class="fu">### Office Hours</span></span>
-<span id="cb31-457"><a href="#cb31-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-458"><a href="#cb31-458" aria-hidden="true" tabindex="-1"></a>Post-course office hours schedule:</span>
-<span id="cb31-459"><a href="#cb31-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-460"><a href="#cb31-460" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**When:** Wednesdays, 2-3pm</span>
-<span id="cb31-461"><a href="#cb31-461" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Where:** Teams Video call or office</span>
-<span id="cb31-462"><a href="#cb31-462" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Book:** Email steve or post in team chat</span>
+<span id="cb31-449"><a href="#cb31-449" aria-hidden="true" tabindex="-1"></a><span class="in">Reproducible example:</span></span>
+<span id="cb31-450"><a href="#cb31-450" aria-hidden="true" tabindex="-1"></a><span class="in">[paste minimal code that reproduces error]</span></span>
+<span id="cb31-451"><a href="#cb31-451" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-452"><a href="#cb31-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-453"><a href="#cb31-453" aria-hidden="true" tabindex="-1"></a>**Information to include:**</span>
+<span id="cb31-454"><a href="#cb31-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-455"><a href="#cb31-455" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you were trying to do</span>
+<span id="cb31-456"><a href="#cb31-456" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you expected to happen</span>
+<span id="cb31-457"><a href="#cb31-457" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What actually happened (including full error message)</span>
+<span id="cb31-458"><a href="#cb31-458" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What you've already tried</span>
+<span id="cb31-459"><a href="#cb31-459" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your R version (<span class="in">`R.version.string`</span>)</span>
+<span id="cb31-460"><a href="#cb31-460" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package versions (<span class="in">`packageVersion("package_name")`</span>)</span>
+<span id="cb31-461"><a href="#cb31-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-462"><a href="#cb31-462" aria-hidden="true" tabindex="-1"></a><span class="fu">### Office Hours</span></span>
 <span id="cb31-463"><a href="#cb31-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-464"><a href="#cb31-464" aria-hidden="true" tabindex="-1"></a><span class="fu">### Team Support</span></span>
+<span id="cb31-464"><a href="#cb31-464" aria-hidden="true" tabindex="-1"></a>Post-course office hours schedule:</span>
 <span id="cb31-465"><a href="#cb31-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-466"><a href="#cb31-466" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Team chat:** <span class="in">`#Analysts team chat`</span> channel</span>
-<span id="cb31-467"><a href="#cb31-467" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Peer support:** Pair programming sessions</span>
-<span id="cb31-468"><a href="#cb31-468" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Code review:** PR comments and discussions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb31-466"><a href="#cb31-466" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**When:** Wednesdays, 2-3pm</span>
+<span id="cb31-467"><a href="#cb31-467" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Where:** Teams Video call or office</span>
+<span id="cb31-468"><a href="#cb31-468" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Book:** Email steve or post in team chat</span>
+<span id="cb31-469"><a href="#cb31-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-470"><a href="#cb31-470" aria-hidden="true" tabindex="-1"></a><span class="fu">### Team Support</span></span>
+<span id="cb31-471"><a href="#cb31-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-472"><a href="#cb31-472" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Team chat:** <span class="in">`#Analysts team chat`</span> channel</span>
+<span id="cb31-473"><a href="#cb31-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Peer support:** Pair programming sessions</span>
+<span id="cb31-474"><a href="#cb31-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Code review:** PR comments and discussions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

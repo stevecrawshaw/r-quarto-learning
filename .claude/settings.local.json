@@ -11,7 +11,9 @@
       "Bash(git push:*)",
       "Bash(vercel:*)",
       "Bash(npx vercel:*)",
-      "Bash(uv run:*)"
+      "Bash(uv run:*)",
+      "Bash(start \"\" \"C:\\\\Users\\\\steve.crawshaw\\\\projects\\\\r-quarto-learning\\\\git-learning-playground.html\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\steve.crawshaw\\\\projects\\\\r-quarto-learning\\\\bash-learning-playground.html\")"
     ]
   }
 }
