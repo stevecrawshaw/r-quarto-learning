@@ -37,12 +37,17 @@ See [Setup Guide](https://your-site.com/resources/setup-guide.html) for detailed
 git clone https://github.com/your-org/r-quarto-learning.git
 cd r-quarto-learning
 
-# Render the training book
+# Render the training book (HTML)
 quarto render
 
 # Or preview with live reload
 quarto preview
+
+# Render a WECA-branded PDF (typst)
+uv run scripts/build_typst_report.py
 ```
+
+The PDF script assembles all chapters into a single `training-report.pdf` in the project root. It strips YAML front matter from each chapter, injects chapter titles as headings, and renders using the `weca-report` typst extension. The generated `training-report.qmd` and `training-report.pdf` are excluded from git.
 
 ## Structure
 
@@ -65,7 +70,11 @@ r-quarto-learning/
 │   └── troubleshooting.qmd # Common issues and solutions
 ├── data/                  # Example datasets
 │   └── examples/          # Practice data for exercises
-└── _output/               # Rendered HTML (gitignored)
+├── _extensions/           # Quarto extensions
+│   └── weca-report/       # WECA-branded typst template
+├── scripts/               # Build scripts
+│   └── build_typst_report.py  # Assembles chapters into typst PDF
+└── _output/               # Rendered HTML (committed for Vercel deploy)
 ```
 
 ## Learning Outcomes
@@ -85,12 +94,12 @@ By the end of this course, you will be able to:
 This course follows evidence-based pedagogical principles:
 
 1. **"Whole Game First"** - Experience the complete workflow before diving into details
-2. **Tidyverse-First** - Human-centered R syntax from the start
+2. **Tidyverse-First** - Human-centred R syntax from the start
 3. **Visual Feedback Early** - Create charts in Session 1 for immediate gratification
 4. **Real-World Application** - Build actual WECA indicators, not toy examples
 5. **Literate Programming** - Code + narrative from day one via Quarto
-6. **Active Learning** - Live coding, immediate practice, pair programming
-7. **Low Friction** - Pre-installed software, standardized helper functions
+6. **Active Learning** - Live coding, immediate practise, pair programming
+7. **Low Friction** - Pre-installed software, standardised helper functions
 
 ## Resources
 
@@ -114,10 +123,10 @@ Suggestions for improving the training materials are welcome! Please:
 2. Or submit a pull request with changes
 3. Or discuss in the `#indicators-training` channel
 
-## License
+## Licence
 
 This training material is developed for internal WECA use. For questions about reuse or adaptation, contact [your-team@example.com].
 
 ---
 
-*Part of the WECA Analysis & Evaluation training program*
+*Part of the WECA Analysis & Evaluation training programme*
