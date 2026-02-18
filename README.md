@@ -103,17 +103,12 @@ This course follows evidence-based pedagogical principles:
 
 ## Resources
 
-- [Course materials (rendered)](https://your-site.com)
-- [Indicators project repository](https://github.com/your-org/indicators)
+- [Course materials (rendered)](https://r-quarto-learning.vercel.app/)
+- [Indicators project repository](https://github.com/westofengland-ca/weca_regional_indicators)
 - [R for Data Science](https://r4ds.hadley.nz/)
 - [Quarto documentation](https://quarto.org/docs/guide/)
 - [Git documentation](https://git-scm.com/doc)
-
-## Support
-
-- **Team chat:** `#indicators-training` channel
-- **Office hours:** Wednesdays, 2-3pm
-- **Instructor:** [Name] - [email]
+- [Steve's Getting Started Bookmarks](https://raindrop.io/murrayjarvis/beginner-resources-r-tidyverse-quarto-git-and-bash-67078609)
 
 ## Contributing
 
@@ -121,12 +116,10 @@ Suggestions for improving the training materials are welcome! Please:
 
 1. Open an issue describing the improvement
 2. Or submit a pull request with changes
-3. Or discuss in the `#indicators-training` channel
+3. Or discuss in the `Analysts team chat` Teams channel
 
 ## Licence
 
-This training material is developed for internal WECA use. For questions about reuse or adaptation, contact [your-team@example.com].
+This training material is developed for internal WECA use. For questions about reuse or adaptation, raise an issue in this repo.
 
 ---
-
-*Part of the WECA Analysis & Evaluation training programme*
