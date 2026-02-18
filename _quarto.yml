@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: _output
   execute-dir: project
+  resources:
+    - playgrounds/
 
 execute:
   freeze: auto

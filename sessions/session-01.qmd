@@ -26,11 +26,11 @@ subtitle: "Experience the complete workflow"
 
 **The tools we'll learn:**
 
-- **Git Bash**: Command-line interface (the "steering wheel")
+- **Git Bash**: Command-line interface (the "steering wheel") — practise with the [Bash Learning Playground](../playgrounds/bash-learning-playground.html){target="_blank"}
 - **Positron**: Integrated development environment (the "dashboard")
 - **R**: Statistical programming language (the "engine")
 - **Quarto**: Literate programming system (the "publishing press")
-- **Git/GitHub**: Version control (the "time machine + collaboration hub")
+- **Git/GitHub**: Version control (the "time machine + collaboration hub") — practise with the [Git Learning Playground](../playgrounds/git-learning-playground.html){target="_blank"}
 
 **Analogy:** If analysis were cooking:
 

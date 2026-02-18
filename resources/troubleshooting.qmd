@@ -13,7 +13,7 @@ These problems typically occur during initial installation and project setup.
 **Solution:**
 
 - Restart terminal/Positron after Quarto installation
-- Check PATH includes Quarto installation directory
+- Cheque PATH includes Quarto installation directory
 - Windows: May need to add to PATH manually
 
 ### "Python package installation fails"
@@ -37,7 +37,7 @@ uv sync
 
 **Solution:**
 
-- Check internet connection
+- Cheque internet connection
 - Try individual package installation
 - Clear renv cache: `renv::purge()`
 
@@ -98,7 +98,7 @@ Error: object 'my_data' not found
 
 1. Restart R session: `Session > Restart R` in Positron
 2. Run code chunks sequentially from top to bottom
-3. Check for typos in variable names (R is case-sensitive)
+3. Cheque for typos in variable names (R is case-sensitive)
 
 #### Rendering errors
 
@@ -109,7 +109,7 @@ Error in eval(expr, envir, enclos): could not find function...
 
 **Solution:**
 
-1. Check R console for specific error message
+1. Cheque R console for specific error message
 2. Ensure all required packages are loaded
 3. Verify all code chunks before the error run successfully
 4. Try rendering in a clean R session
@@ -229,7 +229,7 @@ Kernel error: Cannot start kernel
 
 1. Verify R/Python installation
 2. Restart Positron
-3. Check Quarto can find R:
+3. Cheque Quarto can find R:
 
 ```bash
 quarto check
@@ -282,7 +282,7 @@ quarto render chapters/XX-topic/index.qmd
 
 **Solution:**
 
-1. Check R session is active (look for R console at bottom)
+1. Cheque R session is active (look for R console at bottom)
 2. Try `Session > Restart R`
 3. Verify renv is activated (session info should show renv)
 4. Close and reopen the `.qmd` file
@@ -293,9 +293,9 @@ quarto render chapters/XX-topic/index.qmd
 
 **Solution:**
 
-1. Check file path is correct (use tab completion)
+1. Cheque file path is correct (use tab completion)
 2. Try `File > Open Project` and reopening project
-3. Check file encoding (should be UTF-8)
+3. Cheque file encoding (should be UTF-8)
 
 ### Data Issues
 
@@ -422,6 +422,8 @@ gc()  # Garbage collection
 
 - [Course materials (rendered)](https://r-quarto-learning.vercel.app/)
 - [Indicators project repository](https://github.com/westofengland-ca/weca_regional_indicators)
+- [Bash Learning Playground](../playgrounds/bash-learning-playground.html){target="_blank"} — interactive terminal command simulator
+- [Git Learning Playground](../playgrounds/git-learning-playground.html){target="_blank"} — interactive Git and GitHub simulator
 - [R for Data Science](https://r4ds.hadley.nz/)
 - [Quarto documentation](https://quarto.org/docs/guide/)
 - [Git documentation](https://git-scm.com/doc)

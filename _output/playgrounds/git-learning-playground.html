@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git &amp; GitHub Learning Playground</title>
+<style>
+  :root {
+    --bg: #1a1b26;
+    --surface: #24283b;
+    --surface2: #2f3349;
+    --border: #3b4261;
+    --text: #c0caf5;
+    --text-dim: #7982a9;
+    --accent: #7aa2f7;
+    --green: #9ece6a;
+    --red: #f7768e;
+    --yellow: #e0af68;
+    --orange: #ff9e64;
+    --purple: #bb9af7;
+    --cyan: #7dcfff;
+    --magenta: #ff007c;
+    --weca-purple: #4B1E78;
+    --weca-claret: #971B2F;
+    --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    --font-ui: system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+  }
+
+  .header h1 span { color: var(--text-dim); font-weight: 400; }
+
+  .mode-toggle {
+    display: flex;
+    gap: 2px;
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 2px;
+  }
+
+  .mode-btn {
+    padding: 5px 14px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .mode-btn.active {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+  }
+
+  /* Main layout */
+  .main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar-section {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-section h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .lesson-list { list-style: none; }
+
+  .lesson-item {
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.1s;
+    margin-bottom: 2px;
+  }
+
+  .lesson-item:hover { background: var(--surface2); }
+  .lesson-item.active { background: var(--accent); color: var(--bg); }
+  .lesson-item.completed .check { color: var(--green); }
+  .lesson-item .check { width: 16px; font-size: 14px; color: var(--border); }
+
+  .hint-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+
+  .hint-box code {
+    background: var(--surface2);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  .hint-box strong { color: var(--text); }
+
+  .hint-box .lesson-intro {
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  .hint-box .step-action {
+    margin-bottom: 8px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .hint-box .step-explain {
+    color: var(--text-dim);
+    font-size: 11.5px;
+    line-height: 1.55;
+    padding: 7px 9px;
+    background: var(--surface2);
+    border-radius: 4px;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* Centre area */
+  .centre {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Graph canvas */
+  .graph-area {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+  }
+
+  .graph-area canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .graph-label {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    pointer-events: none;
+  }
+
+  /* File status area */
+  .file-status {
+    height: 100px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .status-zone {
+    flex: 1;
+    padding: 8px 12px;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+  }
+
+  .status-zone:last-child { border-right: none; }
+
+  .status-zone h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+  }
+
+  .status-file {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 2px 0;
+  }
+
+  .status-file.modified { color: var(--yellow); }
+  .status-file.staged { color: var(--green); }
+  .status-file.untracked { color: var(--red); }
+  .status-file.committed { color: var(--text-dim); }
+
+  /* Terminal */
+  .terminal {
+    height: 220px;
+    background: #0d1017;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .terminal-output .line { white-space: pre-wrap; word-break: break-all; }
+  .terminal-output .cmd { color: var(--green); }
+  .terminal-output .out { color: var(--text-dim); }
+  .terminal-output .err { color: var(--red); }
+  .terminal-output .info { color: var(--cyan); }
+  .terminal-output .success { color: var(--green); }
+
+  .terminal-input-row {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px 8px;
+    gap: 6px;
+    border-top: 1px solid #1a1f2e;
+  }
+
+  .prompt-symbol {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    caret-color: var(--accent);
+  }
+
+  /* Right panel — prompt output */
+  .prompt-panel {
+    width: 300px;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .prompt-panel h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-output {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-y: auto;
+    color: var(--text-dim);
+  }
+
+  .copy-btn {
+    margin: 8px 14px 10px;
+    padding: 7px 0;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  /* Command reference */
+  .cmd-ref {
+    display: none;
+    padding: 10px 14px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .cmd-ref.visible { display: block; }
+
+  .cmd-ref-item {
+    margin-bottom: 6px;
+  }
+
+  .cmd-ref-item code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .cmd-ref-item .desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    position: absolute;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--text);
+    pointer-events: none;
+    z-index: 100;
+    max-width: 220px;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  .tooltip code {
+    background: var(--bg);
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--cyan);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Git Playground <span>/ interactive simulator</span></h1>
+  <div class="mode-toggle">
+    <button class="mode-btn active" onclick="setMode('learn')">Learn</button>
+    <button class="mode-btn" onclick="setMode('sandbox')">Sandbox</button>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-section" id="lesson-section">
+      <h3>Lessons</h3>
+      <ul class="lesson-list" id="lesson-list"></ul>
+    </div>
+    <div class="sidebar-section" id="hint-section">
+      <h3>Current Task</h3>
+      <div class="hint-box" id="hint-box">Select a lesson to begin.</div>
+    </div>
+    <div class="sidebar-section">
+      <h3>Quick Reference</h3>
+      <div class="cmd-ref visible" id="cmd-ref"></div>
+    </div>
+  </div>
+
+  <!-- Centre -->
+  <div class="centre">
+    <div class="graph-area">
+      <canvas id="graph-canvas"></canvas>
+      <span class="graph-label">Commit Graph</span>
+    </div>
+    <div class="file-status">
+      <div class="status-zone" id="zone-working">
+        <h4>Working Directory</h4>
+      </div>
+      <div class="status-zone" id="zone-staging">
+        <h4>Staging Area</h4>
+      </div>
+      <div class="status-zone" id="zone-repo">
+        <h4>Repository</h4>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-output" id="terminal-output"></div>
+      <div class="terminal-input-row">
+        <span class="prompt-symbol" id="prompt-symbol">~/project (main) $</span>
+        <input type="text" class="terminal-input" id="terminal-input" autofocus spellcheck="false" placeholder="Type a git command...">
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="prompt-panel">
+    <h3>Session Summary</h3>
+    <div class="prompt-output" id="prompt-output">Run some commands to build your summary.</div>
+    <button class="copy-btn" onclick="copyPrompt()">Copy Summary</button>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ─── State ───────────────────────────────────────────────────────────────────
+const state = {
+  mode: 'learn',
+  currentLesson: 0,
+  currentStep: 0,
+  lessonCompletion: {},
+  repo: null,
+  commandHistory: [],
+  historyIndex: -1,
+  cmdLog: []
+};
+
+// ─── Git Simulation Engine ───────────────────────────────────────────────────
+function createRepo() {
+  return {
+    initialised: false,
+    commits: [],
+    branches: { main: null },
+    HEAD: 'main',
+    staging: [],
+    workingDir: [],
+    remote: null,
+    remoteCommits: [],
+    remoteBranches: {},
+    stashes: []
+  };
+}
+
+function initRepo() {
+  const r = createRepo();
+  r.initialised = true;
+  const c = { id: genId(), message: 'Initial commit', parent: null, branch: 'main', files: [] };
+  r.commits.push(c);
+  r.branches.main = c.id;
+  return r;
+}
+
+let idCounter = 0;
+function genId() { return 'c' + (++idCounter); }
+
+function getHead(repo) {
+  if (!repo || !repo.initialised) return null;
+  const branchName = repo.HEAD;
+  const commitId = repo.branches[branchName];
+  return repo.commits.find(c => c.id === commitId) || null;
+}
+
+function getCommitChain(repo, commitId, maxLen) {
+  const chain = [];
+  let cur = commitId;
+  let safety = 0;
+  while (cur && safety < (maxLen || 100)) {
+    const c = repo.commits.find(x => x.id === cur);
+    if (!c) break;
+    chain.push(c);
+    cur = c.parent;
+    safety++;
+  }
+  return chain;
+}
+
+// ─── Command Processor ──────────────────────────────────────────────────────
+function processCommand(input) {
+  const raw = input.trim();
+  if (!raw) return;
+
+  state.commandHistory.push(raw);
+  state.historyIndex = state.commandHistory.length;
+  state.cmdLog.push(raw);
+
+  termLine(raw, 'cmd');
+
+  const parts = raw.split(/\s+/);
+  if (parts[0] !== 'git') {
+    // Allow some shell commands
+    if (parts[0] === 'touch' && parts[1]) return cmdTouch(parts.slice(1));
+    if (parts[0] === 'echo') return cmdEcho(parts.slice(1));
+    if (parts[0] === 'ls') return cmdLs();
+    if (parts[0] === 'clear') { document.getElementById('terminal-output').innerHTML = ''; return; }
+    if (parts[0] === 'help') return cmdHelp();
+    if (parts[0] === 'reset') return cmdReset();
+    termLine(`Command not found: ${parts[0]}. Try 'git <command>' or 'help'.`, 'err');
+    return;
+  }
+
+  const sub = parts[1];
+  const args = parts.slice(2);
+
+  switch(sub) {
+    case 'init': return gitInit();
+    case 'status': return gitStatus();
+    case 'add': return gitAdd(args);
+    case 'commit': return gitCommit(args);
+    case 'log': return gitLog(args);
+    case 'branch': return gitBranch(args);
+    case 'checkout': return gitCheckout(args);
+    case 'switch': return gitCheckout(args);
+    case 'merge': return gitMerge(args);
+    case 'diff': return gitDiff();
+    case 'remote': return gitRemote(args);
+    case 'push': return gitPush(args);
+    case 'pull': return gitPull(args);
+    case 'fetch': return gitFetch();
+    case 'clone': return gitClone(args);
+    case 'stash': return gitStash(args);
+    case 'reset': return gitReset(args);
+    default:
+      termLine(`git: '${sub}' is not a git command. See 'help'.`, 'err');
+  }
+}
+
+function requireInit() {
+  if (!state.repo || !state.repo.initialised) {
+    termLine('fatal: not a git repository. Run git init first.', 'err');
+    return false;
+  }
+  return true;
+}
+
+function gitInit() {
+  if (state.repo && state.repo.initialised) {
+    termLine('Reinitialised existing Git repository.', 'info');
+    return;
+  }
+  state.repo = initRepo();
+  termLine('Initialised empty Git repository in ~/project/.git/', 'success');
+  updateAll();
+}
+
+function gitStatus() {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  const unstaged = r.workingDir.filter(f => !r.staging.find(s => s.name === f.name));
+  const staged = r.staging;
+
+  termLine(`On branch ${r.HEAD}`, 'info');
+
+  if (staged.length) {
+    termLine('Changes to be committed:', 'info');
+    staged.forEach(f => termLine(`  new file:   ${f.name}`, 'out'));
+  }
+
+  if (unstaged.length) {
+    termLine('Untracked / modified files:', 'info');
+    unstaged.forEach(f => termLine(`  ${f.status === 'modified' ? 'modified' : 'untracked'}:   ${f.name}`, 'out'));
+  }
+
+  if (!staged.length && !unstaged.length) {
+    termLine('nothing to commit, working tree clean', 'info');
+  }
+  updateAll();
+}
+
+function gitAdd(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!args.length || args[0] === '.') {
+    // Stage everything
+    r.workingDir.forEach(f => {
+      if (!r.staging.find(s => s.name === f.name)) {
+        r.staging.push({...f, status: 'staged'});
+      }
+    });
+    termLine(`Added ${r.workingDir.length} file(s) to staging area.`, 'success');
+  } else {
+    args.forEach(name => {
+      const f = r.workingDir.find(w => w.name === name);
+      if (!f) {
+        termLine(`fatal: pathspec '${name}' did not match any files`, 'err');
+      } else if (!r.staging.find(s => s.name === name)) {
+        r.staging.push({...f, status: 'staged'});
+        termLine(`Added '${name}' to staging area.`, 'success');
+      }
+    });
+  }
+  updateAll();
+}
+
+function gitCommit(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!r.staging.length) {
+    termLine('nothing to commit (use "git add" to stage files)', 'err');
+    return;
+  }
+
+  let msg = 'unnamed commit';
+  const mIdx = args.indexOf('-m');
+  if (mIdx !== -1 && args[mIdx + 1]) {
+    msg = args.slice(mIdx + 1).join(' ').replace(/^["']|["']$/g, '');
+  }
+
+  const parentId = r.branches[r.HEAD];
+  const c = {
+    id: genId(),
+    message: msg,
+    parent: parentId,
+    branch: r.HEAD,
+    files: r.staging.map(f => f.name)
+  };
+  r.commits.push(c);
+  r.branches[r.HEAD] = c.id;
+  r.staging = [];
+  r.workingDir = r.workingDir.filter(f => !c.files.includes(f.name));
+
+  termLine(`[${r.HEAD} ${c.id}] ${msg}`, 'success');
+  termLine(` ${c.files.length} file(s) changed`, 'out');
+
+  checkLessonStep(state.cmdLog[state.cmdLog.length - 1]);
+  updateAll();
+}
+
+function gitLog(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+  const oneline = args.includes('--oneline');
+  const chain = getCommitChain(r, r.branches[r.HEAD], 20);
+
+  if (!chain.length) { termLine('No commits yet.', 'info'); return; }
+
+  chain.forEach(c => {
+    const isHead = c.id === r.branches[r.HEAD];
+    const branchLabels = Object.entries(r.branches)
+      .filter(([_, cid]) => cid === c.id)
+      .map(([name]) => name);
+
+    if (oneline) {
+      const labels = branchLabels.length ? ` (${branchLabels.join(', ')})` : '';
+      termLine(`${c.id} ${labels} ${c.message}`, isHead ? 'info' : 'out');
+    } else {
+      termLine(`commit ${c.id}`, 'info');
+      if (branchLabels.length) termLine(`  (${branchLabels.join(', ')}${isHead ? ', HEAD' : ''})`, 'out');
+      termLine(`  ${c.message}`, 'out');
+      termLine('', 'out');
+    }
+  });
+}
+
+function gitBranch(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!args.length || args[0] === '-a') {
+    Object.keys(r.branches).forEach(b => {
+      const prefix = b === r.HEAD ? '* ' : '  ';
+      termLine(prefix + b, b === r.HEAD ? 'success' : 'out');
+    });
+    if (r.remote && args[0] === '-a') {
+      Object.keys(r.remoteBranches).forEach(b => {
+        termLine(`  remotes/origin/${b}`, 'out');
+      });
+    }
+    return;
+  }
+
+  if (args[0] === '-d' || args[0] === '-D') {
+    const name = args[1];
+    if (!name) { termLine('fatal: branch name required', 'err'); return; }
+    if (name === r.HEAD) { termLine(`error: Cannot delete checked-out branch '${name}'`, 'err'); return; }
+    if (!r.branches[name]) { termLine(`error: branch '${name}' not found`, 'err'); return; }
+    delete r.branches[name];
+    termLine(`Deleted branch ${name}.`, 'success');
+    updateAll();
+    return;
+  }
+
+  const name = args[0];
+  if (r.branches[name]) {
+    termLine(`fatal: branch '${name}' already exists`, 'err');
+    return;
+  }
+  r.branches[name] = r.branches[r.HEAD];
+  termLine(`Created branch '${name}' at ${r.branches[r.HEAD]}.`, 'success');
+  updateAll();
+}
+
+function gitCheckout(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (args[0] === '-b' && args[1]) {
+    const name = args[1];
+    if (r.branches[name]) {
+      termLine(`fatal: branch '${name}' already exists`, 'err');
+      return;
+    }
+    r.branches[name] = r.branches[r.HEAD];
+    r.HEAD = name;
+    termLine(`Switched to a new branch '${name}'`, 'success');
+    updateAll();
+    return;
+  }
+
+  const target = args[0];
+  if (!target) { termLine('error: specify a branch name', 'err'); return; }
+
+  if (r.branches[target]) {
+    r.HEAD = target;
+    termLine(`Switched to branch '${target}'`, 'success');
+  } else {
+    termLine(`error: pathspec '${target}' did not match any branch`, 'err');
+  }
+  updateAll();
+}
+
+function gitMerge(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+  const source = args[0];
+
+  if (!source) { termLine('error: specify a branch to merge', 'err'); return; }
+  if (!r.branches[source]) { termLine(`merge: '${source}' - not a branch`, 'err'); return; }
+  if (source === r.HEAD) { termLine('Already up to date.', 'info'); return; }
+
+  const sourceCommitId = r.branches[source];
+  const targetCommitId = r.branches[r.HEAD];
+
+  // Check if already merged (source is ancestor of target)
+  const targetChain = getCommitChain(r, targetCommitId, 100).map(c => c.id);
+  if (targetChain.includes(sourceCommitId)) {
+    termLine('Already up to date.', 'info');
+    return;
+  }
+
+  // Check for fast-forward
+  const sourceChain = getCommitChain(r, sourceCommitId, 100).map(c => c.id);
+  if (sourceChain.includes(targetCommitId)) {
+    r.branches[r.HEAD] = sourceCommitId;
+    termLine(`Fast-forward merge: ${r.HEAD} -> ${sourceCommitId}`, 'success');
+    updateAll();
+    return;
+  }
+
+  // Create merge commit
+  const mc = {
+    id: genId(),
+    message: `Merge branch '${source}' into ${r.HEAD}`,
+    parent: targetCommitId,
+    mergeParent: sourceCommitId,
+    branch: r.HEAD,
+    files: []
+  };
+  r.commits.push(mc);
+  r.branches[r.HEAD] = mc.id;
+  termLine(`Merge made by the 'ort' strategy.`, 'success');
+  termLine(`Merge commit: ${mc.id}`, 'out');
+  updateAll();
+}
+
+function gitDiff() {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!r.workingDir.length && !r.staging.length) {
+    termLine('No changes.', 'info');
+    return;
+  }
+
+  r.workingDir.forEach(f => {
+    termLine(`diff --git a/${f.name} b/${f.name}`, 'info');
+    termLine(`--- ${f.status === 'new' ? '/dev/null' : 'a/' + f.name}`, 'out');
+    termLine(`+++ b/${f.name}`, 'out');
+    termLine(`+  (file content for ${f.name})`, 'success');
+  });
+}
+
+function gitRemote(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (args[0] === 'add' && args[1] === 'origin' && args[2]) {
+    r.remote = args[2];
+    r.remoteBranches = {};
+    termLine(`Remote 'origin' added: ${args[2]}`, 'success');
+    updateAll();
+    return;
+  }
+
+  if (args[0] === '-v' || !args.length) {
+    if (!r.remote) { termLine('No remotes configured.', 'info'); return; }
+    termLine(`origin  ${r.remote} (fetch)`, 'out');
+    termLine(`origin  ${r.remote} (push)`, 'out');
+    return;
+  }
+
+  termLine(`usage: git remote add origin <url>`, 'info');
+}
+
+function gitPush(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!r.remote) {
+    termLine('fatal: No remote configured. Use git remote add origin <url>', 'err');
+    return;
+  }
+
+  const branch = (args.includes('-u') ? args[args.length - 1] : null) || r.HEAD;
+
+  // Copy current branch to remote
+  r.remoteBranches[branch] = r.branches[branch];
+
+  // Copy commits to remote
+  const chain = getCommitChain(r, r.branches[branch], 100);
+  chain.forEach(c => {
+    if (!r.remoteCommits.find(rc => rc.id === c.id)) {
+      r.remoteCommits.push({...c});
+    }
+  });
+
+  termLine(`Enumerating objects... done.`, 'out');
+  termLine(`Writing objects: 100%, done.`, 'out');
+  termLine(`To ${r.remote}`, 'out');
+  termLine(`   ${branch} -> ${branch}`, 'success');
+  if (args.includes('-u')) {
+    termLine(`Branch '${branch}' set up to track 'origin/${branch}'.`, 'info');
+  }
+  updateAll();
+}
+
+function gitPull(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!r.remote) {
+    termLine('fatal: No remote configured.', 'err');
+    return;
+  }
+
+  // Simulate pulling — if remote has commits we don't
+  const remoteHead = r.remoteBranches[r.HEAD];
+  if (!remoteHead || remoteHead === r.branches[r.HEAD]) {
+    termLine('Already up to date.', 'info');
+    return;
+  }
+
+  r.branches[r.HEAD] = remoteHead;
+  r.remoteCommits.forEach(rc => {
+    if (!r.commits.find(c => c.id === rc.id)) {
+      r.commits.push({...rc});
+    }
+  });
+
+  termLine('Updating... Fast-forward.', 'success');
+  updateAll();
+}
+
+function gitFetch() {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!r.remote) {
+    termLine('fatal: No remote configured.', 'err');
+    return;
+  }
+
+  termLine(`From ${r.remote}`, 'out');
+  Object.keys(r.remoteBranches).forEach(b => {
+    termLine(` * branch  ${b} -> FETCH_HEAD`, 'out');
+  });
+  termLine('Fetch complete.', 'success');
+}
+
+function gitClone(args) {
+  if (state.repo && state.repo.initialised) {
+    termLine('fatal: destination already exists and is not empty', 'err');
+    return;
+  }
+
+  const url = args[0] || 'https://github.com/user/project.git';
+  state.repo = initRepo();
+  state.repo.remote = url;
+  state.repo.remoteBranches = { main: state.repo.branches.main };
+  state.repo.remoteCommits = [...state.repo.commits];
+
+  termLine(`Cloning into 'project'...`, 'out');
+  termLine(`remote: Enumerating objects... done.`, 'out');
+  termLine(`Receiving objects: 100%, done.`, 'success');
+  updateAll();
+}
+
+function gitStash(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (!args.length || args[0] === 'push') {
+    if (!r.workingDir.length && !r.staging.length) {
+      termLine('No local changes to save.', 'info');
+      return;
+    }
+    r.stashes.push({ working: [...r.workingDir], staging: [...r.staging] });
+    r.workingDir = [];
+    r.staging = [];
+    termLine(`Saved working directory and index state WIP on ${r.HEAD}`, 'success');
+    updateAll();
+    return;
+  }
+
+  if (args[0] === 'pop') {
+    if (!r.stashes.length) { termLine('No stash entries found.', 'err'); return; }
+    const s = r.stashes.pop();
+    r.workingDir = s.working;
+    r.staging = s.staging;
+    termLine('Applied stash and dropped stash@{0}.', 'success');
+    updateAll();
+    return;
+  }
+
+  if (args[0] === 'list') {
+    if (!r.stashes.length) { termLine('No stash entries.', 'info'); return; }
+    r.stashes.forEach((_, i) => termLine(`stash@{${i}}: WIP`, 'out'));
+    return;
+  }
+}
+
+function gitReset(args) {
+  if (!requireInit()) return;
+  const r = state.repo;
+
+  if (args[0] === '--soft' || !args.length) {
+    // Move staging back to working
+    r.staging.forEach(f => {
+      if (!r.workingDir.find(w => w.name === f.name)) {
+        r.workingDir.push({...f, status: 'modified'});
+      }
+    });
+    r.staging = [];
+    termLine('Unstaged all changes.', 'success');
+    updateAll();
+    return;
+  }
+
+  termLine('usage: git reset [--soft]', 'info');
+}
+
+// Shell commands
+function cmdTouch(files) {
+  if (!state.repo || !state.repo.initialised) {
+    termLine('hint: initialise a repo first with git init', 'err');
+    return;
+  }
+  files.forEach(name => {
+    if (!state.repo.workingDir.find(f => f.name === name)) {
+      state.repo.workingDir.push({ name, status: 'new' });
+      termLine(`Created file: ${name}`, 'out');
+    } else {
+      const f = state.repo.workingDir.find(f => f.name === name);
+      f.status = 'modified';
+      termLine(`Modified file: ${name}`, 'out');
+    }
+  });
+  updateAll();
+}
+
+function cmdEcho(args) {
+  termLine(args.join(' '), 'out');
+}
+
+function cmdLs() {
+  if (!state.repo || !state.repo.initialised) { termLine('(empty)', 'out'); return; }
+  const allFiles = new Set();
+  state.repo.workingDir.forEach(f => allFiles.add(f.name));
+  state.repo.commits.forEach(c => c.files.forEach(f => allFiles.add(f)));
+  if (!allFiles.size) { termLine('(empty)', 'out'); return; }
+  termLine([...allFiles].sort().join('  '), 'out');
+}
+
+function cmdHelp() {
+  termLine('Available commands:', 'info');
+  termLine('  git init              Initialise a new repository', 'out');
+  termLine('  git status            Show working tree status', 'out');
+  termLine('  git add <file|.>      Stage files', 'out');
+  termLine('  git commit -m "msg"   Commit staged changes', 'out');
+  termLine('  git log [--oneline]   Show commit history', 'out');
+  termLine('  git branch [name]     List or create branches', 'out');
+  termLine('  git checkout [-b] <b> Switch branches', 'out');
+  termLine('  git merge <branch>    Merge a branch', 'out');
+  termLine('  git diff              Show changes', 'out');
+  termLine('  git remote add origin <url>', 'out');
+  termLine('  git push [-u origin branch]', 'out');
+  termLine('  git pull              Pull from remote', 'out');
+  termLine('  git fetch             Fetch from remote', 'out');
+  termLine('  git clone <url>       Clone a repository', 'out');
+  termLine('  git stash [pop|list]  Stash changes', 'out');
+  termLine('  git reset [--soft]    Unstage changes', 'out');
+  termLine('  touch <file>          Create a file', 'out');
+  termLine('  ls                    List files', 'out');
+  termLine('  clear                 Clear terminal', 'out');
+  termLine('  reset                 Reset playground', 'out');
+  termLine('  help                  Show this help', 'out');
+}
+
+function cmdReset() {
+  state.repo = null;
+  state.cmdLog = [];
+  idCounter = 0;
+  document.getElementById('terminal-output').innerHTML = '';
+  termLine('Playground reset. Start fresh with git init.', 'info');
+  updateAll();
+}
+
+// ─── Terminal I/O ────────────────────────────────────────────────────────────
+function termLine(text, cls) {
+  const out = document.getElementById('terminal-output');
+  const div = document.createElement('div');
+  div.className = 'line ' + (cls || '');
+  div.textContent = (cls === 'cmd' ? '$ ' : '  ') + text;
+  out.appendChild(div);
+  out.scrollTop = out.scrollHeight;
+}
+
+// ─── Lessons ─────────────────────────────────────────────────────────────────
+const lessons = [
+  {
+    title: '1. Your First Repo',
+    desc: 'Git tracks changes to your files over time, like an unlimited undo history. In this lesson you\'ll create a repository (a folder Git watches) and save your first snapshot.',
+    steps: [
+      {
+        hint: 'Initialise a new Git repository with <code>git init</code>.',
+        explain: '<code>git init</code> tells Git to start watching this folder. It creates a hidden <code>.git/</code> directory where all the history lives. You only run this once per project.',
+        match: /^git init$/
+      },
+      {
+        hint: 'Create a file called <code>analysis.R</code> using <code>touch analysis.R</code>.',
+        explain: 'Git doesn\'t track files automatically \u2014 you need files to exist first. In real life you\'d open RStudio and start writing; here <code>touch</code> simulates creating a new file.',
+        match: /^touch analysis\.R$/
+      },
+      {
+        hint: 'Check the status of your repo with <code>git status</code>.',
+        explain: '<code>git status</code> is your most-used command. It shows which files are new, changed, or ready to save. Think of it as asking Git "what\'s going on right now?" Get in the habit of running it often.',
+        match: /^git status$/
+      },
+      {
+        hint: 'Stage the file with <code>git add analysis.R</code>.',
+        explain: '<code>git add</code> moves a file to the <strong>staging area</strong> \u2014 a holding pen for changes you want to include in your next save point. This two-step process (add then commit) lets you choose exactly which changes to group together.',
+        match: /^git add analysis\.R$/
+      },
+      {
+        hint: 'Commit with a message: <code>git commit -m "Add analysis script"</code>.',
+        explain: '<code>git commit</code> saves a permanent snapshot of everything in the staging area. The <code>-m</code> flag lets you attach a message describing <em>what</em> you changed and <em>why</em>. Good messages make it easy to find changes later. Watch the commit graph above \u2014 you\'ll see a new node appear!',
+        match: /^git commit -m/
+      },
+    ]
+  },
+  {
+    title: '2. Making Changes',
+    desc: 'Real projects have many files. This lesson shows how to stage multiple files at once and how to review what you\'ve done so far using the commit log.',
+    steps: [
+      {
+        hint: 'Create two more files: <code>touch data.csv report.qmd</code>.',
+        explain: 'You can create multiple files in one command. In a real R/Quarto project, you\'d typically have data files, scripts, and Quarto documents like these.',
+        match: /^touch .+ .+/
+      },
+      {
+        hint: 'Stage all files at once with <code>git add .</code>',
+        explain: 'The dot (<code>.</code>) means "everything in this folder." <code>git add .</code> stages all new and modified files at once \u2014 handy when you want to commit everything, but be careful: it might pick up files you didn\'t intend to include. Check <code>git status</code> first if you\'re unsure.',
+        match: /^git add \.$/
+      },
+      {
+        hint: 'Commit: <code>git commit -m "Add data and report"</code>.',
+        explain: 'Each commit is a snapshot of your project at a point in time. You can always go back to any previous commit. Notice you now have two nodes in the graph \u2014 each one is a commit, linked to its parent.',
+        match: /^git commit -m/
+      },
+      {
+        hint: 'View the commit history with <code>git log --oneline</code>.',
+        explain: '<code>git log</code> shows the history of commits, most recent first. The <code>--oneline</code> flag gives a compact view with just the commit ID and message. This is how you review what\'s been done on a project.',
+        match: /^git log/
+      },
+    ]
+  },
+  {
+    title: '3. Branching',
+    desc: 'Branches let you work on new features without affecting the main version of your project. Think of it like making a copy of your document to try something risky \u2014 if it works, you keep it; if not, you throw the copy away. The key difference is Git makes this almost free.',
+    steps: [
+      {
+        hint: 'Create and switch to a new branch: <code>git checkout -b feature/chart</code>.',
+        explain: '<code>git checkout -b</code> does two things: creates a new branch and switches to it. The branch name <code>feature/chart</code> uses a common naming convention \u2014 the slash groups related branches together. From this point, your commits go on this branch only, leaving <code>main</code> untouched.',
+        match: /^git checkout -b /
+      },
+      {
+        hint: 'Create a file on this branch: <code>touch chart.R</code>.',
+        explain: 'This file only exists on the <code>feature/chart</code> branch. When you switch back to <code>main</code>, it will disappear \u2014 it hasn\'t been merged yet. This is the power of branches: isolated workspaces.',
+        match: /^touch chart\.R$/
+      },
+      {
+        hint: 'Stage and commit: <code>git add chart.R</code> then <code>git commit -m "Add chart"</code>.',
+        explain: 'This commit is recorded on the <code>feature/chart</code> branch. Watch the graph \u2014 you\'ll see the branch diverge from <code>main</code>. The two branches now have different histories.',
+        match: /^git commit -m/
+      },
+      {
+        hint: 'Switch back to main: <code>git checkout main</code>.',
+        explain: '<code>git checkout</code> (without <code>-b</code>) switches to an existing branch. Your working directory updates to match that branch\'s latest commit. Try <code>ls</code> afterwards \u2014 chart.R won\'t be there!',
+        match: /^git checkout main$/
+      },
+      {
+        hint: 'List all branches with <code>git branch</code>.',
+        explain: '<code>git branch</code> shows all local branches, with an asterisk (*) marking the one you\'re currently on. This helps you keep track of what branches exist and where you are.',
+        match: /^git branch$/
+      },
+    ]
+  },
+  {
+    title: '4. Merging',
+    desc: 'Once your feature is ready, you bring the changes back into <code>main</code> by merging. This combines the work from two branches into one. In a team, this typically happens through a pull request on GitHub, but the underlying operation is the same.',
+    steps: [
+      {
+        hint: 'Make sure you\'re on main: <code>git checkout main</code>.',
+        explain: 'You always merge <em>into</em> the branch you\'re currently on. So to bring feature work into <code>main</code>, you first switch to <code>main</code>. Think of it as: "I\'m standing on main, pulling the feature towards me."',
+        match: /^git checkout main$/
+      },
+      {
+        hint: 'Merge the feature branch: <code>git merge feature/chart</code>.',
+        explain: '<code>git merge</code> takes all the commits from the named branch and integrates them into your current branch. If there are no conflicting changes, Git does this automatically. Watch the graph \u2014 you\'ll see the branches come back together.',
+        match: /^git merge feature\/chart$/
+      },
+      {
+        hint: 'Check the log to see the merge: <code>git log --oneline</code>.',
+        explain: 'The log now shows the merge commit \u2014 a special commit with two parents, one from each branch. This records that the feature was integrated, and when.',
+        match: /^git log/
+      },
+      {
+        hint: 'Clean up by deleting the branch: <code>git branch -d feature/chart</code>.',
+        explain: 'Once merged, the feature branch has served its purpose. Deleting it keeps your branch list tidy. The commits aren\'t lost \u2014 they\'re now part of <code>main</code>\'s history. The <code>-d</code> flag is the safe delete; Git will refuse if the branch has unmerged work.',
+        match: /^git branch -d/
+      },
+    ]
+  },
+  {
+    title: '5. Remote & GitHub',
+    desc: 'So far everything has been local \u2014 on your own machine. A <strong>remote</strong> is a copy of your repository on a server like GitHub. Pushing to a remote backs up your work, and lets others see and contribute to it. This is how collaboration happens.',
+    steps: [
+      {
+        hint: 'Add a remote: <code>git remote add origin https://github.com/you/project.git</code>',
+        explain: '<code>git remote add</code> tells your local repo where the GitHub copy lives. <code>origin</code> is the conventional name for your main remote \u2014 you can call it anything, but everyone uses "origin." The URL comes from the GitHub repo page.',
+        match: /^git remote add origin/
+      },
+      {
+        hint: 'Push your code: <code>git push -u origin main</code>.',
+        explain: '<code>git push</code> uploads your commits to the remote. The <code>-u</code> flag (short for <code>--set-upstream</code>) links your local branch to the remote one, so future pushes and pulls just need <code>git push</code> with no extra arguments. After this, your code is on GitHub!',
+        match: /^git push/
+      },
+      {
+        hint: 'Verify the remote is set: <code>git remote -v</code>.',
+        explain: 'The <code>-v</code> flag shows the URLs Git will use when fetching (downloading) and pushing (uploading). Useful for checking you\'re connected to the right repository.',
+        match: /^git remote -v$/
+      },
+      {
+        hint: 'Check all branches including remote ones: <code>git branch -a</code>.',
+        explain: 'The <code>-a</code> flag shows both local branches and remote-tracking branches (prefixed with <code>remotes/origin/</code>). These remote-tracking branches are your local record of what\'s on GitHub \u2014 they update when you fetch or pull.',
+        match: /^git branch -a$/
+      },
+    ]
+  },
+  {
+    title: '6. The Full Workflow',
+    desc: 'This lesson puts it all together into the workflow you\'ll use daily: create a branch, do your work, commit, push, and merge. This mirrors the pull request workflow used in teams \u2014 on GitHub you\'d open a PR for review before merging, but the Git commands are the same.',
+    steps: [
+      {
+        hint: 'Create a feature branch: <code>git checkout -b steve/add-map</code>.',
+        explain: 'The branch name <code>steve/add-map</code> follows the convention taught in this course: <code>yourname/feature-description</code>. This makes it clear who\'s working on what when you see branches on GitHub.',
+        match: /^git checkout -b/
+      },
+      {
+        hint: 'Create a file: <code>touch map.R</code>.',
+        explain: 'In practice this is where you\'d spend most of your time \u2014 writing R scripts, editing Quarto documents, cleaning data. Git doesn\'t care what you do between commits; it only records snapshots when you tell it to.',
+        match: /^touch /
+      },
+      {
+        hint: 'Stage it: <code>git add .</code>',
+        explain: 'Staging before committing. The habit should be: make changes, check status, stage what you want, commit with a clear message. Repeat.',
+        match: /^git add/
+      },
+      {
+        hint: 'Commit: <code>git commit -m "Add map visualisation"</code>.',
+        explain: 'Write commit messages in the imperative mood ("Add map" not "Added map"). Keep them short but descriptive. Your future self will thank you when searching the log for when a feature was introduced.',
+        match: /^git commit -m/
+      },
+      {
+        hint: 'Push the branch: <code>git push -u origin steve/add-map</code>.',
+        explain: 'This uploads your feature branch to GitHub. On a team project, this is when you\'d open a <strong>pull request</strong> \u2014 asking colleagues to review your changes before they\'re merged into <code>main</code>.',
+        match: /^git push/
+      },
+      {
+        hint: 'Switch to main and merge: <code>git checkout main</code> then <code>git merge steve/add-map</code>.',
+        explain: 'On GitHub this merge would happen through the pull request interface after review. Here we\'re doing it locally, but the result is the same \u2014 your feature work becomes part of the main project history.',
+        match: /^git merge/
+      },
+    ]
+  }
+];
+
+function renderLessons() {
+  const list = document.getElementById('lesson-list');
+  list.innerHTML = '';
+  lessons.forEach((l, i) => {
+    const li = document.createElement('li');
+    li.className = 'lesson-item' + (i === state.currentLesson ? ' active' : '') + (state.lessonCompletion[i] ? ' completed' : '');
+    li.innerHTML = `<span class="check">${state.lessonCompletion[i] ? '\u2713' : '\u25CB'}</span>${l.title}`;
+    li.onclick = () => selectLesson(i);
+    list.appendChild(li);
+  });
+}
+
+function selectLesson(i) {
+  state.currentLesson = i;
+  state.currentStep = 0;
+  renderLessons();
+  updateHint();
+}
+
+function updateHint() {
+  const box = document.getElementById('hint-box');
+  if (state.mode === 'sandbox') {
+    box.innerHTML = '<strong>Sandbox mode</strong> \u2014 experiment freely! Type <code>help</code> for available commands or <code>reset</code> to start over.';
+    return;
+  }
+  const lesson = lessons[state.currentLesson];
+  if (!lesson) return;
+  const step = lesson.steps[state.currentStep];
+  if (!step) {
+    box.innerHTML = `<strong>\u2713 Lesson complete!</strong> Pick the next lesson from the list, or switch to Sandbox mode.`;
+    state.lessonCompletion[state.currentLesson] = true;
+    renderLessons();
+    return;
+  }
+  let html = `<strong>${lesson.title}</strong> \u2014 Step ${state.currentStep + 1}/${lesson.steps.length}`;
+  if (lesson.desc) {
+    html += `<div class="lesson-intro">${lesson.desc}</div>`;
+  }
+  html += `<div class="step-action">${step.hint}</div>`;
+  if (step.explain) {
+    html += `<div class="step-explain">${step.explain}</div>`;
+  }
+  box.innerHTML = html;
+}
+
+function checkLessonStep(cmd) {
+  if (state.mode !== 'learn') return;
+  const lesson = lessons[state.currentLesson];
+  if (!lesson) return;
+  const step = lesson.steps[state.currentStep];
+  if (!step) return;
+  if (step.match.test(cmd)) {
+    state.currentStep++;
+    updateHint();
+  }
+}
+
+// ─── Graph Rendering ─────────────────────────────────────────────────────────
+const canvas = document.getElementById('graph-canvas');
+const ctx = canvas.getContext('2d');
+
+const branchColors = ['#7aa2f7', '#9ece6a', '#ff9e64', '#bb9af7', '#7dcfff', '#f7768e', '#e0af68'];
+
+function resizeCanvas() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+}
+
+function drawGraph() {
+  resizeCanvas();
+  const W = canvas.width / devicePixelRatio;
+  const H = canvas.height / devicePixelRatio;
+  ctx.clearRect(0, 0, W, H);
+
+  if (!state.repo || !state.repo.initialised) {
+    ctx.fillStyle = '#3b4261';
+    ctx.font = '14px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText('Run git init to start', W / 2, H / 2);
+    return;
+  }
+
+  const r = state.repo;
+  const branchNames = Object.keys(r.branches);
+  const branchLanes = {};
+  branchNames.forEach((b, i) => { branchLanes[b] = i; });
+
+  // Build commit positions
+  const nodeRadius = 10;
+  const xSpacing = 70;
+  const yBase = 50;
+  const laneHeight = 50;
+
+  // Collect commits per branch lane
+  const positions = {};
+  const allCommits = [...r.commits].reverse();
+
+  // Assign x positions based on topological order
+  const sorted = [];
+  const visited = new Set();
+
+  function topoVisit(cId) {
+    if (visited.has(cId)) return;
+    visited.add(cId);
+    const c = r.commits.find(x => x.id === cId);
+    if (!c) return;
+    if (c.parent) topoVisit(c.parent);
+    if (c.mergeParent) topoVisit(c.mergeParent);
+    sorted.push(c);
+  }
+
+  // Visit from all branch heads
+  branchNames.forEach(b => {
+    if (r.branches[b]) topoVisit(r.branches[b]);
+  });
+
+  const startX = 60;
+  sorted.forEach((c, i) => {
+    const lane = branchLanes[c.branch] || 0;
+    positions[c.id] = {
+      x: startX + i * xSpacing,
+      y: yBase + lane * laneHeight,
+      commit: c,
+      lane: lane
+    };
+  });
+
+  // Auto-scroll if graph extends beyond canvas
+  const maxX = sorted.length * xSpacing + startX;
+  const offsetX = Math.max(0, maxX - W + 60);
+
+  // Draw edges
+  sorted.forEach(c => {
+    const pos = positions[c.id];
+    if (!pos) return;
+
+    const drawX = pos.x - offsetX;
+
+    if (c.parent && positions[c.parent]) {
+      const parentPos = positions[c.parent];
+      const parentX = parentPos.x - offsetX;
+      ctx.beginPath();
+      ctx.moveTo(parentX, parentPos.y);
+      ctx.bezierCurveTo(
+        parentX + (drawX - parentX) * 0.5, parentPos.y,
+        parentX + (drawX - parentX) * 0.5, pos.y,
+        drawX, pos.y
+      );
+      ctx.strokeStyle = branchColors[pos.lane % branchColors.length] + '80';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    if (c.mergeParent && positions[c.mergeParent]) {
+      const mp = positions[c.mergeParent];
+      const mpX = mp.x - offsetX;
+      ctx.beginPath();
+      ctx.moveTo(mpX, mp.y);
+      ctx.bezierCurveTo(
+        mpX + (drawX - mpX) * 0.5, mp.y,
+        mpX + (drawX - mpX) * 0.5, pos.y,
+        drawX, pos.y
+      );
+      ctx.strokeStyle = '#f7768e80';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  });
+
+  // Draw nodes
+  sorted.forEach(c => {
+    const pos = positions[c.id];
+    if (!pos) return;
+    const drawX = pos.x - offsetX;
+    if (drawX < -20 || drawX > W + 20) return;
+
+    const color = branchColors[pos.lane % branchColors.length];
+    const isHead = c.id === r.branches[r.HEAD];
+
+    // Node circle
+    ctx.beginPath();
+    ctx.arc(drawX, pos.y, nodeRadius, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    if (isHead) {
+      ctx.beginPath();
+      ctx.arc(drawX, pos.y, nodeRadius + 4, 0, Math.PI * 2);
+      ctx.strokeStyle = '#e0af68';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // Commit id
+    ctx.fillStyle = '#7982a9';
+    ctx.font = '10px ' + getComputedStyle(document.body).getPropertyValue('--font-mono');
+    ctx.textAlign = 'center';
+    ctx.fillText(c.id, drawX, pos.y + nodeRadius + 14);
+
+    // Message
+    ctx.fillStyle = '#c0caf5';
+    ctx.font = '10px system-ui';
+    const msg = c.message.length > 20 ? c.message.slice(0, 18) + '..' : c.message;
+    ctx.fillText(msg, drawX, pos.y - nodeRadius - 8);
+
+    // Branch labels
+    const branchLabels = Object.entries(r.branches)
+      .filter(([_, cid]) => cid === c.id)
+      .map(([name]) => name);
+
+    branchLabels.forEach((label, bi) => {
+      const lx = drawX + 18;
+      const ly = pos.y - 6 + bi * 16;
+      const tw = ctx.measureText(label).width + 10;
+
+      ctx.fillStyle = label === r.HEAD ? '#e0af68' : '#3b4261';
+      roundRect(ctx, lx, ly - 8, tw, 15, 3);
+      ctx.fill();
+
+      ctx.fillStyle = label === r.HEAD ? '#1a1b26' : '#7982a9';
+      ctx.font = '10px system-ui';
+      ctx.textAlign = 'left';
+      ctx.fillText(label, lx + 5, ly + 3);
+    });
+
+    // HEAD pointer
+    if (isHead) {
+      const lx = drawX + 18;
+      const ly = pos.y - 6 + branchLabels.length * 16;
+      const tw = ctx.measureText('HEAD').width + 10;
+      ctx.fillStyle = '#f7768e';
+      roundRect(ctx, lx, ly - 8, tw, 15, 3);
+      ctx.fill();
+      ctx.fillStyle = '#1a1b26';
+      ctx.font = 'bold 10px system-ui';
+      ctx.textAlign = 'left';
+      ctx.fillText('HEAD', lx + 5, ly + 3);
+    }
+  });
+
+  // Remote indicator
+  if (r.remote) {
+    ctx.fillStyle = '#3b4261';
+    roundRect(ctx, W - 170, 8, 160, 22, 4);
+    ctx.fill();
+    ctx.fillStyle = '#7dcfff';
+    ctx.font = '11px system-ui';
+    ctx.textAlign = 'right';
+    ctx.fillText('origin: ' + (Object.keys(r.remoteBranches).length ? 'connected' : 'set'), W - 18, 23);
+  }
+
+  // Branch lane labels on left
+  branchNames.forEach((b, i) => {
+    const y = yBase + i * laneHeight;
+    ctx.fillStyle = branchColors[i % branchColors.length] + '60';
+    ctx.font = '11px system-ui';
+    ctx.textAlign = 'left';
+    ctx.fillText(b, 8, y + 4);
+  });
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+// ─── File Status Zones ──────────────────────────────────────────────────────
+function updateFileStatus() {
+  const working = document.getElementById('zone-working');
+  const staging = document.getElementById('zone-staging');
+  const repo = document.getElementById('zone-repo');
+
+  working.innerHTML = '<h4>Working Directory</h4>';
+  staging.innerHTML = '<h4>Staging Area</h4>';
+  repo.innerHTML = '<h4>Repository</h4>';
+
+  if (!state.repo || !state.repo.initialised) return;
+  const r = state.repo;
+
+  const unstaged = r.workingDir.filter(f => !r.staging.find(s => s.name === f.name));
+  unstaged.forEach(f => {
+    working.innerHTML += `<div class="status-file ${f.status === 'new' ? 'untracked' : 'modified'}">${f.name}</div>`;
+  });
+
+  r.staging.forEach(f => {
+    staging.innerHTML += `<div class="status-file staged">${f.name}</div>`;
+  });
+
+  // Show committed files from HEAD
+  const head = getHead(r);
+  if (head) {
+    const allCommitted = new Set();
+    getCommitChain(r, head.id, 100).forEach(c => c.files.forEach(f => allCommitted.add(f)));
+    allCommitted.forEach(f => {
+      repo.innerHTML += `<div class="status-file committed">${f}</div>`;
+    });
+  }
+}
+
+// ─── Prompt Symbol ──────────────────────────────────────────────────────────
+function updatePromptSymbol() {
+  const el = document.getElementById('prompt-symbol');
+  if (!state.repo || !state.repo.initialised) {
+    el.textContent = '~/project $';
+  } else {
+    el.textContent = `~/project (${state.repo.HEAD}) $`;
+  }
+}
+
+// ─── Prompt Output ──────────────────────────────────────────────────────────
+function updatePrompt() {
+  const el = document.getElementById('prompt-output');
+
+  if (!state.cmdLog.length) {
+    el.textContent = 'Run some commands to build your summary.';
+    return;
+  }
+
+  const parts = [];
+
+  // Summarise what they've done
+  const gitCmds = state.cmdLog.filter(c => c.startsWith('git '));
+  const cmdTypes = {};
+  gitCmds.forEach(c => {
+    const sub = c.split(/\s+/)[1];
+    cmdTypes[sub] = (cmdTypes[sub] || 0) + 1;
+  });
+
+  if (state.repo && state.repo.initialised) {
+    const r = state.repo;
+    const branchCount = Object.keys(r.branches).length;
+    const commitCount = r.commits.length;
+
+    parts.push(`I've been practising Git in a simulated environment.`);
+    parts.push(`So far I've made ${commitCount} commit${commitCount !== 1 ? 's' : ''} across ${branchCount} branch${branchCount !== 1 ? 'es' : ''}.`);
+
+    if (cmdTypes.merge) parts.push(`I've practised merging branches.`);
+    if (cmdTypes.push || cmdTypes.remote) parts.push(`I've set up and pushed to a remote.`);
+    if (cmdTypes.checkout && cmdTypes.branch) parts.push(`I've created and switched between branches.`);
+
+    const completed = Object.keys(state.lessonCompletion).length;
+    if (completed > 0) {
+      parts.push(`\nCompleted ${completed}/${lessons.length} guided lessons.`);
+    }
+
+    // Areas to explore
+    const unexplored = [];
+    if (!cmdTypes.branch) unexplored.push('branching');
+    if (!cmdTypes.merge) unexplored.push('merging');
+    if (!cmdTypes.push && !cmdTypes.remote) unexplored.push('remote operations');
+    if (!cmdTypes.stash) unexplored.push('stashing');
+    if (!cmdTypes.log) unexplored.push('viewing history');
+
+    if (unexplored.length) {
+      parts.push(`\nAreas I haven't explored yet: ${unexplored.join(', ')}.`);
+    }
+
+    parts.push(`\nHelp me understand what I should practise next to build confidence with Git for my R/Quarto projects.`);
+  } else {
+    parts.push(`I'm learning Git. Help me get started with setting up a repository.`);
+  }
+
+  el.textContent = parts.join('\n');
+}
+
+function copyPrompt() {
+  const text = document.getElementById('prompt-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Summary', 1500);
+  });
+}
+
+// ─── Command Reference ──────────────────────────────────────────────────────
+const cmdRefData = [
+  { cmd: 'git init', desc: 'Start a new repository' },
+  { cmd: 'git status', desc: 'See what has changed' },
+  { cmd: 'git add <file>', desc: 'Stage a file for commit' },
+  { cmd: 'git add .', desc: 'Stage all changes' },
+  { cmd: 'git commit -m "msg"', desc: 'Save staged changes' },
+  { cmd: 'git log --oneline', desc: 'View commit history' },
+  { cmd: 'git branch <name>', desc: 'Create a branch' },
+  { cmd: 'git checkout <branch>', desc: 'Switch branches' },
+  { cmd: 'git checkout -b <name>', desc: 'Create & switch' },
+  { cmd: 'git merge <branch>', desc: 'Merge into current' },
+  { cmd: 'git remote add origin <url>', desc: 'Add remote' },
+  { cmd: 'git push -u origin main', desc: 'Push to GitHub' },
+  { cmd: 'touch <file>', desc: 'Create a file' },
+];
+
+function renderCmdRef() {
+  const el = document.getElementById('cmd-ref');
+  el.innerHTML = cmdRefData.map(c =>
+    `<div class="cmd-ref-item"><code>${c.cmd}</code><span class="desc"> ${c.desc}</span></div>`
+  ).join('');
+}
+
+// ─── Mode Toggle ─────────────────────────────────────────────────────────────
+function setMode(m) {
+  state.mode = m;
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === m);
+  });
+  document.getElementById('lesson-section').style.display = m === 'learn' ? 'block' : 'none';
+  updateHint();
+}
+
+// ─── Master Update ──────────────────────────────────────────────────────────
+function updateAll() {
+  drawGraph();
+  updateFileStatus();
+  updatePromptSymbol();
+  updatePrompt();
+}
+
+// ─── Input Handling ─────────────────────────────────────────────────────────
+const input = document.getElementById('terminal-input');
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const val = input.value;
+    input.value = '';
+    processCommand(val);
+    checkLessonStep(val.trim());
+    updateAll();
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (state.historyIndex > 0) {
+      state.historyIndex--;
+      input.value = state.commandHistory[state.historyIndex];
+    }
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (state.historyIndex < state.commandHistory.length - 1) {
+      state.historyIndex++;
+      input.value = state.commandHistory[state.historyIndex];
+    } else {
+      state.historyIndex = state.commandHistory.length;
+      input.value = '';
+    }
+  }
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    // Simple tab completion
+    const val = input.value;
+    const completions = [
+      'git init', 'git status', 'git add', 'git commit -m "', 'git log --oneline',
+      'git branch', 'git checkout', 'git checkout -b', 'git merge', 'git diff',
+      'git remote add origin', 'git push -u origin', 'git pull', 'git fetch',
+      'git clone', 'git stash', 'git reset', 'touch', 'ls', 'clear', 'help', 'reset'
+    ];
+    const match = completions.find(c => c.startsWith(val) && c !== val);
+    if (match) input.value = match;
+  }
+});
+
+// ─── Resize ─────────────────────────────────────────────────────────────────
+window.addEventListener('resize', () => drawGraph());
+
+// ─── Initialise ─────────────────────────────────────────────────────────────
+renderLessons();
+renderCmdRef();
+updateHint();
+updateAll();
+
+termLine('Welcome to the Git Learning Playground!', 'info');
+termLine('Type "help" for available commands, or follow the lessons on the left.', 'info');
+termLine('', 'out');
+</script>
+</body>
+</html>

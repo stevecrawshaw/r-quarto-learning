@@ -64,6 +64,9 @@ r-quarto-learning/
 │   ├── session-03.qmd     # Data Wrangling
 │   ├── session-04.qmd     # Quarto Mastery
 │   └── session-05.qmd     # Git Collaboration
+├── playgrounds/           # Interactive learning simulators
+│   ├── bash-learning-playground.html  # Terminal command playground
+│   └── git-learning-playground.html   # Git & GitHub playground
 ├── resources/             # Reference materials
 │   ├── datasets.qmd       # Practice dataset documentation
 │   ├── setup-guide.qmd    # Installation and setup
@@ -100,6 +103,15 @@ This course follows evidence-based pedagogical principles:
 5. **Literate Programming** - Code + narrative from day one via Quarto
 6. **Active Learning** - Live coding, immediate practise, pair programming
 7. **Low Friction** - Pre-installed software, standardised helper functions
+
+## Interactive Playgrounds
+
+Self-contained browser-based simulators for practising commands in a safe sandbox — no installation required.
+
+- **[Bash Learning Playground](https://r-quarto-learning.vercel.app/playgrounds/bash-learning-playground.html)** — 6 guided lessons covering navigation, file management, reading files, finding things, pipes & redirection. Uses a simulated WECA project filesystem.
+- **[Git Learning Playground](https://r-quarto-learning.vercel.app/playgrounds/git-learning-playground.html)** — Interactive Git and GitHub simulator covering commits, branches, merging, and pull requests.
+
+Both include Learn mode (step-by-step lessons) and Sandbox mode (free exploration).
 
 ## Resources
 

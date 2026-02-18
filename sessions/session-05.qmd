@@ -46,6 +46,8 @@ indicator_analysis_v2_final_ACTUAL.qmd
 
 ### Part 2: Git Basics in Git Bash (60 min)
 
+Before working with Git on real files, try the interactive [Git Learning Playground](../playgrounds/git-learning-playground.html){target="_blank"} to build confidence with commands in a safe sandbox. For general terminal navigation, see the [Bash Learning Playground](../playgrounds/bash-learning-playground.html){target="_blank"}.
+
 **Essential Commands:**
 
 **1. Cheque Status:**

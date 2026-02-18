@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bash Learning Playground</title>
+<style>
+  :root {
+    --bg: #1a1b26;
+    --surface: #24283b;
+    --surface2: #2f3349;
+    --border: #3b4261;
+    --text: #c0caf5;
+    --text-dim: #7982a9;
+    --accent: #7aa2f7;
+    --green: #9ece6a;
+    --red: #f7768e;
+    --yellow: #e0af68;
+    --orange: #ff9e64;
+    --purple: #bb9af7;
+    --cyan: #7dcfff;
+    --magenta: #ff007c;
+    --weca-purple: #4B1E78;
+    --weca-claret: #971B2F;
+    --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    --font-ui: system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+  }
+
+  .header h1 span { color: var(--text-dim); font-weight: 400; }
+
+  .mode-toggle {
+    display: flex;
+    gap: 2px;
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 2px;
+  }
+
+  .mode-btn {
+    padding: 5px 14px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .mode-btn.active {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+  }
+
+  /* Main layout */
+  .main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar-section {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-section h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .lesson-list { list-style: none; }
+
+  .lesson-item {
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.1s;
+    margin-bottom: 2px;
+  }
+
+  .lesson-item:hover { background: var(--surface2); }
+  .lesson-item.active { background: var(--accent); color: var(--bg); }
+  .lesson-item.completed .check { color: var(--green); }
+  .lesson-item .check { width: 16px; font-size: 14px; color: var(--border); }
+
+  .hint-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+
+  .hint-box code {
+    background: var(--surface2);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  .hint-box strong { color: var(--text); }
+
+  .hint-box .lesson-intro {
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  .hint-box .step-action {
+    margin-bottom: 8px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .hint-box .step-explain {
+    color: var(--text-dim);
+    font-size: 11.5px;
+    line-height: 1.55;
+    padding: 7px 9px;
+    background: var(--surface2);
+    border-radius: 4px;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* Centre area */
+  .centre {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* File tree area */
+  .filetree-area {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    min-height: 140px;
+    padding: 10px 16px;
+    background: var(--bg);
+  }
+
+  .filetree-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .tree-entry {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre;
+    color: var(--text);
+    cursor: default;
+  }
+
+  .tree-entry .tree-prefix { color: var(--text-dim); }
+  .tree-entry .tree-dir { color: var(--accent); cursor: pointer; }
+  .tree-entry .tree-dir:hover { text-decoration: underline; }
+  .tree-entry .tree-file { color: var(--text); }
+  .tree-entry.tree-cwd { background: rgba(122, 162, 247, 0.1); border-radius: 3px; }
+
+  /* Command output zone */
+  .output-area {
+    height: 200px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+
+  .output-area .out-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    font-family: var(--font-ui);
+    margin-bottom: 4px;
+  }
+
+  .output-area .line { white-space: pre-wrap; word-break: break-all; }
+  .output-area .cmd { color: var(--green); }
+  .output-area .out { color: var(--text-dim); }
+  .output-area .err { color: var(--red); }
+  .output-area .info { color: var(--cyan); }
+  .output-area .success { color: var(--green); }
+
+  /* Terminal */
+  .terminal {
+    height: 48px;
+    background: #0d1017;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .terminal-input-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .prompt-symbol {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    caret-color: var(--accent);
+  }
+
+  /* Right panel */
+  .prompt-panel {
+    width: 300px;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .prompt-panel h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-output {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-y: auto;
+    color: var(--text-dim);
+  }
+
+  .copy-btn {
+    margin: 8px 14px 10px;
+    padding: 7px 0;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  /* Command reference */
+  .cmd-ref {
+    padding: 0;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .cmd-ref-item {
+    margin-bottom: 6px;
+  }
+
+  .cmd-ref-item code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .cmd-ref-item .desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+
+  /* Tab completion hint */
+  .tab-hint {
+    position: absolute;
+    bottom: 50px;
+    left: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    display: none;
+    z-index: 50;
+  }
+
+  .tab-hint.visible { display: block; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Bash Playground <span>/ interactive terminal simulator</span></h1>
+  <div class="mode-toggle">
+    <button class="mode-btn active" onclick="setMode('learn')">Learn</button>
+    <button class="mode-btn" onclick="setMode('sandbox')">Sandbox</button>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-section" id="lesson-section">
+      <h3>Lessons</h3>
+      <ul class="lesson-list" id="lesson-list"></ul>
+    </div>
+    <div class="sidebar-section" id="hint-section">
+      <h3>Current Task</h3>
+      <div class="hint-box" id="hint-box">Select a lesson to begin.</div>
+    </div>
+    <div class="sidebar-section">
+      <h3>Quick Reference</h3>
+      <div class="cmd-ref" id="cmd-ref"></div>
+    </div>
+  </div>
+
+  <!-- Centre -->
+  <div class="centre">
+    <div class="filetree-area" id="filetree-area">
+      <div class="filetree-label">File Tree</div>
+      <div id="filetree"></div>
+    </div>
+    <div class="output-area" id="output-area">
+      <div class="out-label">Output</div>
+    </div>
+    <div class="terminal" style="position:relative;">
+      <div class="tab-hint" id="tab-hint"></div>
+      <div class="terminal-input-row">
+        <span class="prompt-symbol" id="prompt-symbol">~/project $</span>
+        <input type="text" class="terminal-input" id="terminal-input" autofocus spellcheck="false" placeholder="Type a command...">
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="prompt-panel">
+    <h3>Session Summary</h3>
+    <div class="prompt-output" id="prompt-output">Run some commands to build your summary.</div>
+    <button class="copy-btn" onclick="copyPrompt()">Copy Summary</button>
+  </div>
+</div>
+
+<script>
+// ─── File Contents ────────────────────────────────────────────────────────────
+const FILE_CONTENTS = {
+  'survey_2024.csv': `id,region,indicator,value,year
+1,Bristol,employment_rate,76.2,2024
+2,Bath,employment_rate,78.1,2024
+3,South Gloucestershire,employment_rate,80.3,2024
+4,North Somerset,employment_rate,77.8,2024
+5,Bristol,gva_per_head,32100,2024
+6,Bath,gva_per_head,29800,2024
+7,South Gloucestershire,gva_per_head,35200,2024
+8,North Somerset,gva_per_head,28900,2024
+9,Bristol,population,472400,2024
+10,Bath,population,196700,2024
+11,South Gloucestershire,population,285200,2024
+12,North Somerset,population,217600,2024`,
+
+  'analysis.R': `# WECA Regional Analysis Script
+# Author: Data Team
+# Date: 2024-03-15
+
+library(tidyverse)
+library(here)
+
+# Load the survey data
+survey <- read_csv(here("data", "raw", "survey_2024.csv"))
+
+# Filter for employment indicators
+employment <- survey |>
+  filter(indicator == "employment_rate") |>
+  arrange(desc(value))
+
+# Create summary by region
+summary_table <- survey |>
+  group_by(region) |>
+  summarise(
+    n_indicators = n_distinct(indicator),
+    avg_value = mean(value)
+  )
+
+# Save outputs
+write_csv(employment, here("output", "employment_summary.csv"))`,
+
+  'helpers.R': `# Helper functions for WECA analysis
+# Shared utility functions used across projects
+
+library(ggplot2)
+
+# Custom WECA theme for ggplot
+theme_weca <- function(base_size = 12) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.title = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+}
+
+# Format large numbers with commas
+format_number <- function(x) {
+  formatC(x, format = "f", big.mark = ",", digits = 0)
+}`,
+
+  'report.qmd': `---
+title: "WECA Regional Indicators Report"
+author: "Data Team"
+format: html
+---
+
+## Overview
+
+This report summarises key indicators across the West of England region.
+
+## Data Sources
+
+The survey data is sourced from ONS regional statistics for 2024.
+
+\`\`\`{r}
+source(here::here("scripts", "analysis.R"))
+kable(summary_table)
+\`\`\``,
+
+  'README.md': `# WECA Regional Analysis Project
+
+Analysis of regional indicators for the West of England Combined Authority.
+
+## Structure
+
+- \`data/raw/\` \u2014 Original data files
+- \`data/clean/\` \u2014 Processed data
+- \`scripts/\` \u2014 R analysis scripts
+- \`output/\` \u2014 Generated results
+- \`report.qmd\` \u2014 Quarto report
+
+## Usage
+
+1. Open in RStudio/Positron
+2. Run \`scripts/analysis.R\`
+3. Render \`report.qmd\` with Quarto`
+};
+
+// ─── Filesystem ───────────────────────────────────────────────────────────────
+function buildInitialFS() {
+  return {
+    type: 'dir', children: {
+      home: { type: 'dir', children: {
+        user: { type: 'dir', children: {
+          project: { type: 'dir', children: {
+            data: { type: 'dir', children: {
+              raw: { type: 'dir', children: {
+                'survey_2024.csv': { type: 'file', content: FILE_CONTENTS['survey_2024.csv'] }
+              }},
+              clean: { type: 'dir', children: {} }
+            }},
+            scripts: { type: 'dir', children: {
+              'analysis.R': { type: 'file', content: FILE_CONTENTS['analysis.R'] },
+              'helpers.R': { type: 'file', content: FILE_CONTENTS['helpers.R'] }
+            }},
+            output: { type: 'dir', children: {} },
+            'report.qmd': { type: 'file', content: FILE_CONTENTS['report.qmd'] },
+            'README.md': { type: 'file', content: FILE_CONTENTS['README.md'] }
+          }}
+        }}
+      }}
+    }
+  };
+}
+
+// ─── State ────────────────────────────────────────────────────────────────────
+const state = {
+  mode: 'learn',
+  currentLesson: 0,
+  currentStep: 0,
+  completedLessons: new Set(),
+  commandHistory: [],
+  historyIndex: -1,
+  fs: buildInitialFS(),
+  cwd: '/home/user/project',
+  commandsUsed: new Set(),
+  conceptsLearned: []
+};
+
+// ─── FS Utilities ─────────────────────────────────────────────────────────────
+function resolvePath(p) {
+  let path = p.trim();
+  if (path === '~') return '/home/user';
+  path = path.replace(/^~\//, '/home/user/');
+  if (!path.startsWith('/')) {
+    path = state.cwd + '/' + path;
+  }
+  // Normalise . and ..
+  const parts = path.split('/').filter(Boolean);
+  const result = [];
+  for (const part of parts) {
+    if (part === '.') continue;
+    else if (part === '..') { if (result.length) result.pop(); }
+    else result.push(part);
+  }
+  return '/' + result.join('/');
+}
+
+function getNode(path) {
+  if (path === '/') return state.fs;
+  const parts = path.split('/').filter(Boolean);
+  let node = state.fs;
+  for (const part of parts) {
+    if (!node || node.type !== 'dir' || !node.children[part]) return null;
+    node = node.children[part];
+  }
+  return node;
+}
+
+function getParentAndName(path) {
+  const parts = path.split('/').filter(Boolean);
+  const name = parts.pop();
+  const parentPath = '/' + parts.join('/');
+  return { parent: getNode(parentPath), name, parentPath };
+}
+
+function displayPath(absPath) {
+  if (absPath === '/home/user') return '~';
+  if (absPath.startsWith('/home/user/')) return '~/' + absPath.slice(11);
+  return absPath;
+}
+
+function mkdirP(path) {
+  const parts = path.split('/').filter(Boolean);
+  let node = state.fs;
+  for (const part of parts) {
+    if (!node.children[part]) {
+      node.children[part] = { type: 'dir', children: {} };
+    } else if (node.children[part].type !== 'dir') {
+      return false;
+    }
+    node = node.children[part];
+  }
+  return true;
+}
+
+function globMatch(pattern, str) {
+  const re = new RegExp('^' + pattern.replace(/\./g, '\\.').replace(/\*/g, '.*') + '$');
+  return re.test(str);
+}
+
+// ─── Output ───────────────────────────────────────────────────────────────────
+function outLine(text, cls) {
+  const area = document.getElementById('output-area');
+  const div = document.createElement('div');
+  div.className = 'line ' + (cls || '');
+  div.textContent = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function outCmd(text) {
+  const area = document.getElementById('output-area');
+  const div = document.createElement('div');
+  div.className = 'line cmd';
+  div.textContent = displayPath(state.cwd) + ' $ ' + text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function clearOutput() {
+  const area = document.getElementById('output-area');
+  area.innerHTML = '<div class="out-label">Output</div>';
+}
+
+// ─── Command Parser ───────────────────────────────────────────────────────────
+function tokenise(input) {
+  const tokens = [];
+  let i = 0;
+  while (i < input.length) {
+    if (input[i] === ' ' || input[i] === '\t') { i++; continue; }
+    if (input[i] === '"') {
+      let j = i + 1;
+      while (j < input.length && input[j] !== '"') j++;
+      tokens.push(input.slice(i + 1, j));
+      i = j + 1;
+      continue;
+    }
+    if (input[i] === "'") {
+      let j = i + 1;
+      while (j < input.length && input[j] !== "'") j++;
+      tokens.push(input.slice(i + 1, j));
+      i = j + 1;
+      continue;
+    }
+    let j = i;
+    while (j < input.length && input[j] !== ' ' && input[j] !== '\t') j++;
+    tokens.push(input.slice(i, j));
+    i = j;
+  }
+  return tokens;
+}
+
+function parsePipeline(input) {
+  // Split on | but not inside quotes
+  const segments = [];
+  let current = '';
+  let inQ = false, qChar = '';
+  for (let i = 0; i < input.length; i++) {
+    const c = input[i];
+    if ((c === '"' || c === "'") && !inQ) { inQ = true; qChar = c; current += c; }
+    else if (c === qChar && inQ) { inQ = false; current += c; }
+    else if (c === '|' && !inQ) { segments.push(current.trim()); current = ''; }
+    else { current += c; }
+  }
+  if (current.trim()) segments.push(current.trim());
+  return segments;
+}
+
+function parseRedirect(segment) {
+  // Check for >> or > at the end
+  let mode = null, filePath = null, cmdPart = segment;
+  // Match > or >> followed by a path
+  const appendMatch = segment.match(/^(.*?)\s*>>\s*(\S+)\s*$/);
+  const overwriteMatch = segment.match(/^(.*?)\s*>\s*(\S+)\s*$/);
+  if (appendMatch) {
+    cmdPart = appendMatch[1].trim();
+    mode = 'append';
+    filePath = appendMatch[2];
+  } else if (overwriteMatch) {
+    cmdPart = overwriteMatch[1].trim();
+    mode = 'overwrite';
+    filePath = overwriteMatch[2];
+  }
+  return { cmdPart, mode, filePath };
+}
+
+// ─── Command Implementations ──────────────────────────────────────────────────
+function cmdPwd() {
+  return displayPath(state.cwd);
+}
+
+function cmdLs(args, input) {
+  let showLong = false, showAll = false, targetPath = null;
+  for (const a of args) {
+    if (a.startsWith('-')) {
+      if (a.includes('l')) showLong = true;
+      if (a.includes('a')) showAll = true;
+    } else {
+      targetPath = a;
+    }
+  }
+  const absPath = targetPath ? resolvePath(targetPath) : state.cwd;
+  const node = getNode(absPath);
+  if (!node) return { err: `ls: cannot access '${targetPath}': No such file or directory` };
+  if (node.type !== 'dir') return { err: `ls: cannot list '${targetPath}': Not a directory` };
+
+  const entries = Object.keys(node.children).sort();
+  if (!entries.length) return { out: '' };
+
+  if (showLong) {
+    const lines = [];
+    for (const name of entries) {
+      const child = node.children[name];
+      const isDir = child.type === 'dir';
+      const perm = isDir ? 'drwxr-xr-x' : '-rw-r--r--';
+      const size = isDir ? 4096 : (child.content || '').length;
+      const sizeStr = String(size).padStart(6);
+      const display = isDir ? name + '/' : name;
+      lines.push(`${perm}  user  user  ${sizeStr}  Mar 15  ${display}`);
+    }
+    return { out: lines.join('\n') };
+  }
+
+  const display = entries.map(name => {
+    const child = node.children[name];
+    return child.type === 'dir' ? name + '/' : name;
+  });
+  return { out: display.join('  ') };
+}
+
+function cmdCd(args) {
+  const target = args[0] || '~';
+  const absPath = resolvePath(target);
+  const node = getNode(absPath);
+  if (!node) return { err: `cd: no such file or directory: ${target}` };
+  if (node.type !== 'dir') return { err: `cd: not a directory: ${target}` };
+  state.cwd = absPath;
+  return { out: '' };
+}
+
+function cmdMkdir(args) {
+  let recursive = false;
+  const paths = [];
+  for (const a of args) {
+    if (a === '-p') recursive = true;
+    else paths.push(a);
+  }
+  if (!paths.length) return { err: 'mkdir: missing operand' };
+  const lines = [];
+  for (const p of paths) {
+    const absPath = resolvePath(p);
+    if (recursive) {
+      mkdirP(absPath);
+    } else {
+      const { parent, name } = getParentAndName(absPath);
+      if (!parent) return { err: `mkdir: cannot create directory '${p}': No such file or directory` };
+      if (parent.children[name]) return { err: `mkdir: cannot create directory '${p}': File exists` };
+      parent.children[name] = { type: 'dir', children: {} };
+    }
+  }
+  return { out: '' };
+}
+
+function cmdTouch(args) {
+  if (!args.length) return { err: 'touch: missing file operand' };
+  for (const p of args) {
+    const absPath = resolvePath(p);
+    const { parent, name } = getParentAndName(absPath);
+    if (!parent) return { err: `touch: cannot touch '${p}': No such file or directory` };
+    if (!parent.children[name]) {
+      parent.children[name] = { type: 'file', content: '' };
+    }
+  }
+  return { out: '' };
+}
+
+function cmdCp(args) {
+  if (args.length < 2) return { err: 'cp: missing file operand' };
+  const srcPath = resolvePath(args[0]);
+  const srcNode = getNode(srcPath);
+  if (!srcNode) return { err: `cp: cannot stat '${args[0]}': No such file or directory` };
+  if (srcNode.type === 'dir') return { err: `cp: omitting directory '${args[0]}'` };
+
+  let destPath = resolvePath(args[1]);
+  let destNode = getNode(destPath);
+  if (destNode && destNode.type === 'dir') {
+    const srcName = srcPath.split('/').pop();
+    destNode.children[srcName] = { type: 'file', content: srcNode.content };
+  } else {
+    const { parent, name } = getParentAndName(destPath);
+    if (!parent) return { err: `cp: cannot create '${args[1]}': No such file or directory` };
+    parent.children[name] = { type: 'file', content: srcNode.content };
+  }
+  return { out: '' };
+}
+
+function cmdMv(args) {
+  if (args.length < 2) return { err: 'mv: missing file operand' };
+  const srcPath = resolvePath(args[0]);
+  const { parent: srcParent, name: srcName } = getParentAndName(srcPath);
+  if (!srcParent || !srcParent.children[srcName]) return { err: `mv: cannot stat '${args[0]}': No such file or directory` };
+
+  const srcNode = srcParent.children[srcName];
+  let destPath = resolvePath(args[1]);
+  let destNode = getNode(destPath);
+
+  if (destNode && destNode.type === 'dir') {
+    destNode.children[srcName] = srcNode;
+  } else {
+    const { parent: destParent, name: destName } = getParentAndName(destPath);
+    if (!destParent) return { err: `mv: cannot move '${args[0]}' to '${args[1]}': No such file or directory` };
+    destParent.children[destName] = srcNode;
+  }
+  delete srcParent.children[srcName];
+  return { out: '' };
+}
+
+function cmdRm(args) {
+  if (!args.length) return { err: 'rm: missing operand' };
+  for (const p of args) {
+    if (p.startsWith('-')) continue;
+    const absPath = resolvePath(p);
+    const { parent, name } = getParentAndName(absPath);
+    if (!parent || !parent.children[name]) return { err: `rm: cannot remove '${p}': No such file or directory` };
+    if (parent.children[name].type === 'dir') return { err: `rm: cannot remove '${p}': Is a directory` };
+    delete parent.children[name];
+  }
+  return { out: '' };
+}
+
+function cmdRmdir(args) {
+  if (!args.length) return { err: 'rmdir: missing operand' };
+  for (const p of args) {
+    const absPath = resolvePath(p);
+    const node = getNode(absPath);
+    if (!node) return { err: `rmdir: failed to remove '${p}': No such file or directory` };
+    if (node.type !== 'dir') return { err: `rmdir: failed to remove '${p}': Not a directory` };
+    if (Object.keys(node.children).length > 0) return { err: `rmdir: failed to remove '${p}': Directory not empty` };
+    const { parent, name } = getParentAndName(absPath);
+    delete parent.children[name];
+  }
+  return { out: '' };
+}
+
+function cmdCat(args, inputText) {
+  if (!args.length) return { err: 'cat: missing file operand' };
+  const lines = [];
+  for (const p of args) {
+    const absPath = resolvePath(p);
+    const node = getNode(absPath);
+    if (!node) return { err: `cat: ${p}: No such file or directory` };
+    if (node.type === 'dir') return { err: `cat: ${p}: Is a directory` };
+    lines.push(node.content);
+  }
+  return { out: lines.join('\n') };
+}
+
+function cmdHead(args, inputText) {
+  let n = 10;
+  const files = [];
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '-n' && args[i + 1]) { n = parseInt(args[i + 1]); i++; }
+    else if (!args[i].startsWith('-')) files.push(args[i]);
+  }
+  if (inputText !== undefined) {
+    return { out: inputText.split('\n').slice(0, n).join('\n') };
+  }
+  if (!files.length) return { err: 'head: missing file operand' };
+  const allLines = [];
+  for (const p of files) {
+    const absPath = resolvePath(p);
+    const node = getNode(absPath);
+    if (!node) return { err: `head: cannot open '${p}' for reading: No such file or directory` };
+    if (node.type === 'dir') return { err: `head: error reading '${p}': Is a directory` };
+    allLines.push(node.content.split('\n').slice(0, n).join('\n'));
+  }
+  return { out: allLines.join('\n') };
+}
+
+function cmdTail(args, inputText) {
+  let n = 10;
+  const files = [];
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '-n' && args[i + 1]) { n = parseInt(args[i + 1]); i++; }
+    else if (!args[i].startsWith('-')) files.push(args[i]);
+  }
+  if (inputText !== undefined) {
+    const lines = inputText.split('\n');
+    return { out: lines.slice(Math.max(0, lines.length - n)).join('\n') };
+  }
+  if (!files.length) return { err: 'tail: missing file operand' };
+  const allLines = [];
+  for (const p of files) {
+    const absPath = resolvePath(p);
+    const node = getNode(absPath);
+    if (!node) return { err: `tail: cannot open '${p}' for reading: No such file or directory` };
+    if (node.type === 'dir') return { err: `tail: error reading '${p}': Is a directory` };
+    const lines = node.content.split('\n');
+    allLines.push(lines.slice(Math.max(0, lines.length - n)).join('\n'));
+  }
+  return { out: allLines.join('\n') };
+}
+
+function cmdWc(args, inputText) {
+  let countLines = false;
+  const files = [];
+  for (const a of args) {
+    if (a === '-l') countLines = true;
+    else if (!a.startsWith('-')) files.push(a);
+  }
+  if (inputText !== undefined) {
+    const count = inputText.split('\n').length;
+    return { out: String(count) };
+  }
+  if (!files.length) return { err: 'wc: missing file operand' };
+  const results = [];
+  for (const p of files) {
+    const absPath = resolvePath(p);
+    const node = getNode(absPath);
+    if (!node) return { err: `wc: ${p}: No such file or directory` };
+    if (node.type === 'dir') return { err: `wc: ${p}: Is a directory` };
+    const lineCount = node.content.split('\n').length;
+    if (countLines) {
+      results.push(`${lineCount} ${p}`);
+    } else {
+      const wordCount = node.content.split(/\s+/).filter(Boolean).length;
+      const charCount = node.content.length;
+      results.push(`  ${lineCount}  ${wordCount} ${charCount} ${p}`);
+    }
+  }
+  return { out: results.join('\n') };
+}
+
+function cmdFind(args) {
+  let startPath = '.';
+  let namePattern = null;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '-name' && args[i + 1]) {
+      namePattern = args[i + 1].replace(/^["']|["']$/g, '');
+      i++;
+    } else if (!args[i].startsWith('-')) {
+      startPath = args[i];
+    }
+  }
+  const absStart = resolvePath(startPath);
+  const node = getNode(absStart);
+  if (!node) return { err: `find: '${startPath}': No such file or directory` };
+
+  const results = [];
+  function walk(n, path) {
+    if (n.type === 'dir') {
+      for (const [name, child] of Object.entries(n.children).sort((a, b) => a[0].localeCompare(b[0]))) {
+        const childPath = path + '/' + name;
+        if (!namePattern || globMatch(namePattern, name)) {
+          results.push(childPath);
+        }
+        if (child.type === 'dir') walk(child, childPath);
+      }
+    }
+  }
+
+  // Determine display prefix
+  const displayStart = startPath === '.' ? '.' : displayPath(absStart);
+  // Remap absolute to display
+  walk(node, '');
+  const displayResults = results.map(r => displayStart + r);
+  return { out: displayResults.join('\n') };
+}
+
+function cmdGrep(args, inputText) {
+  let recursive = false, showLineNums = false, caseInsensitive = false;
+  let pattern = null;
+  const paths = [];
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i].startsWith('-') && !pattern) {
+      if (args[i].includes('r')) recursive = true;
+      if (args[i].includes('n')) showLineNums = true;
+      if (args[i].includes('i')) caseInsensitive = true;
+    } else if (!pattern) {
+      pattern = args[i].replace(/^["']|["']$/g, '');
+    } else {
+      paths.push(args[i]);
+    }
+  }
+
+  if (!pattern) return { err: 'grep: missing pattern' };
+
+  const flags = caseInsensitive ? 'i' : '';
+  let re;
+  try { re = new RegExp(pattern, flags); }
+  catch { re = new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags); }
+
+  if (inputText !== undefined) {
+    const lines = inputText.split('\n');
+    const matches = [];
+    lines.forEach((line, idx) => {
+      if (re.test(line)) {
+        matches.push(showLineNums ? `${idx + 1}:${line}` : line);
+      }
+    });
+    return { out: matches.join('\n') };
+  }
+
+  if (!paths.length) return { err: 'grep: missing file operand' };
+
+  const results = [];
+  const multiFile = paths.length > 1 || recursive;
+
+  function grepFile(absPath, displayName) {
+    const node = getNode(absPath);
+    if (!node || node.type === 'dir') return;
+    const lines = node.content.split('\n');
+    lines.forEach((line, idx) => {
+      if (re.test(line)) {
+        let prefix = multiFile ? displayName + ':' : '';
+        if (showLineNums) prefix += (idx + 1) + ':';
+        results.push(prefix + line);
+      }
+    });
+  }
+
+  function grepDir(absPath, displayPrefix) {
+    const node = getNode(absPath);
+    if (!node || node.type !== 'dir') return;
+    for (const [name, child] of Object.entries(node.children).sort((a, b) => a[0].localeCompare(b[0]))) {
+      const childAbs = absPath + '/' + name;
+      const childDisplay = displayPrefix + '/' + name;
+      if (child.type === 'file') {
+        grepFile(childAbs, displayPrefix + '/' + name);
+      } else if (child.type === 'dir' && recursive) {
+        grepDir(childAbs, childDisplay);
+      }
+    }
+  }
+
+  for (const p of paths) {
+    // Expand globs like scripts/*.R
+    if (p.includes('*')) {
+      const lastSlash = p.lastIndexOf('/');
+      const dirPart = lastSlash >= 0 ? p.slice(0, lastSlash) : '.';
+      const globPart = lastSlash >= 0 ? p.slice(lastSlash + 1) : p;
+      const absDirPath = resolvePath(dirPart);
+      const dirNode = getNode(absDirPath);
+      if (dirNode && dirNode.type === 'dir') {
+        for (const [name, child] of Object.entries(dirNode.children).sort((a, b) => a[0].localeCompare(b[0]))) {
+          if (child.type === 'file' && globMatch(globPart, name)) {
+            const displayName = (dirPart === '.' ? '' : dirPart + '/') + name;
+            grepFile(absDirPath + '/' + name, displayName);
+          }
+        }
+      }
+      continue;
+    }
+
+    const absPath = resolvePath(p);
+    const node = getNode(absPath);
+    if (!node) { results.push(`grep: ${p}: No such file or directory`); continue; }
+    if (node.type === 'dir') {
+      if (recursive) {
+        // Strip leading ./ for display
+        const displayPrefix = p === '.' ? '.' : p;
+        grepDir(absPath, displayPrefix);
+      } else {
+        results.push(`grep: ${p}: Is a directory`);
+      }
+    } else {
+      grepFile(absPath, p);
+    }
+  }
+  return { out: results.join('\n') };
+}
+
+function cmdEcho(args) {
+  return { out: args.join(' ') };
+}
+
+function cmdWhich(args) {
+  if (!args.length) return { err: 'which: missing argument' };
+  const known = {
+    ls: '/usr/bin/ls', cd: '/usr/bin/cd', pwd: '/usr/bin/pwd',
+    cat: '/usr/bin/cat', head: '/usr/bin/head', tail: '/usr/bin/tail',
+    grep: '/usr/bin/grep', find: '/usr/bin/find', echo: '/usr/bin/echo',
+    mkdir: '/usr/bin/mkdir', touch: '/usr/bin/touch', cp: '/usr/bin/cp',
+    mv: '/usr/bin/mv', rm: '/usr/bin/rm', rmdir: '/usr/bin/rmdir',
+    wc: '/usr/bin/wc', which: '/usr/bin/which', clear: '/usr/bin/clear',
+    history: '/usr/bin/history', R: '/usr/bin/R', Rscript: '/usr/bin/Rscript',
+    quarto: '/usr/local/bin/quarto', git: '/usr/bin/git', python: '/usr/bin/python3'
+  };
+  const lines = [];
+  for (const a of args) {
+    if (known[a]) lines.push(known[a]);
+    else lines.push(`${a} not found`);
+  }
+  return { out: lines.join('\n') };
+}
+
+function cmdHistory() {
+  const lines = state.commandHistory.map((c, i) => `  ${String(i + 1).padStart(4)}  ${c}`);
+  return { out: lines.join('\n') };
+}
+
+// ─── Command Router ───────────────────────────────────────────────────────────
+function executeCommand(cmdStr, pipeInput) {
+  const tokens = tokenise(cmdStr);
+  if (!tokens.length) return { out: '' };
+
+  const cmd = tokens[0];
+  const args = tokens.slice(1);
+  state.commandsUsed.add(cmd);
+
+  switch (cmd) {
+    case 'pwd': return { out: cmdPwd() };
+    case 'ls': return cmdLs(args, pipeInput);
+    case 'cd': return cmdCd(args);
+    case 'mkdir': return cmdMkdir(args);
+    case 'touch': return cmdTouch(args);
+    case 'cp': return cmdCp(args);
+    case 'mv': return cmdMv(args);
+    case 'rm': return cmdRm(args);
+    case 'rmdir': return cmdRmdir(args);
+    case 'cat': {
+      if (pipeInput !== undefined) return { out: pipeInput };
+      return cmdCat(args, pipeInput);
+    }
+    case 'head': return cmdHead(args, pipeInput);
+    case 'tail': return cmdTail(args, pipeInput);
+    case 'wc': return cmdWc(args, pipeInput);
+    case 'find': return cmdFind(args);
+    case 'grep': return cmdGrep(args, pipeInput);
+    case 'echo': return cmdEcho(args);
+    case 'which': return cmdWhich(args);
+    case 'history': return cmdHistory();
+    case 'clear': return { clear: true };
+    default:
+      return { err: `${cmd}: command not found` };
+  }
+}
+
+// ─── Process Input ────────────────────────────────────────────────────────────
+function processCommand(rawInput) {
+  const input = rawInput.trim();
+  if (!input) return;
+
+  state.commandHistory.push(input);
+  state.historyIndex = state.commandHistory.length;
+
+  outCmd(input);
+
+  // Parse pipeline
+  const pipeline = parsePipeline(input);
+
+  // Check last segment for redirect
+  const lastSeg = pipeline[pipeline.length - 1];
+  const { cmdPart: lastCmd, mode: redirectMode, filePath: redirectFile } = parseRedirect(lastSeg);
+  pipeline[pipeline.length - 1] = lastCmd;
+
+  // Handle clear specially
+  if (pipeline.length === 1 && pipeline[0].trim() === 'clear') {
+    clearOutput();
+    return;
+  }
+
+  // Execute pipeline
+  let pipeData = undefined;
+  for (let i = 0; i < pipeline.length; i++) {
+    const seg = pipeline[i].trim();
+    if (!seg) continue;
+    const result = executeCommand(seg, pipeData);
+    if (result.clear) { clearOutput(); return; }
+    if (result.err) { outLine(result.err, 'err'); return; }
+    pipeData = result.out || '';
+  }
+
+  // Handle redirect
+  if (redirectMode && redirectFile) {
+    const absPath = resolvePath(redirectFile);
+    // Ensure parent directory exists
+    const { parent, name } = getParentAndName(absPath);
+    if (!parent) { outLine(`bash: ${redirectFile}: No such file or directory`, 'err'); return; }
+    const existing = parent.children[name];
+    if (redirectMode === 'append') {
+      if (existing && existing.type === 'file') {
+        existing.content += (existing.content ? '\n' : '') + (pipeData || '');
+      } else {
+        parent.children[name] = { type: 'file', content: pipeData || '' };
+      }
+    } else {
+      parent.children[name] = { type: 'file', content: pipeData || '' };
+    }
+    // Don't print output when redirecting
+  } else if (pipeData) {
+    outLine(pipeData, 'out');
+  }
+
+  updateAll();
+  checkLessonStep(input);
+}
+
+// ─── File Tree Rendering ──────────────────────────────────────────────────────
+function renderFileTree() {
+  const container = document.getElementById('filetree');
+  container.innerHTML = '';
+
+  const projectPath = '/home/user/project';
+  const projectNode = getNode(projectPath);
+  if (!projectNode) return;
+
+  const rootDiv = document.createElement('div');
+  rootDiv.className = 'tree-entry' + (state.cwd === projectPath ? ' tree-cwd' : '');
+  const rootSpan = document.createElement('span');
+  rootSpan.className = 'tree-dir';
+  rootSpan.textContent = '~/project/';
+  rootSpan.onclick = () => { state.cwd = projectPath; updateAll(); };
+  rootDiv.appendChild(rootSpan);
+  container.appendChild(rootDiv);
+
+  function renderDir(node, absPath, prefix, isLast) {
+    const entries = Object.keys(node.children).sort((a, b) => {
+      const aDir = node.children[a].type === 'dir' ? 0 : 1;
+      const bDir = node.children[b].type === 'dir' ? 0 : 1;
+      if (aDir !== bDir) return aDir - bDir;
+      return a.localeCompare(b);
+    });
+
+    entries.forEach((name, idx) => {
+      const child = node.children[name];
+      const isLastEntry = idx === entries.length - 1;
+      const connector = isLastEntry ? '\u2514\u2500\u2500 ' : '\u251C\u2500\u2500 ';
+      const childPath = absPath + '/' + name;
+      const isCwd = state.cwd === childPath;
+
+      const div = document.createElement('div');
+      div.className = 'tree-entry' + (isCwd ? ' tree-cwd' : '');
+
+      const prefixSpan = document.createElement('span');
+      prefixSpan.className = 'tree-prefix';
+      prefixSpan.textContent = prefix + connector;
+      div.appendChild(prefixSpan);
+
+      if (child.type === 'dir') {
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'tree-dir';
+        nameSpan.textContent = name + '/';
+        nameSpan.onclick = () => { state.cwd = childPath; updateAll(); };
+        div.appendChild(nameSpan);
+      } else {
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'tree-file';
+        nameSpan.textContent = name;
+        div.appendChild(nameSpan);
+      }
+
+      container.appendChild(div);
+
+      if (child.type === 'dir') {
+        const newPrefix = prefix + (isLastEntry ? '    ' : '\u2502   ');
+        renderDir(child, childPath, newPrefix, isLastEntry);
+      }
+    });
+  }
+
+  renderDir(projectNode, projectPath, '', false);
+}
+
+// ─── Prompt Symbol ────────────────────────────────────────────────────────────
+function updatePromptSymbol() {
+  document.getElementById('prompt-symbol').textContent = displayPath(state.cwd) + ' $';
+}
+
+// ─── Session Summary ──────────────────────────────────────────────────────────
+function updateSummary() {
+  const el = document.getElementById('prompt-output');
+  if (!state.commandHistory.length) {
+    el.textContent = 'Run some commands to build your summary.';
+    return;
+  }
+
+  const parts = [];
+  const used = state.commandsUsed;
+  const total = state.commandHistory.length;
+
+  parts.push(`I've been practising bash commands in a simulated terminal environment.`);
+  parts.push(`So far I've run ${total} command${total !== 1 ? 's' : ''}.`);
+
+  const categories = {
+    'Navigation': ['pwd', 'cd', 'ls'],
+    'File management': ['mkdir', 'touch', 'cp', 'mv', 'rm', 'rmdir'],
+    'Reading files': ['cat', 'head', 'tail', 'wc'],
+    'Searching': ['find', 'grep'],
+    'Pipes & redirection': [],
+    'Utilities': ['echo', 'which', 'history']
+  };
+
+  const practised = [];
+  const unexplored = [];
+
+  for (const [cat, cmds] of Object.entries(categories)) {
+    if (cat === 'Pipes & redirection') {
+      const hasPipe = state.commandHistory.some(c => c.includes('|'));
+      const hasRedirect = state.commandHistory.some(c => c.includes('>'));
+      if (hasPipe || hasRedirect) practised.push(cat.toLowerCase());
+      else unexplored.push(cat.toLowerCase());
+      continue;
+    }
+    if (cmds.some(c => used.has(c))) practised.push(cat.toLowerCase());
+    else unexplored.push(cat.toLowerCase());
+  }
+
+  if (practised.length) {
+    parts.push(`\nAreas practised: ${practised.join(', ')}.`);
+  }
+
+  const cmdsUsedList = [...used].filter(c => c !== 'clear').sort();
+  if (cmdsUsedList.length) {
+    parts.push(`Commands used: ${cmdsUsedList.join(', ')}.`);
+  }
+
+  const completed = state.completedLessons.size;
+  if (completed > 0) {
+    parts.push(`\nCompleted ${completed}/${lessons.length} guided lessons.`);
+  }
+
+  if (unexplored.length) {
+    parts.push(`\nAreas not yet explored: ${unexplored.join(', ')}.`);
+  }
+
+  parts.push(`\nHelp me understand what I should practise next to build confidence with the command line for my R/Quarto projects.`);
+
+  el.textContent = parts.join('\n');
+}
+
+function copyPrompt() {
+  const text = document.getElementById('prompt-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Summary', 1500);
+  });
+}
+
+// ─── Lessons ──────────────────────────────────────────────────────────────────
+const lessons = [
+  {
+    title: '1. Where Am I?',
+    intro: "The terminal is just another way to browse folders on your computer \u2014 like File Explorer, but you type commands instead of clicking. Every terminal session has a 'current directory' \u2014 the folder you're currently in. Let's learn to navigate.",
+    steps: [
+      {
+        hint: 'Type <code>pwd</code> to see where you are.',
+        explain: "Print Working Directory shows where you are right now. It's like looking at the address bar in File Explorer. You'll use this whenever you're unsure which folder you're in.",
+        match: /^pwd$/
+      },
+      {
+        hint: 'Type <code>ls</code> to see what\u2019s here.',
+        explain: "List the contents of the current directory. This shows you what files and folders are here \u2014 the equivalent of looking at the file list in Explorer.",
+        match: /^ls$/
+      },
+      {
+        hint: 'Try <code>ls -l</code> for more detail.',
+        explain: "The -l flag means 'long format' \u2014 it shows extra details like file sizes. Handy when you want to check how big a data file is.",
+        match: /^ls\s+-l$/
+      },
+      {
+        hint: 'Move into the data folder: <code>cd data</code>.',
+        explain: "Change Directory moves you into a folder. Just like double-clicking a folder in Explorer. You can only cd into directories, not files.",
+        match: /^cd\s+data$/
+      },
+      {
+        hint: 'Check what\u2019s inside: <code>ls</code>.',
+        explain: "Check what's inside the data folder. You'll see two sub-folders: raw/ and clean/.",
+        match: /^ls$/
+      },
+      {
+        hint: 'Go back up one level: <code>cd ..</code>.',
+        explain: "Two dots (..) means 'go up one level' \u2014 back to the parent folder. This is how you navigate back up the folder tree.",
+        match: /^cd\s+\.\.$/
+      },
+      {
+        hint: 'Jump home: <code>cd ~</code>.',
+        explain: "The tilde (~) is a shortcut for your home directory. No matter where you are, cd ~ takes you home. It's your reset button.",
+        match: /^cd\s+~$/
+      },
+      {
+        hint: 'Jump straight to the project: <code>cd ~/project</code>.',
+        explain: "You can combine ~ with a path to jump directly to any folder under your home directory. This is faster than navigating step by step.",
+        match: /^cd\s+~\/project$/
+      }
+    ]
+  },
+  {
+    title: '2. Creating & Organising',
+    intro: "When starting a new analysis project, you'll often need to create a folder structure. While you'll usually create and edit files in Positron or RStudio, knowing these commands helps when you're working in the terminal for Git or running scripts.",
+    steps: [
+      {
+        hint: 'Create a new folder: <code>mkdir notes</code>.',
+        explain: "Make Directory creates a new empty folder. Think of it as right-click \u2192 New Folder in Explorer.",
+        match: /^mkdir\s+notes$/
+      },
+      {
+        hint: 'Create a file inside it: <code>touch notes/meeting-notes.txt</code>.',
+        explain: "touch creates an empty file. In practice, you'd usually create files in your IDE (Positron/RStudio), but touch is useful for quick placeholder files.",
+        match: /^touch\s+notes\/meeting-notes\.txt$/
+      },
+      {
+        hint: 'Verify: <code>ls notes</code>.',
+        explain: "Verify your new file was created. Always good to check your work.",
+        match: /^ls\s+notes$/
+      },
+      {
+        hint: 'Copy the README: <code>cp README.md notes/</code>.',
+        explain: "Copy a file to another location. The original stays where it is \u2014 you now have two copies.",
+        match: /^cp\s+README\.md\s+notes\/?$/
+      },
+      {
+        hint: 'Rename the file: <code>mv notes/meeting-notes.txt notes/minutes.txt</code>.',
+        explain: "Move (or rename) a file. mv does double duty: it both moves files between folders AND renames them. Here we're renaming.",
+        match: /^mv\s+notes\/meeting-notes\.txt\s+notes\/minutes\.txt$/
+      },
+      {
+        hint: 'Check the result: <code>ls notes</code>.',
+        explain: "Check the notes folder to confirm the rename worked.",
+        match: /^ls\s+notes$/
+      },
+      {
+        hint: 'Remove the copied README: <code>rm notes/README.md</code>.',
+        explain: "Remove (delete) a file. Be careful \u2014 there's no recycle bin in the terminal! Deleted files are gone for good.",
+        match: /^rm\s+notes\/README\.md$/
+      },
+      {
+        hint: 'Now remove the notes dir. First remove the file inside, then: <code>rmdir notes</code>.',
+        explain: "Remove an empty directory. This only works if the folder is empty. If it's not, you'll get an error \u2014 this is a safety feature. First remove files inside, then remove the directory.",
+        match: /^rmdir\s+notes$/
+      }
+    ]
+  },
+  {
+    title: '3. Looking at Files',
+    intro: "Before loading data into R, you often want a quick peek \u2014 how many rows? What are the column headers? Is the file comma-separated or tab-separated? These commands let you inspect files without opening them in a full application.",
+    steps: [
+      {
+        hint: 'Read the README: <code>cat README.md</code>.',
+        explain: "cat prints the entire file to the terminal. Great for short files like READMEs, but for large data files it would flood your screen.",
+        match: /^cat\s+README\.md$/
+      },
+      {
+        hint: 'Peek at the data: <code>head data/raw/survey_2024.csv</code>.',
+        explain: "head shows the first 10 lines of a file. Perfect for checking CSV headers and seeing the first few rows of data.",
+        match: /^head\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'Just 3 lines: <code>head -n 3 data/raw/survey_2024.csv</code>.',
+        explain: "The -n flag lets you specify exactly how many lines. head -n 3 shows just the header row plus two data rows.",
+        match: /^head\s+-n\s+3\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'See the end: <code>tail data/raw/survey_2024.csv</code>.',
+        explain: "tail shows the last 10 lines. Useful for checking the end of a log file or seeing the most recent entries in a dataset.",
+        match: /^tail\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'Last 3 lines: <code>tail -n 3 data/raw/survey_2024.csv</code>.',
+        explain: "tail -n 3 shows just the last 3 lines. Handy for a quick look at the bottom of your data.",
+        match: /^tail\s+-n\s+3\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'Count lines: <code>wc -l data/raw/survey_2024.csv</code>.',
+        explain: "wc -l counts the number of lines in a file. For a CSV, this tells you roughly how many rows of data you have (minus the header). Quick way to check file size without opening it.",
+        match: /^wc\s+-l\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'Read the R script: <code>cat scripts/analysis.R</code>.',
+        explain: "Let's look at the R script. cat works well here because R scripts are typically short enough to read in the terminal.",
+        match: /^cat\s+scripts\/analysis\.R$/
+      }
+    ]
+  },
+  {
+    title: '4. Finding Things',
+    intro: "When your project grows, you'll have dozens of files across many folders. Rather than clicking through each one, these commands let you find files by name and search inside files for specific text \u2014 like Ctrl+F but for your whole project.",
+    steps: [
+      {
+        hint: 'Find all CSVs: <code>find . -name "*.csv"</code>.',
+        explain: 'find searches for files by name. The dot (.) means \'start searching from here\'. The -name flag with *.csv finds all CSV files. The quotes around the pattern are important.',
+        match: /^find\s+\.\s+-name\s+["']?\*\.csv["']?$/
+      },
+      {
+        hint: 'Find all R scripts: <code>find . -name "*.R"</code>.',
+        explain: "Find all R script files in the project. This quickly shows you every R file, no matter how deeply nested in subfolders.",
+        match: /^find\s+\.\s+-name\s+["']?\*\.R["']?$/
+      },
+      {
+        hint: 'Search inside a file: <code>grep "library" scripts/analysis.R</code>.',
+        explain: "grep searches inside a file for a text pattern. Here we're finding every line that contains 'library' \u2014 useful for seeing what packages a script uses.",
+        match: /^grep\s+["']?library["']?\s+scripts\/analysis\.R$/
+      },
+      {
+        hint: 'With line numbers: <code>grep -n "survey" scripts/analysis.R</code>.',
+        explain: "The -n flag adds line numbers to the output. This tells you exactly where in the file the match is, so you can jump straight there in your IDE.",
+        match: /^grep\s+-n\s+["']?survey["']?\s+scripts\/analysis\.R$/
+      },
+      {
+        hint: 'Search all scripts: <code>grep -r "library" scripts/</code>.',
+        explain: "The -r flag means 'recursive' \u2014 search all files in the scripts/ folder and its subfolders. Essential when you want to find something across multiple files.",
+        match: /^grep\s+-r\s+["']?library["']?\s+scripts\/?$/
+      },
+      {
+        hint: 'Case-insensitive search: <code>grep -i "bristol" data/raw/survey_2024.csv</code>.',
+        explain: "The -i flag makes the search case-insensitive. 'Bristol', 'BRISTOL', and 'bristol' all match. Handy when you're not sure about capitalisation in your data.",
+        match: /^grep\s+-i\s+["']?bristol["']?\s+data\/raw\/survey_2024\.csv$/
+      }
+    ]
+  },
+  {
+    title: '5. Pipes & Redirection',
+    intro: "One of the most powerful ideas in the terminal: you can chain commands together, feeding the output of one into the input of another. If you've used the R pipe (|>), this will feel familiar \u2014 the concept is the same, just different syntax.",
+    steps: [
+      {
+        hint: 'Pipe head to wc: <code>head -n 5 data/raw/survey_2024.csv | wc -l</code>.',
+        explain: "The pipe (|) takes the output of head and feeds it into wc. This counts how many lines head produced. Like R's |>, data flows left to right.",
+        match: /^head\s+-n\s+5\s+data\/raw\/survey_2024\.csv\s*\|\s*wc\s+-l$/
+      },
+      {
+        hint: 'Count Bristol rows: <code>grep "Bristol" data/raw/survey_2024.csv | wc -l</code>.',
+        explain: "How many rows mention Bristol? grep finds them, then wc counts them. This is the terminal equivalent of filter() |> nrow() in R.",
+        match: /^grep\s+["']?Bristol["']?\s+data\/raw\/survey_2024\.csv\s*\|\s*wc\s+-l$/
+      },
+      {
+        hint: 'Limit grep results: <code>grep "employment" data/raw/survey_2024.csv | head -n 3</code>.',
+        explain: "Find lines about employment, but only show the first 3 matches. Useful when grep returns too many results.",
+        match: /^grep\s+["']?employment["']?\s+data\/raw\/survey_2024\.csv\s*\|\s*head\s+-n\s+3$/
+      },
+      {
+        hint: 'Write to a file: <code>echo "This is a test" > output/test.txt</code>.',
+        explain: "The > operator redirects output to a file, creating it if needed. Instead of printing to screen, the text goes into the file. WARNING: > overwrites any existing content!",
+        match: /^echo\s+.*>\s*output\/test\.txt$/
+      },
+      {
+        hint: 'Check it: <code>cat output/test.txt</code>.',
+        explain: "Verify the file was created with our text.",
+        match: /^cat\s+output\/test\.txt$/
+      },
+      {
+        hint: 'Append: <code>echo "Another line" >> output/test.txt</code>.',
+        explain: "The >> operator appends to a file instead of overwriting. Use >> when you want to add to an existing file, > when you want to start fresh.",
+        match: /^echo\s+.*>>\s*output\/test\.txt$/
+      },
+      {
+        hint: 'Check both lines: <code>cat output/test.txt</code>.',
+        explain: "Check that the file now has both lines.",
+        match: /^cat\s+output\/test\.txt$/
+      },
+      {
+        hint: 'Save grep output: <code>grep "library" scripts/*.R > output/dependencies.txt</code>.',
+        explain: "A practical example: find all library() calls across all R scripts and save the list to a file. This is genuinely useful for documenting project dependencies.",
+        match: /^grep\s+["']?library["']?\s+scripts\/\*\.R\s*>\s*output\/dependencies\.txt$/
+      },
+      {
+        hint: 'View it: <code>cat output/dependencies.txt</code>.',
+        explain: "View the dependencies file we just created.",
+        match: /^cat\s+output\/dependencies\.txt$/
+      }
+    ]
+  },
+  {
+    title: '6. Putting It Together',
+    intro: "Let's simulate a realistic workflow: you've just been given an unfamiliar project and need to understand what's in it. This is exactly what happens when you clone a colleague's repository or pick up someone else's analysis.",
+    steps: [
+      {
+        hint: 'Orient yourself: <code>pwd</code>.',
+        explain: "First, check where you are. Always orient yourself before starting work.",
+        match: /^pwd$/
+      },
+      {
+        hint: 'Overview: <code>ls -l</code>.',
+        explain: "Get an overview of the project structure. The long format helps you see what's a file versus a folder.",
+        match: /^ls\s+-l$/
+      },
+      {
+        hint: 'Read the README: <code>cat README.md</code>.',
+        explain: "Read the README first \u2014 good projects explain themselves. This tells you what the project is about and how it's organised.",
+        match: /^cat\s+README\.md$/
+      },
+      {
+        hint: 'Find the data: <code>find . -name "*.csv"</code>.',
+        explain: "Find the data files. CSVs are the most common format you'll encounter.",
+        match: /^find\s+\.\s+-name\s+["']?\*\.csv["']?$/
+      },
+      {
+        hint: 'Peek at it: <code>head -n 5 data/raw/survey_2024.csv</code>.',
+        explain: "Peek at the data. The first few rows show you the column names and data format.",
+        match: /^head\s+-n\s+5\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'Count rows: <code>wc -l data/raw/survey_2024.csv</code>.',
+        explain: "Count the rows to get a sense of the dataset size.",
+        match: /^wc\s+-l\s+data\/raw\/survey_2024\.csv$/
+      },
+      {
+        hint: 'Find references: <code>grep -r "survey" scripts/</code>.',
+        explain: "Find which scripts reference the survey data. This tells you where the data gets loaded and processed.",
+        match: /^grep\s+-r\s+["']?survey["']?\s+scripts\/?$/
+      },
+      {
+        hint: 'Check packages: <code>grep -n "library" scripts/analysis.R</code>.',
+        explain: "Check what packages the analysis needs. You might need to install these before running it.",
+        match: /^grep\s+-n\s+["']?library["']?\s+scripts\/analysis\.R$/
+      },
+      {
+        hint: 'Piped workflow: <code>head -n 5 data/raw/survey_2024.csv | grep "Bristol" > output/bristol_check.txt</code>.',
+        explain: "A piped workflow: peek at the data, filter for Bristol, save the result. Combines several things you've learned.",
+        match: /^head\s+-n\s+5\s+data\/raw\/survey_2024\.csv\s*\|\s*grep\s+["']?Bristol["']?\s*>\s*output\/bristol_check\.txt$/
+      },
+      {
+        hint: 'Check the result: <code>cat output/bristol_check.txt</code>.',
+        explain: "Check your saved output to verify it worked.",
+        match: /^cat\s+output\/bristol_check\.txt$/
+      }
+    ]
+  }
+];
+
+// ─── Lesson UI ────────────────────────────────────────────────────────────────
+function renderLessons() {
+  const list = document.getElementById('lesson-list');
+  list.innerHTML = '';
+  lessons.forEach((l, i) => {
+    const li = document.createElement('li');
+    li.className = 'lesson-item' + (i === state.currentLesson ? ' active' : '') + (state.completedLessons.has(i) ? ' completed' : '');
+    li.innerHTML = `<span class="check">${state.completedLessons.has(i) ? '\u2713' : '\u25CB'}</span>${l.title}`;
+    li.onclick = () => selectLesson(i);
+    list.appendChild(li);
+  });
+}
+
+function selectLesson(i) {
+  state.currentLesson = i;
+  state.currentStep = 0;
+  // Reset filesystem for clean lesson state
+  state.fs = buildInitialFS();
+  state.cwd = '/home/user/project';
+  clearOutput();
+  outLine('Switched to lesson: ' + lessons[i].title, 'info');
+  renderLessons();
+  updateHint();
+  updateAll();
+}
+
+function updateHint() {
+  const box = document.getElementById('hint-box');
+  if (state.mode === 'sandbox') {
+    box.innerHTML = '<strong>Sandbox mode</strong> \u2014 experiment freely! Type commands to explore the filesystem. The file tree above updates live.';
+    return;
+  }
+  const lesson = lessons[state.currentLesson];
+  if (!lesson) return;
+  const step = lesson.steps[state.currentStep];
+  if (!step) {
+    box.innerHTML = `<strong>\u2713 Lesson complete!</strong> Pick the next lesson from the list, or switch to Sandbox mode.`;
+    state.completedLessons.add(state.currentLesson);
+    renderLessons();
+    return;
+  }
+  let html = `<strong>${lesson.title}</strong> \u2014 Step ${state.currentStep + 1}/${lesson.steps.length}`;
+  html += `<div class="lesson-intro">${lesson.intro}</div>`;
+  html += `<div class="step-action">${step.hint}</div>`;
+  if (step.explain) {
+    html += `<div class="step-explain">${step.explain}</div>`;
+  }
+  box.innerHTML = html;
+}
+
+function checkLessonStep(cmd) {
+  if (state.mode !== 'learn') return;
+  const lesson = lessons[state.currentLesson];
+  if (!lesson) return;
+  const step = lesson.steps[state.currentStep];
+  if (!step) return;
+  if (step.match.test(cmd.trim())) {
+    state.currentStep++;
+    updateHint();
+  }
+}
+
+// ─── Command Reference ───────────────────────────────────────────────────────
+const cmdRefData = [
+  { cmd: 'pwd', desc: 'Print current directory' },
+  { cmd: 'ls [-l] [-a]', desc: 'List files' },
+  { cmd: 'cd <path>', desc: 'Change directory' },
+  { cmd: 'mkdir [-p] <dir>', desc: 'Create directory' },
+  { cmd: 'touch <file>', desc: 'Create empty file' },
+  { cmd: 'cp <src> <dst>', desc: 'Copy file' },
+  { cmd: 'mv <src> <dst>', desc: 'Move/rename' },
+  { cmd: 'rm <file>', desc: 'Delete file' },
+  { cmd: 'rmdir <dir>', desc: 'Delete empty dir' },
+  { cmd: 'cat <file>', desc: 'Print file contents' },
+  { cmd: 'head [-n N] <file>', desc: 'First N lines' },
+  { cmd: 'tail [-n N] <file>', desc: 'Last N lines' },
+  { cmd: 'wc -l <file>', desc: 'Count lines' },
+  { cmd: 'find . -name "pat"', desc: 'Find files' },
+  { cmd: 'grep [-rni] "pat" <file>', desc: 'Search in files' },
+  { cmd: 'echo "text"', desc: 'Print text' },
+  { cmd: 'cmd1 | cmd2', desc: 'Pipe output' },
+  { cmd: 'cmd > file', desc: 'Redirect (overwrite)' },
+  { cmd: 'cmd >> file', desc: 'Redirect (append)' },
+  { cmd: 'which <cmd>', desc: 'Show command path' },
+  { cmd: 'history', desc: 'Command history' },
+  { cmd: 'clear', desc: 'Clear output' },
+];
+
+function renderCmdRef() {
+  document.getElementById('cmd-ref').innerHTML = cmdRefData.map(c =>
+    `<div class="cmd-ref-item"><code>${c.cmd}</code><span class="desc"> ${c.desc}</span></div>`
+  ).join('');
+}
+
+// ─── Mode Toggle ──────────────────────────────────────────────────────────────
+function setMode(m) {
+  state.mode = m;
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === m);
+  });
+  document.getElementById('lesson-section').style.display = m === 'learn' ? 'block' : 'none';
+  updateHint();
+}
+
+// ─── Tab Completion ───────────────────────────────────────────────────────────
+function tabComplete(value) {
+  const parts = value.split(/\s+/);
+  const lastPart = parts[parts.length - 1];
+  if (!lastPart) return null;
+
+  // Determine the directory and partial name
+  let dirPath, partial;
+  const lastSlash = lastPart.lastIndexOf('/');
+  if (lastSlash >= 0) {
+    dirPath = resolvePath(lastPart.slice(0, lastSlash) || '/');
+    partial = lastPart.slice(lastSlash + 1);
+  } else {
+    dirPath = state.cwd;
+    partial = lastPart;
+  }
+
+  const dirNode = getNode(dirPath);
+  if (!dirNode || dirNode.type !== 'dir') return null;
+
+  const matches = Object.keys(dirNode.children).filter(n => n.startsWith(partial));
+  if (matches.length === 0) return null;
+  if (matches.length === 1) {
+    const match = matches[0];
+    const suffix = dirNode.children[match].type === 'dir' ? '/' : '';
+    const prefix = lastSlash >= 0 ? lastPart.slice(0, lastSlash + 1) : '';
+    parts[parts.length - 1] = prefix + match + suffix;
+    return { completed: parts.join(' '), matches: null };
+  }
+  // Multiple matches - show them
+  return { completed: null, matches };
+}
+
+// ─── Master Update ────────────────────────────────────────────────────────────
+function updateAll() {
+  renderFileTree();
+  updatePromptSymbol();
+  updateSummary();
+}
+
+// ─── Input Handling ───────────────────────────────────────────────────────────
+const input = document.getElementById('terminal-input');
+let tabHintTimer = null;
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const val = input.value;
+    input.value = '';
+    processCommand(val);
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (state.historyIndex > 0) {
+      state.historyIndex--;
+      input.value = state.commandHistory[state.historyIndex];
+    }
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (state.historyIndex < state.commandHistory.length - 1) {
+      state.historyIndex++;
+      input.value = state.commandHistory[state.historyIndex];
+    } else {
+      state.historyIndex = state.commandHistory.length;
+      input.value = '';
+    }
+  }
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const result = tabComplete(input.value);
+    if (result) {
+      if (result.completed) {
+        input.value = result.completed;
+      }
+      if (result.matches) {
+        const hint = document.getElementById('tab-hint');
+        hint.textContent = result.matches.join('  ');
+        hint.classList.add('visible');
+        clearTimeout(tabHintTimer);
+        tabHintTimer = setTimeout(() => hint.classList.remove('visible'), 2000);
+      }
+    }
+  }
+});
+
+// Click on terminal area focuses input
+document.querySelector('.terminal').addEventListener('click', () => input.focus());
+
+// ─── Initialise ───────────────────────────────────────────────────────────────
+renderLessons();
+renderCmdRef();
+updateHint();
+updateAll();
+
+outLine('Welcome to the Bash Learning Playground!', 'info');
+outLine('Follow the lessons on the left, or switch to Sandbox mode to explore freely.', 'info');
+outLine('Type commands below and press Enter.', 'info');
+outLine('', 'out');
+</script>
+</body>
+</html>
