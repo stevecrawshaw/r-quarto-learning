@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">category =</span> <span class="fu">replace_na</span>(category, <span class="st">"Unknown"</span>)</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
-<p><strong>Try It (10 min):</strong> Cheque your data for NAs with <code>check_missing()</code>. Decide how to handle them – drop the rows, fill with zeros, or replace with “Unknown”?</p>
+<p><strong>Try It (10 min):</strong> Check your data for NAs with <code>check_missing()</code>. Decide how to handle them – drop the rows, fill with zeros, or replace with “Unknown”?</p>
 </blockquote>
 <p><strong>Type Conversions:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
@@ -422,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">area =</span> <span class="fu">str_to_title</span>(area)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
-<p><strong>Try It (10 min):</strong> Reshape a wide example dataset to long format using <code>pivot_longer()</code>. Cheque the result with <code>glimpse()</code>.</p>
+<p><strong>Try It (10 min):</strong> Reshape a wide example dataset to long format using <code>pivot_longer()</code>. Check the result with <code>glimpse()</code>.</p>
 </blockquote>
 <p><strong>BREAK (15 min)</strong></p>
 </section>
@@ -441,10 +441,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="common-pitfalls" class="level3" data-number="6.2.6">
 <h3 data-number="6.2.6" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">6.2.6</span> Common Pitfalls</h3>
 <ol type="1">
-<li><strong><code>pivot_longer()</code> selects wrong columns</strong> – Use <code>cols = starts_with("x")</code> or name columns explicitly. Cheque with <code>names(data)</code> first.</li>
-<li><strong>Join produces more rows than expected</strong> – Duplicate keys in one table cause row multiplication. Cheque with <code>count(data, key_column)</code>.</li>
-<li><strong><code>read_excel()</code> reads numbers as text</strong> – Excel formatting can trick R. Use <code>mutate(value = as.numeric(value))</code> and cheque for introduced NAs.</li>
-<li><strong>File not found with <code>here()</code></strong> – Ensure you’re in the R Project. Run <code>here::here()</code> alone to cheque the project root.</li>
+<li><strong><code>pivot_longer()</code> selects wrong columns</strong> – Use <code>cols = starts_with("x")</code> or name columns explicitly. Check with <code>names(data)</code> first.</li>
+<li><strong>Join produces more rows than expected</strong> – Duplicate keys in one table cause row multiplication. Check with <code>count(data, key_column)</code>.</li>
+<li><strong><code>read_excel()</code> reads numbers as text</strong> – Excel formatting can trick R. Use <code>mutate(value = as.numeric(value))</code> and check for introduced NAs.</li>
+<li><strong>File not found with <code>here()</code></strong> – Ensure you’re in the R Project. Run <code>here::here()</code> alone to check the project root.</li>
 </ol>
 </section>
 <section id="part-6-real-data-workshop-45-min" class="level3" data-number="6.2.7">
@@ -468,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before we finish, take 2 minutes to write down:</p>
 <ol type="1">
 <li>One thing you understand now that you didn’t at the start</li>
-<li>One thing that’s still unclear or you’d like more practise with</li>
+<li>One thing that’s still unclear or you’d like more practice with</li>
 </ol>
 <p>What was the messiest thing about your data, and how did you fix it? Share with the group if you’re comfortable.</p>
 <p><strong>Homework (1-2 hours):</strong></p>
@@ -1076,7 +1076,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Try It (10 min):** Cheque your data for NAs with </span><span class="in">`check_missing()`</span><span class="at">. Decide how to handle them -- drop the rows, fill with zeros, or replace with "Unknown"?</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Try It (10 min):** Check your data for NAs with </span><span class="in">`check_missing()`</span><span class="at">. Decide how to handle them -- drop the rows, fill with zeros, or replace with "Unknown"?</span></span>
 <span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>**Type Conversions:**</span>
 <span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a></span>
@@ -1126,7 +1126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Try It (10 min):** Reshape a wide example dataset to long format using </span><span class="in">`pivot_longer()`</span><span class="at">. Cheque the result with </span><span class="in">`glimpse()`</span><span class="at">.</span></span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Try It (10 min):** Reshape a wide example dataset to long format using </span><span class="in">`pivot_longer()`</span><span class="at">. Check the result with </span><span class="in">`glimpse()`</span><span class="at">.</span></span>
 <span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a>**BREAK (15 min)**</span>
 <span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a></span>
@@ -1148,10 +1148,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Pitfalls</span></span>
 <span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**`pivot_longer()` selects wrong columns** -- Use <span class="in">`cols = starts_with("x")`</span> or name columns explicitly. Cheque with <span class="in">`names(data)`</span> first.</span>
-<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Join produces more rows than expected** -- Duplicate keys in one table cause row multiplication. Cheque with <span class="in">`count(data, key_column)`</span>.</span>
-<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**`read_excel()` reads numbers as text** -- Excel formatting can trick R. Use <span class="in">`mutate(value = as.numeric(value))`</span> and cheque for introduced NAs.</span>
-<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**File not found with `here()`** -- Ensure you're in the R Project. Run <span class="in">`here::here()`</span> alone to cheque the project root.</span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**`pivot_longer()` selects wrong columns** -- Use <span class="in">`cols = starts_with("x")`</span> or name columns explicitly. Check with <span class="in">`names(data)`</span> first.</span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Join produces more rows than expected** -- Duplicate keys in one table cause row multiplication. Check with <span class="in">`count(data, key_column)`</span>.</span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**`read_excel()` reads numbers as text** -- Excel formatting can trick R. Use <span class="in">`mutate(value = as.numeric(value))`</span> and check for introduced NAs.</span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**File not found with `here()`** -- Ensure you're in the R Project. Run <span class="in">`here::here()`</span> alone to check the project root.</span>
 <span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 6: Real Data Workshop (45 min)</span></span>
 <span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a></span>
@@ -1176,7 +1176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a>Before we finish, take 2 minutes to write down:</span>
 <span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>One thing you understand now that you didn't at the start</span>
-<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>One thing that's still unclear or you'd like more practise with</span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>One thing that's still unclear or you'd like more practice with</span>
 <span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a>What was the messiest thing about your data, and how did you fix it? Share with the group if you're comfortable.</span>
 <span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a></span>

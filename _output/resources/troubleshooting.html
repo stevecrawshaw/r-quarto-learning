@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Solution:</strong></p>
 <ul>
 <li>Restart terminal/Positron after Quarto installation</li>
-<li>Cheque PATH includes Quarto installation directory</li>
+<li>Check PATH includes Quarto installation directory</li>
 <li>Windows: May need to add to PATH manually</li>
 </ul>
 </section>
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Symptom:</strong> Package restoration taking very long or hanging</p>
 <p><strong>Solution:</strong></p>
 <ul>
-<li>Cheque internet connection</li>
+<li>Check internet connection</li>
 <li>Try individual package installation</li>
 <li>Clear renv cache: <code>renv::purge()</code></li>
 </ul>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Restart R session: <code>Session &gt; Restart R</code> in Positron</li>
 <li>Run code chunks sequentially from top to bottom</li>
-<li>Cheque for typos in variable names (R is case-sensitive)</li>
+<li>Check for typos in variable names (R is case-sensitive)</li>
 </ol>
 </section>
 <section id="rendering-errors" class="level4" data-number="11.2.1.4">
@@ -380,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Error in eval(expr, envir, enclos): could not find function...</code></pre>
 <p><strong>Solution:</strong></p>
 <ol type="1">
-<li>Cheque R console for specific error message</li>
+<li>Check R console for specific error message</li>
 <li>Ensure all required packages are loaded</li>
 <li>Verify all code chunks before the error run successfully</li>
 <li>Try rendering in a clean R session</li>
@@ -468,7 +468,7 @@ fatal: Could not read from remote repository.</code></pre>
 <ol type="1">
 <li>Verify R/Python installation</li>
 <li>Restart Positron</li>
-<li>Cheque Quarto can find R:</li>
+<li>Check Quarto can find R:</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -507,7 +507,7 @@ fatal: Could not read from remote repository.</code></pre>
 <p><strong>Symptom:</strong> Pressing Ctrl+Shift+Enter does nothing</p>
 <p><strong>Solution:</strong></p>
 <ol type="1">
-<li>Cheque R session is active (look for R console at bottom)</li>
+<li>Check R session is active (look for R console at bottom)</li>
 <li>Try <code>Session &gt; Restart R</code></li>
 <li>Verify renv is activated (session info should show renv)</li>
 <li>Close and reopen the <code>.qmd</code> file</li>
@@ -518,9 +518,9 @@ fatal: Could not read from remote repository.</code></pre>
 <p><strong>Symptom:</strong> File shows as binary or doesn’t open properly</p>
 <p><strong>Solution:</strong></p>
 <ol type="1">
-<li>Cheque file path is correct (use tab completion)</li>
+<li>Check file path is correct (use tab completion)</li>
 <li>Try <code>File &gt; Open Project</code> and reopening project</li>
-<li>Cheque file encoding (should be UTF-8)</li>
+<li>Check file encoding (should be UTF-8)</li>
 </ol>
 </section>
 </section>
@@ -1165,7 +1165,7 @@ Reproducible example:
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Restart terminal/Positron after Quarto installation</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cheque PATH includes Quarto installation directory</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check PATH includes Quarto installation directory</span>
 <span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Windows: May need to add to PATH manually</span>
 <span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### "Python package installation fails"</span></span>
@@ -1189,7 +1189,7 @@ Reproducible example:
 <span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cheque internet connection</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check internet connection</span>
 <span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try individual package installation</span>
 <span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clear renv cache: <span class="in">`renv::purge()`</span></span>
 <span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a></span>
@@ -1250,7 +1250,7 @@ Reproducible example:
 <span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-99"><a href="#cb31-99" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Restart R session: <span class="in">`Session &gt; Restart R`</span> in Positron</span>
 <span id="cb31-100"><a href="#cb31-100" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Run code chunks sequentially from top to bottom</span>
-<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cheque for typos in variable names (R is case-sensitive)</span>
+<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check for typos in variable names (R is case-sensitive)</span>
 <span id="cb31-102"><a href="#cb31-102" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-103"><a href="#cb31-103" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Rendering errors</span></span>
 <span id="cb31-104"><a href="#cb31-104" aria-hidden="true" tabindex="-1"></a></span>
@@ -1261,7 +1261,7 @@ Reproducible example:
 <span id="cb31-109"><a href="#cb31-109" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-110"><a href="#cb31-110" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-111"><a href="#cb31-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cheque R console for specific error message</span>
+<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check R console for specific error message</span>
 <span id="cb31-113"><a href="#cb31-113" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Ensure all required packages are loaded</span>
 <span id="cb31-114"><a href="#cb31-114" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify all code chunks before the error run successfully</span>
 <span id="cb31-115"><a href="#cb31-115" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Try rendering in a clean R session</span>
@@ -1381,7 +1381,7 @@ Reproducible example:
 <span id="cb31-229"><a href="#cb31-229" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-230"><a href="#cb31-230" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Verify R/Python installation</span>
 <span id="cb31-231"><a href="#cb31-231" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Restart Positron</span>
-<span id="cb31-232"><a href="#cb31-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cheque Quarto can find R:</span>
+<span id="cb31-232"><a href="#cb31-232" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check Quarto can find R:</span>
 <span id="cb31-233"><a href="#cb31-233" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-234"><a href="#cb31-234" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
 <span id="cb31-235"><a href="#cb31-235" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span>
@@ -1434,7 +1434,7 @@ Reproducible example:
 <span id="cb31-282"><a href="#cb31-282" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-283"><a href="#cb31-283" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-284"><a href="#cb31-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-285"><a href="#cb31-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cheque R session is active (look for R console at bottom)</span>
+<span id="cb31-285"><a href="#cb31-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check R session is active (look for R console at bottom)</span>
 <span id="cb31-286"><a href="#cb31-286" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Try <span class="in">`Session &gt; Restart R`</span></span>
 <span id="cb31-287"><a href="#cb31-287" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify renv is activated (session info should show renv)</span>
 <span id="cb31-288"><a href="#cb31-288" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Close and reopen the <span class="in">`.qmd`</span> file</span>
@@ -1445,9 +1445,9 @@ Reproducible example:
 <span id="cb31-293"><a href="#cb31-293" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-294"><a href="#cb31-294" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
 <span id="cb31-295"><a href="#cb31-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-296"><a href="#cb31-296" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Cheque file path is correct (use tab completion)</span>
+<span id="cb31-296"><a href="#cb31-296" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check file path is correct (use tab completion)</span>
 <span id="cb31-297"><a href="#cb31-297" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Try <span class="in">`File &gt; Open Project`</span> and reopening project</span>
-<span id="cb31-298"><a href="#cb31-298" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Cheque file encoding (should be UTF-8)</span>
+<span id="cb31-298"><a href="#cb31-298" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Check file encoding (should be UTF-8)</span>
 <span id="cb31-299"><a href="#cb31-299" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-300"><a href="#cb31-300" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Issues</span></span>
 <span id="cb31-301"><a href="#cb31-301" aria-hidden="true" tabindex="-1"></a></span>

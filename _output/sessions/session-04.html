@@ -476,14 +476,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>As shown in @fig-employment-trend, employment rates have</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>steadily increased over the past decade.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
-<p><strong>Try It (10 min):</strong> Add a label to your figure chunk (e.g.&nbsp;<code>#| label: fig-my-chart</code>) and reference it in your text with <code>@fig-my-chart</code>. Re-render and cheque the link works.</p>
+<p><strong>Try It (10 min):</strong> Add a label to your figure chunk (e.g.&nbsp;<code>#| label: fig-my-chart</code>) and reference it in your text with <code>@fig-my-chart</code>. Re-render and check the link works.</p>
 </blockquote>
 </section>
 <section id="common-pitfalls" class="level3" data-number="7.2.6">
 <h3 data-number="7.2.6" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">7.2.6</span> Common Pitfalls</h3>
 <ol type="1">
-<li><strong>Cross-reference doesn’t link</strong> – Label must start with <code>fig-</code> or <code>tbl-</code> prefix. Cheque: <code>#| label: fig-my-chart</code> not <code>#| label: my-chart</code>.</li>
-<li><strong>YAML error on render</strong> – Indentation matters. Use 2 spaces, never tabs. Cheque colons have a space after them.</li>
+<li><strong>Cross-reference doesn’t link</strong> – Label must start with <code>fig-</code> or <code>tbl-</code> prefix. Check: <code>#| label: fig-my-chart</code> not <code>#| label: my-chart</code>.</li>
+<li><strong>YAML error on render</strong> – Indentation matters. Use 2 spaces, never tabs. Check colons have a space after them.</li>
 <li><strong>Inline R shows code instead of result</strong> – Ensure backtick-r-space syntax is correct and the referenced object exists in an earlier chunk.</li>
 <li><strong>Figure caption missing from output</strong> – Need both <code>#| label:</code> and <code>#| fig-cap:</code> in the same chunk.</li>
 </ol>
@@ -539,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before we finish, take 2 minutes to write down:</p>
 <ol type="1">
 <li>One thing you understand now that you didn’t at the start</li>
-<li>One thing that’s still unclear or you’d like more practise with</li>
+<li>One thing that’s still unclear or you’d like more practice with</li>
 </ol>
 <p>What’s the biggest advantage of Quarto over copy-paste reporting? Share with the group if you’re comfortable.</p>
 <p><strong>Homework (1-2 hours):</strong></p>
@@ -1199,12 +1199,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a><span class="in">steadily increased over the past decade.</span></span>
 <span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
 <span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Try It (10 min):** Add a label to your figure chunk (e.g. </span><span class="in">`#| label: fig-my-chart`</span><span class="at">) and reference it in your text with </span><span class="in">`@fig-my-chart`</span><span class="at">. Re-render and cheque the link works.</span></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Try It (10 min):** Add a label to your figure chunk (e.g. </span><span class="in">`#| label: fig-my-chart`</span><span class="at">) and reference it in your text with </span><span class="in">`@fig-my-chart`</span><span class="at">. Re-render and check the link works.</span></span>
 <span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Pitfalls</span></span>
 <span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Cross-reference doesn't link** -- Label must start with <span class="in">`fig-`</span> or <span class="in">`tbl-`</span> prefix. Cheque: <span class="in">`#| label: fig-my-chart`</span> not <span class="in">`#| label: my-chart`</span>.</span>
-<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**YAML error on render** -- Indentation matters. Use 2 spaces, never tabs. Cheque colons have a space after them.</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Cross-reference doesn't link** -- Label must start with <span class="in">`fig-`</span> or <span class="in">`tbl-`</span> prefix. Check: <span class="in">`#| label: fig-my-chart`</span> not <span class="in">`#| label: my-chart`</span>.</span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**YAML error on render** -- Indentation matters. Use 2 spaces, never tabs. Check colons have a space after them.</span>
 <span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Inline R shows code instead of result** -- Ensure backtick-r-space syntax is correct and the referenced object exists in an earlier chunk.</span>
 <span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Figure caption missing from output** -- Need both <span class="in">`#| label:`</span> and <span class="in">`#| fig-cap:`</span> in the same chunk.</span>
 <span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a></span>
@@ -1267,7 +1267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>Before we finish, take 2 minutes to write down:</span>
 <span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>One thing you understand now that you didn't at the start</span>
-<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>One thing that's still unclear or you'd like more practise with</span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>One thing that's still unclear or you'd like more practice with</span>
 <span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a>What's the biggest advantage of Quarto over copy-paste reporting? Share with the group if you're comfortable.</span>
 <span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a></span>
