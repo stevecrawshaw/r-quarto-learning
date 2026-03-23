@@ -79,7 +79,7 @@ ggplot(bus_data, aes(x = year, y = ridership)) +
 
 - Package not found → `renv::restore()`
 - File path errors → Emphasise `here::here()`
-- Rendering fails → Cheque R console for errors
+- Rendering fails → Check R console for errors
 
 **BREAK (15 min)**
 
@@ -149,7 +149,7 @@ Each analyst modifies their example indicator:
 Before we finish, take 2 minutes to write down:
 
 1. One thing you understand now that you didn't at the start
-2. One thing that's still unclear or you'd like more practise with
+2. One thing that's still unclear or you'd like more practice with
 
 What surprised you about the code-first workflow? Share with the group if you're comfortable.
 

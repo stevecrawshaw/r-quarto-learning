@@ -172,12 +172,12 @@ As shown in @fig-employment-trend, employment rates have
 steadily increased over the past decade.
 ````
 
-> **Try It (10 min):** Add a label to your figure chunk (e.g. `#| label: fig-my-chart`) and reference it in your text with `@fig-my-chart`. Re-render and cheque the link works.
+> **Try It (10 min):** Add a label to your figure chunk (e.g. `#| label: fig-my-chart`) and reference it in your text with `@fig-my-chart`. Re-render and check the link works.
 
 ### Common Pitfalls
 
-1. **Cross-reference doesn't link** -- Label must start with `fig-` or `tbl-` prefix. Cheque: `#| label: fig-my-chart` not `#| label: my-chart`.
-2. **YAML error on render** -- Indentation matters. Use 2 spaces, never tabs. Cheque colons have a space after them.
+1. **Cross-reference doesn't link** -- Label must start with `fig-` or `tbl-` prefix. Check: `#| label: fig-my-chart` not `#| label: my-chart`.
+2. **YAML error on render** -- Indentation matters. Use 2 spaces, never tabs. Check colons have a space after them.
 3. **Inline R shows code instead of result** -- Ensure backtick-r-space syntax is correct and the referenced object exists in an earlier chunk.
 4. **Figure caption missing from output** -- Need both `#| label:` and `#| fig-cap:` in the same chunk.
 
@@ -240,7 +240,7 @@ Create a complete indicator section with:
 Before we finish, take 2 minutes to write down:
 
 1. One thing you understand now that you didn't at the start
-2. One thing that's still unclear or you'd like more practise with
+2. One thing that's still unclear or you'd like more practice with
 
 What's the biggest advantage of Quarto over copy-paste reporting? Share with the group if you're comfortable.
 

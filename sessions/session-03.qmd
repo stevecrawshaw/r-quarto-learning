@@ -121,7 +121,7 @@ data_filled <- data %>%
   )
 ```
 
-> **Try It (10 min):** Cheque your data for NAs with `check_missing()`. Decide how to handle them -- drop the rows, fill with zeros, or replace with "Unknown"?
+> **Try It (10 min):** Check your data for NAs with `check_missing()`. Decide how to handle them -- drop the rows, fill with zeros, or replace with "Unknown"?
 
 **Type Conversions:**
 
@@ -171,7 +171,7 @@ data_long <- data_wide %>%
   )
 ```
 
-> **Try It (10 min):** Reshape a wide example dataset to long format using `pivot_longer()`. Cheque the result with `glimpse()`.
+> **Try It (10 min):** Reshape a wide example dataset to long format using `pivot_longer()`. Check the result with `glimpse()`.
 
 **BREAK (15 min)**
 
@@ -193,10 +193,10 @@ combined <- data1 %>%
 
 ### Common Pitfalls
 
-1. **`pivot_longer()` selects wrong columns** -- Use `cols = starts_with("x")` or name columns explicitly. Cheque with `names(data)` first.
-2. **Join produces more rows than expected** -- Duplicate keys in one table cause row multiplication. Cheque with `count(data, key_column)`.
-3. **`read_excel()` reads numbers as text** -- Excel formatting can trick R. Use `mutate(value = as.numeric(value))` and cheque for introduced NAs.
-4. **File not found with `here()`** -- Ensure you're in the R Project. Run `here::here()` alone to cheque the project root.
+1. **`pivot_longer()` selects wrong columns** -- Use `cols = starts_with("x")` or name columns explicitly. Check with `names(data)` first.
+2. **Join produces more rows than expected** -- Duplicate keys in one table cause row multiplication. Check with `count(data, key_column)`.
+3. **`read_excel()` reads numbers as text** -- Excel formatting can trick R. Use `mutate(value = as.numeric(value))` and check for introduced NAs.
+4. **File not found with `here()`** -- Ensure you're in the R Project. Run `here::here()` alone to check the project root.
 
 ### Part 6: Real Data Workshop (45 min)
 
@@ -221,7 +221,7 @@ Work with real WECA datasets:
 Before we finish, take 2 minutes to write down:
 
 1. One thing you understand now that you didn't at the start
-2. One thing that's still unclear or you'd like more practise with
+2. One thing that's still unclear or you'd like more practice with
 
 What was the messiest thing about your data, and how did you fix it? Share with the group if you're comfortable.
 

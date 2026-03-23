@@ -101,7 +101,7 @@ This course follows evidence-based pedagogical principles:
 3. **Visual Feedback Early** - Create charts in Session 1 for immediate gratification
 4. **Real-World Application** - Build actual WECA indicators, not toy examples
 5. **Literate Programming** - Code + narrative from day one via Quarto
-6. **Active Learning** - Live coding, immediate practise, pair programming
+6. **Active Learning** - Live coding, immediate practice, pair programming
 7. **Low Friction** - Pre-installed software, standardised helper functions
 
 ## Interactive Playgrounds

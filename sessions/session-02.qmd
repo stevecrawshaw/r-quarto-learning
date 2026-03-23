@@ -148,13 +148,13 @@ ggplot(bus_data, aes(x = year, y = ridership)) +
 
 1. **`could not find function "filter"`** → Load library: `library(tidyverse)`
 2. **`object 'data' not found`** → Run the chunk that loads the data first
-3. **`unexpected symbol`** → Cheque for missing commas, quotes, or parentheses
+3. **`unexpected symbol`** → Check for missing commas, quotes, or parentheses
 4. **`'x' and 'y' lengths differ`** → Data columns have different numbers of rows
 
 **Debugging Strategy:**
 
 1. Read the error message (bottom-up in stack trace)
-2. Cheque the line number mentioned
+2. Check the line number mentioned
 3. Look for typos in variable/column names
 4. Run code chunk-by-chunk to isolate the problem
 5. Use `View(data)` to inspect your data frame, use the data explorer or use data |> glimpse()
@@ -166,7 +166,7 @@ ggplot(bus_data, aes(x = year, y = ridership)) +
 Before we finish, take 2 minutes to write down:
 
 1. One thing you understand now that you didn't at the start
-2. One thing that's still unclear or you'd like more practise with
+2. One thing that's still unclear or you'd like more practice with
 
 Which dplyr verb felt most natural? Which was most confusing? Share with the group if you're comfortable.
 

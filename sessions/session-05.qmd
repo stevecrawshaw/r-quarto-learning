@@ -50,7 +50,7 @@ Before working with Git on real files, try the interactive [Git Learning Playgro
 
 **Essential Commands:**
 
-**1. Cheque Status:**
+**1. Check Status:**
 
 ```bash
 git status
@@ -88,7 +88,7 @@ git push
 
 1. Open Git Bash in the indicators project
 2. Make a small change to your chapter
-3. Cheque status: `git status`
+3. Check status: `git status`
 4. View changes: `git diff`
 5. Stage: `git add chapters/XX-topic/index.qmd`
 6. Commit: `git commit -m "Update chapter introduction"`
@@ -289,7 +289,7 @@ Complete the full Git workflow end-to-end:
 Before we finish, take 2 minutes to write down:
 
 1. One thing you understand now that you didn't at the start
-2. One thing that's still unclear or you'd like more practise with
+2. One thing that's still unclear or you'd like more practice with
 
 What part of the Git workflow would you want to practise more? Share with the group if you're comfortable.
 
