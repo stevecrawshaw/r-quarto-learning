@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Session 3: Data Wrangling – WECA R &amp; Quarto Training</title>
+<title>7&nbsp; Session 3: Data Wrangling – WECA R &amp; Quarto Training</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../sessions/session-02.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ba49aae5a029aaffbd3f8d05e76d9a53.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-47ac4aec12e2dcd3e5eabaebee350354.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/session-01.html">Training Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/session-03.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/session-01.html">Training Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/session-03.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -170,6 +172,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teaching Pedagogy</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Indicator Workflow Overview</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,31 +192,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/session-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 1: The Whole Game</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 1: The Whole Game</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/session-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 2: R Fundamentals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 2: R Fundamentals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/session-03.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/session-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 4: Quarto Mastery</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 4: Quarto Mastery</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/session-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 5: Git Collaboration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 5: Git Collaboration</span></span></a>
   </div>
 </li>
       </ul>
@@ -225,19 +233,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources/datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practice Datasets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practice Datasets</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources/setup-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Setup Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Setup Guide</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Troubleshooting Guide</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,17 +260,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes"><span class="header-section-number">6.1</span> Learning Outcomes</a></li>
-  <li><a href="#session-structure" id="toc-session-structure" class="nav-link" data-scroll-target="#session-structure"><span class="header-section-number">6.2</span> Session Structure</a>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes"><span class="header-section-number">7.1</span> Learning Outcomes</a></li>
+  <li><a href="#session-structure" id="toc-session-structure" class="nav-link" data-scroll-target="#session-structure"><span class="header-section-number">7.2</span> Session Structure</a>
   <ul class="collapse">
-  <li><a href="#part-1-homework-review-setup-30-min" id="toc-part-1-homework-review-setup-30-min" class="nav-link" data-scroll-target="#part-1-homework-review-setup-30-min"><span class="header-section-number">6.2.1</span> Part 1: Homework Review &amp; Setup (30 min)</a></li>
-  <li><a href="#part-2-importing-data-45-min" id="toc-part-2-importing-data-45-min" class="nav-link" data-scroll-target="#part-2-importing-data-45-min"><span class="header-section-number">6.2.2</span> Part 2: Importing Data (45 min)</a></li>
-  <li><a href="#part-3-data-cleaning-essentials-60-min" id="toc-part-3-data-cleaning-essentials-60-min" class="nav-link" data-scroll-target="#part-3-data-cleaning-essentials-60-min"><span class="header-section-number">6.2.3</span> Part 3: Data Cleaning Essentials (60 min)</a></li>
-  <li><a href="#part-4-reshaping-data-60-min" id="toc-part-4-reshaping-data-60-min" class="nav-link" data-scroll-target="#part-4-reshaping-data-60-min"><span class="header-section-number">6.2.4</span> Part 4: Reshaping Data (60 min)</a></li>
-  <li><a href="#part-5-joining-datasets-30-min" id="toc-part-5-joining-datasets-30-min" class="nav-link" data-scroll-target="#part-5-joining-datasets-30-min"><span class="header-section-number">6.2.5</span> Part 5: Joining Datasets (30 min)</a></li>
-  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">6.2.6</span> Common Pitfalls</a></li>
-  <li><a href="#part-6-real-data-workshop-45-min" id="toc-part-6-real-data-workshop-45-min" class="nav-link" data-scroll-target="#part-6-real-data-workshop-45-min"><span class="header-section-number">6.2.7</span> Part 6: Real Data Workshop (45 min)</a></li>
-  <li><a href="#part-7-wrap-up-homework-15-min" id="toc-part-7-wrap-up-homework-15-min" class="nav-link" data-scroll-target="#part-7-wrap-up-homework-15-min"><span class="header-section-number">6.2.8</span> Part 7: Wrap-up &amp; Homework (15 min)</a></li>
+  <li><a href="#part-1-homework-review-setup-30-min" id="toc-part-1-homework-review-setup-30-min" class="nav-link" data-scroll-target="#part-1-homework-review-setup-30-min"><span class="header-section-number">7.2.1</span> Part 1: Homework Review &amp; Setup (30 min)</a></li>
+  <li><a href="#part-2-importing-data-45-min" id="toc-part-2-importing-data-45-min" class="nav-link" data-scroll-target="#part-2-importing-data-45-min"><span class="header-section-number">7.2.2</span> Part 2: Importing Data (45 min)</a></li>
+  <li><a href="#part-3-data-cleaning-essentials-60-min" id="toc-part-3-data-cleaning-essentials-60-min" class="nav-link" data-scroll-target="#part-3-data-cleaning-essentials-60-min"><span class="header-section-number">7.2.3</span> Part 3: Data Cleaning Essentials (60 min)</a></li>
+  <li><a href="#part-4-reshaping-data-60-min" id="toc-part-4-reshaping-data-60-min" class="nav-link" data-scroll-target="#part-4-reshaping-data-60-min"><span class="header-section-number">7.2.4</span> Part 4: Reshaping Data (60 min)</a></li>
+  <li><a href="#part-5-joining-datasets-30-min" id="toc-part-5-joining-datasets-30-min" class="nav-link" data-scroll-target="#part-5-joining-datasets-30-min"><span class="header-section-number">7.2.5</span> Part 5: Joining Datasets (30 min)</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">7.2.6</span> Common Pitfalls</a></li>
+  <li><a href="#part-6-real-data-workshop-45-min" id="toc-part-6-real-data-workshop-45-min" class="nav-link" data-scroll-target="#part-6-real-data-workshop-45-min"><span class="header-section-number">7.2.7</span> Part 6: Real Data Workshop (45 min)</a></li>
+  <li><a href="#part-7-wrap-up-homework-15-min" id="toc-part-7-wrap-up-homework-15-min" class="nav-link" data-scroll-target="#part-7-wrap-up-homework-15-min"><span class="header-section-number">7.2.8</span> Part 7: Wrap-up &amp; Homework (15 min)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -270,9 +278,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/session-01.html">Training Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/session-03.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/session-01.html">Training Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/session-03.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 3: Data Wrangling</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 <p class="subtitle lead">Clean and prepare real-world data</p>
 </div>
 
@@ -295,8 +303,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Goal:</strong> Master the skills to clean, reshape, and prepare messy real-world data for analysis.</li>
 </ul>
 <p>Real data is messy. Column names are inconsistent, values are missing, formats are wrong. Data wrangling is where analysts spend most of their time – and it’s the step that’s invisible in Excel. Today you learn to do it reproducibly.</p>
-<section id="learning-outcomes" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="learning-outcomes"><span class="header-section-number">6.1</span> Learning Outcomes</h2>
+<section id="learning-outcomes" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="learning-outcomes"><span class="header-section-number">7.1</span> Learning Outcomes</h2>
 <ul>
 <li>Import data from CSV and Excel files</li>
 <li>Handle missing values and data quality issues</li>
@@ -306,10 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Use the <code>here()</code> package for robust file paths</li>
 </ul>
 </section>
-<section id="session-structure" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="session-structure"><span class="header-section-number">6.2</span> Session Structure</h2>
-<section id="part-1-homework-review-setup-30-min" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="part-1-homework-review-setup-30-min"><span class="header-section-number">6.2.1</span> Part 1: Homework Review &amp; Setup (30 min)</h3>
+<section id="session-structure" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="session-structure"><span class="header-section-number">7.2</span> Session Structure</h2>
+<section id="part-1-homework-review-setup-30-min" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="part-1-homework-review-setup-30-min"><span class="header-section-number">7.2.1</span> Part 1: Homework Review &amp; Setup (30 min)</h3>
 <p><strong>Homework Review (25 min):</strong></p>
 <ul>
 <li>Volunteer demos of homework indicators</li>
@@ -318,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Setting Up Your Practise Script (5 min):</strong></p>
 <p>As in Session 2, create a new R script for today’s exercises:</p>
 <ol type="1">
-<li>In Positron, <code>File &gt; New File &gt; R Script</code> (or <code>Ctrl+Shift+N</code>)</li>
+<li>In RStudio, <code>File &gt; New File &gt; R Script</code> (or <code>Ctrl+Shift+N</code>)</li>
 <li>Save as <code>scripts/R/session-03-practice.R</code></li>
 <li>Add a header and load the libraries you’ll need:</li>
 </ol>
@@ -331,8 +339,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"R"</span>, <span class="st">"helpers.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run lines with <code>Ctrl+Enter</code> or highlight a block and use <code>Ctrl+Shift+Enter</code>. Keep your code as you go – this file becomes a useful reference for your own indicator work.</p>
 </section>
-<section id="part-2-importing-data-45-min" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="part-2-importing-data-45-min"><span class="header-section-number">6.2.2</span> Part 2: Importing Data (45 min)</h3>
+<section id="part-2-importing-data-45-min" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="part-2-importing-data-45-min"><span class="header-section-number">7.2.2</span> Part 2: Importing Data (45 min)</h3>
 <p>Your indicator starts with a CSV or Excel download. Getting it into R cleanly is the first step.</p>
 <p><strong>Reading CSV Files:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -361,8 +369,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p><strong>BREAK (15 min)</strong></p>
 </section>
-<section id="part-3-data-cleaning-essentials-60-min" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="part-3-data-cleaning-essentials-60-min"><span class="header-section-number">6.2.3</span> Part 3: Data Cleaning Essentials (60 min)</h3>
+<section id="part-3-data-cleaning-essentials-60-min" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="part-3-data-cleaning-essentials-60-min"><span class="header-section-number">7.2.3</span> Part 3: Data Cleaning Essentials (60 min)</h3>
 <p>Real government data has messy names, missing values, and mixed types. This is how you fix them.</p>
 <p><strong>Cleaning Column Names:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
@@ -398,8 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>BREAK (15 min)</strong></p>
 </section>
-<section id="part-4-reshaping-data-60-min" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="part-4-reshaping-data-60-min"><span class="header-section-number">6.2.4</span> Part 4: Reshaping Data (60 min)</h3>
+<section id="part-4-reshaping-data-60-min" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="part-4-reshaping-data-60-min"><span class="header-section-number">7.2.4</span> Part 4: Reshaping Data (60 min)</h3>
 <p>ONS data often arrives in wide format (one column per year). Your charts need long format.</p>
 <p><strong>Understanding Wide vs.&nbsp;Long Format:</strong></p>
 <p>Wide format (like Excel):</p>
@@ -426,8 +434,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p><strong>BREAK (15 min)</strong></p>
 </section>
-<section id="part-5-joining-datasets-30-min" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="part-5-joining-datasets-30-min"><span class="header-section-number">6.2.5</span> Part 5: Joining Datasets (30 min)</h3>
+<section id="part-5-joining-datasets-30-min" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="part-5-joining-datasets-30-min"><span class="header-section-number">7.2.5</span> Part 5: Joining Datasets (30 min)</h3>
 <p>Many indicators combine data from multiple sources – e.g.&nbsp;population denominators with raw counts.</p>
 <p><strong>Types of Joins:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left join - keep all rows from first table</span></span>
@@ -438,8 +446,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"area"</span>, <span class="st">"year"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="common-pitfalls" class="level3" data-number="6.2.6">
-<h3 data-number="6.2.6" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">6.2.6</span> Common Pitfalls</h3>
+<section id="common-pitfalls" class="level3" data-number="7.2.6">
+<h3 data-number="7.2.6" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">7.2.6</span> Common Pitfalls</h3>
 <ol type="1">
 <li><strong><code>pivot_longer()</code> selects wrong columns</strong> – Use <code>cols = starts_with("x")</code> or name columns explicitly. Check with <code>names(data)</code> first.</li>
 <li><strong>Join produces more rows than expected</strong> – Duplicate keys in one table cause row multiplication. Check with <code>count(data, key_column)</code>.</li>
@@ -447,8 +455,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>File not found with <code>here()</code></strong> – Ensure you’re in the R Project. Run <code>here::here()</code> alone to check the project root.</li>
 </ol>
 </section>
-<section id="part-6-real-data-workshop-45-min" class="level3" data-number="6.2.7">
-<h3 data-number="6.2.7" class="anchored" data-anchor-id="part-6-real-data-workshop-45-min"><span class="header-section-number">6.2.7</span> Part 6: Real Data Workshop (45 min)</h3>
+<section id="part-6-real-data-workshop-45-min" class="level3" data-number="7.2.7">
+<h3 data-number="7.2.7" class="anchored" data-anchor-id="part-6-real-data-workshop-45-min"><span class="header-section-number">7.2.7</span> Part 6: Real Data Workshop (45 min)</h3>
 <p>Before coding, write down 2-3 specific questions your indicator data could answer. Pick one to focus on. What chart type would best communicate the answer?</p>
 <p>Work in pairs. Each pair takes one dataset. Divide the work: one person handles import and cleaning, the other handles reshaping and visualisation. Review each other’s code before combining.</p>
 <p>Work with real WECA datasets:</p>
@@ -462,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Calculate summary statistics</li>
 </ol>
 </section>
-<section id="part-7-wrap-up-homework-15-min" class="level3" data-number="6.2.8">
-<h3 data-number="6.2.8" class="anchored" data-anchor-id="part-7-wrap-up-homework-15-min"><span class="header-section-number">6.2.8</span> Part 7: Wrap-up &amp; Homework (15 min)</h3>
+<section id="part-7-wrap-up-homework-15-min" class="level3" data-number="7.2.8">
+<h3 data-number="7.2.8" class="anchored" data-anchor-id="part-7-wrap-up-homework-15-min"><span class="header-section-number">7.2.8</span> Part 7: Wrap-up &amp; Homework (15 min)</h3>
 <p><strong>Reflection (5 min):</strong></p>
 <p>Before we finish, take 2 minutes to write down:</p>
 <ol type="1">
@@ -944,12 +952,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../sessions/session-02.html" class="pagination-link" aria-label="Session 2: R Fundamentals">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 2: R Fundamentals</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 2: R Fundamentals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../sessions/session-04.html" class="pagination-link" aria-label="Session 4: Quarto Mastery">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 4: Quarto Mastery</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 4: Quarto Mastery</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -985,7 +993,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>As in Session 2, create a new R script for today's exercises:</span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>In Positron, <span class="in">`File &gt; New File &gt; R Script`</span> (or <span class="in">`Ctrl+Shift+N`</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>In RStudio, <span class="in">`File &gt; New File &gt; R Script`</span> (or <span class="in">`Ctrl+Shift+N`</span>)</span>
 <span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Save as <span class="in">`scripts/R/session-03-practice.R`</span></span>
 <span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Add a header and load the libraries you'll need:</span>
 <span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>

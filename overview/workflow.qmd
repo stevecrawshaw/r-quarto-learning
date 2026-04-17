@@ -1,0 +1,89 @@
+---
+title: "Indicator Workflow Overview"
+---
+
+::: {.callout-note}
+This is reference material describing the end-to-end workflow for building an indicator. It is not part of the training sessions — use it as a guide once you are working independently on the project. I have used the `RI_5A1_renewable` indicator and my chapter as an example, adapt as necessary.
+:::
+
+## Why use Git and GitHub?
+
+Everyone works on the same codebase, so we need a way to track changes, maintain a stable shared version, and let each analyst experiment without breaking anyone else's work. Git provides all of this.
+
+### Getting started
+
+From the terminal (you should see a `$` prompt), clone the repository and move into it:
+
+```bash
+git clone https://github.com/westofengland-ca/weca_regional_indicators.git
+cd ~/projects/weca_regional_indicators
+```
+
+Your prompt should now show `(main)` — you are on the main branch.
+
+Next, create your own branch and switch to it in one step:
+
+```bash
+git checkout -b stevecrawshaw/05-environment
+```
+
+Your prompt will now show `(stevecrawshaw/05-environment)`. You are on your own branch and can start coding without affecting anyone else's work.
+
+## Modular Indicator Approach
+
+Each indicator lives in its own R script. Scripts go in the folder for their chapter, for example:
+
+```
+scripts/R/05-environment/RI_5A1_renewable.R
+```
+
+A few naming conventions to follow:
+
+1. **File name** — use the indicator ID, e.g. `RI_5A1_renewable.R`. This keeps the code traceable and organised.
+2. **Variable names** — prefix all variables with the indicator ID. For example, a raw data frame could be called `RI_5A1_raw_tbl`. It is a little more typing but prevents naming conflicts and makes the code easier to follow.
+3. **File paths** — always use `here()` to refer to any file path inside the repo. `here()` always resolves from the project root (`weca_regional_indicators/`), so it works regardless of where your script runs from. For example: `here("scripts", "R", "05-environment")`.
+
+## Step-by-Step Workflow
+
+1. **Make sure you are on your own branch** — check your terminal prompt shows your branch name, not `(main)`. If not, run `git checkout your-branch-name` before making any changes.
+
+2. **Put raw data in `data/raw/`** — this folder is git-ignored, so the files stay on your machine and are never pushed to GitHub.
+
+3. **Create your R script** — in RStudio, use File → New → R Script and save it in `scripts/R/05-environment/` (or whichever chapter folder applies).
+
+4. **Load libraries and source the common file** — at the top of your script:
+
+    ```r
+    pacman::p_load(tidyverse, glue, janitor, here)
+    source(here::here("scripts", "R", "_common.R"))
+    ```
+
+5. **Read your data** — load the CSV into a tibble:
+
+    ```r
+    RI_5A1_raw_tbl <- read_csv(here::here("data", "raw", "raw_data.csv"))
+    ```
+
+6. **Transform your data** — use `dplyr` verbs to clean and reshape. We cover these in the sessions.
+
+7. **Make a chart** — use `ggplot2` and assign it to a named plot object:
+
+    ```r
+    RI_5A1_plot <- ggplot(RI_5A1_raw_tbl, aes(...)) + ...
+    ```
+
+8. **Prepare the fact table** — reshape your data to a three-column tibble with `period_start`, `period_end`, and `value`, covering the time series (typically ≤ 10 years).
+
+9. **Build and save the fact file** — pipe your fact tibble into `build_fact()` and `save_fact()`. These produce standardised CSV files in `data/fact/` used to build reporting tables.
+
+10. **Add, commit, and push to Git** — from the terminal:
+
+    ```bash
+    git add scripts/R/05-environment/RI_5A1_renewable.R
+    git commit -m 'completed RI_5A1_renewable indicator'
+    git push -u origin stevecrawshaw/05-environment
+    ```
+
+    The full Git workflow is covered in [Session 5](../sessions/session-05.html).
+
+11. **Next steps** — a future session will cover how to include your charts and tables in the report.

@@ -24,6 +24,7 @@ book:
       chapters:
         - overview/course-plan.qmd
         - overview/pedagogy.qmd
+        - overview/workflow.qmd
 
     - part: "Training Sessions"
       chapters:
