@@ -30,7 +30,7 @@ This training course helps WECA analysts transition from Excel/PowerPoint workfl
 By the end of this course, you will be able to:
 
 - Navigate the command line (Git Bash) for basic file operations
-- Use Positron IDE to write and execute R code
+- Use RStudio IDE to write and execute R code
 - Load, transform, and analyse data using tidyverse packages
 - Create publication-quality visualisations with ggplot2
 - Author reproducible reports combining code, narrative, and outputs using Quarto

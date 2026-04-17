@@ -12,7 +12,7 @@ These problems typically occur during initial installation and project setup.
 
 **Solution:**
 
-- Restart terminal/Positron after Quarto installation
+- Restart terminal/RStudio after Quarto installation
 - Check PATH includes Quarto installation directory
 - Windows: May need to add to PATH manually
 
@@ -96,7 +96,7 @@ Error: object 'my_data' not found
 
 **Solution:**
 
-1. Restart R session: `Session > Restart R` in Positron
+1. Restart R session: `Session > Restart R` in RStudio
 2. Run code chunks sequentially from top to bottom
 3. Check for typos in variable names (R is case-sensitive)
 
@@ -161,7 +161,7 @@ Someone else's changes
 
 **Solution:**
 
-1. Open the file in Positron
+1. Open the file in RStudio
 2. Find the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
 3. Decide which version to keep (or combine both)
 4. Delete the conflict markers
@@ -228,7 +228,7 @@ Kernel error: Cannot start kernel
 **Solution:**
 
 1. Verify R/Python installation
-2. Restart Positron
+2. Restart RStudio
 3. Check Quarto can find R:
 
 ```bash
@@ -274,7 +274,7 @@ quarto render chapters/XX-topic/index.qmd
 2. Pull latest from GitHub
 3. Re-render the chapter
 
-### Positron Issues
+### RStudio Issues
 
 #### Code chunks don't execute
 
@@ -386,7 +386,7 @@ data_sample <- data %>% slice_sample(n = 1000)
 
 #### R session crashes
 
-**Symptom:** Positron becomes unresponsive
+**Symptom:** RStudio becomes unresponsive
 
 **Cause:** Memory issues with large datasets
 

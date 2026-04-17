@@ -30,7 +30,7 @@ Real data is messy. Column names are inconsistent, values are missing, formats a
 
 As in Session 2, create a new R script for today's exercises:
 
-1. In Positron, `File > New File > R Script` (or `Ctrl+Shift+N`)
+1. In RStudio, `File > New File > R Script` (or `Ctrl+Shift+N`)
 2. Save as `scripts/R/session-03-practice.R`
 3. Add a header and load the libraries you'll need:
 

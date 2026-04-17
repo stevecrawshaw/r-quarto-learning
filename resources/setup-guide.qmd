@@ -17,10 +17,9 @@ Install the following on all analyst machines:
    - Windows: Use default installation options
    - Verify: Open R console, check version with `R.version.string`
 
-2. **Positron** (Recommended IDE)
-   - Download: <https://github.com/posit-dev/positron/releases>
-   - Alternative: RStudio if Positron unavailable
-   - Verify: Launch Positron, create new R file
+2. **RStudio** (IDE)
+   - Download: <https://posit.co/download/rstudio-desktop/>
+   - Verify: Launch RStudio, create new R file
 
 3. **Quarto** (version ≥ 1.4)
    - Download: <https://quarto.org/docs/get-started/>
@@ -50,8 +49,8 @@ git clone https://github.com/your-org/indicators.git
 ```
 ### Install R Packages
 
-1. Open Positron
-2. Navigate to: `File > Open Folder > indicators`
+1. Open RStudio
+2. Navigate to: `File > Open Project > indicators`
 3. In R console, run:
 
 ```r
@@ -100,7 +99,7 @@ This sets up secret scanning to prevent accidental credential commits.
 
 ### Check R Environment
 
-In Positron R console:
+In RStudio R console:
 
 ```r
 # Load core packages
@@ -140,7 +139,7 @@ git config --global user.email "your.email@example.com"
 
 ### Test Full Workflow
 
-1. Open `chapters/01-economy/index.qmd` in Positron
+1. Open `chapters/01-economy/index.qmd` in RStudio
 2. Run the first code chunk (Ctrl+Shift+Enter)
 3. Render the chapter: Click "Render" button
 4. Verify HTML output opens in browser
@@ -181,8 +180,8 @@ If you encounter problems during setup, see the [Troubleshooting Guide](troubles
 Before Session 1, verify each machine:
 
 - [ ] R opens and shows correct version
-- [ ] Positron launches without errors
-- [ ] Indicators project opens in Positron
+- [ ] RStudio launches without errors
+- [ ] Indicators project opens in RStudio
 - [ ] `library(tidyverse)` loads without errors
 - [ ] `here::here()` shows correct project path
 - [ ] Test chapter renders to HTML

@@ -27,7 +27,7 @@ subtitle: "Experience the complete workflow"
 **The tools we'll learn:**
 
 - **Git Bash**: Command-line interface (the "steering wheel") — practise with the [Bash Learning Playground](../playgrounds/bash-learning-playground.html){target="_blank"}
-- **Positron**: Integrated development environment (the "dashboard")
+- **RStudio**: Integrated development environment (the "dashboard")
 - **R**: Statistical programming language (the "engine")
 - **Quarto**: Literate programming system (the "publishing press")
 - **Git/GitHub**: Version control (the "time machine + collaboration hub") — practise with the [Git Learning Playground](../playgrounds/git-learning-playground.html){target="_blank"}
@@ -41,7 +41,7 @@ subtitle: "Experience the complete workflow"
 
 **Live Demonstration (30 min)** - Instructor creates an indicator from scratch:
 
-1. Open Positron
+1. Open RStudio
 2. Navigate to `chapters/02-transport/index.qmd`
 3. Write a simple R code chunk:
 
@@ -68,8 +68,8 @@ ggplot(bus_data, aes(x = year, y = ridership)) +
 
 **Guided Practise (60 min)** - Analysts follow along:
 
-1. Open Positron (show how to launch from Start menu)
-2. Open project: `File > Open Folder > C:\Users\your.name\projects\weca_analysis_and_evaluation\projects\indicators`
+1. Open RStudio (show how to launch from Start menu)
+2. Open project: `File > Open Project > C:\Users\your.name\projects\weca_analysis_and_evaluation\projects\indicators`
 3. Open their assigned example chapter (pre-created templates)
 4. Execute the setup chunk (walk through line-by-line what it does)
 5. Modify the plot title and colours
@@ -121,7 +121,7 @@ ggplot(data, aes(x, y)) +    # Visualise
 - Code chunks → executed by R → output
 - Combined → HTML/PDF
 
-Show the "Source" vs. "Visual" editor modes in Positron.
+Show the "Source" vs. "Visual" editor modes in RStudio.
 
 ### Part 4: Your First Modification (60 min)
 
@@ -169,7 +169,7 @@ What surprised you about the code-first workflow? Share with the group if you're
 
 **Homework (1-2 hours):**
 
-1. **Watch:** [Positron tidyverse demo](https://www.youtube.com/watch?v=ndq2Mm3Dju8&t=748s)
+1. **Watch:** Search YouTube for "RStudio tidyverse introduction" to find a suitable intro video
 2. **Practise:** Modify your example indicator chapter:
    - Add a second visualisation (bar chart or scatter plot)
    - Write 2-3 sentences describing what the data shows

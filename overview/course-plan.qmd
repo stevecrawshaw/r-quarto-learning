@@ -7,19 +7,19 @@ title: "Course Plan Overview"
 This course follows evidence-based pedagogical principles:
 
 1. **"Whole Game First"** - Session 1 shows the complete workflow before diving into details
-2. **Tidyverse-First** - Human-centered R syntax (pipes, verbs) from the start
+2. **Tidyverse-First** - Human-centred R syntax (pipes, verbs) from the start
 3. **Visual Feedback Early** - Charts in Session 1 for immediate gratification
 4. **Real-World Application** - Build actual WECA indicators, not toy examples
 5. **Literate Programming** - Code + narrative from day one via Quarto
 6. **Active Learning** - Live coding, immediate practice, pair programming options
-7. **Low Friction** - Pre-installed software, standardized helper functions
+7. **Low Friction** - Pre-installed software, standardised helper functions
 
 ## Learning Outcomes
 
 By the end of this course, analysts will be able to:
 
 - Navigate the command line (Git Bash) for basic file operations
-- Use Positron IDE to write and execute R code
+- Use RStudio IDE to write and execute R code
 - Load, transform, and analyse data using tidyverse packages
 - Create publication-quality visualisations with ggplot2
 - Author reproducible reports combining code, narrative, and outputs using Quarto
@@ -41,7 +41,7 @@ By the end of this course, analysts will be able to:
 **Week Before Session 1:**
 
 1. Install software on all machines:
-   - Positron, R (≥4.3), Python (≥3.10), Quarto (≥1.4), Git, uv
+   - RStudio, R (≥4.3), Quarto (≥1.4), Git
 2. Clone `indicators` repository to `~/projects/` on each machine
 3. Run setup scripts:
    - `./scripts/install-hooks.sh` (pre-commit hooks)

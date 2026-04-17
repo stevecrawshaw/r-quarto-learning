@@ -22,7 +22,7 @@ A 5-session [training course](https://r-quarto-learning.vercel.app/) helping WEC
 
 Before Session 1, ensure you have:
 
-- [ ] Software installed (R, Positron, Quarto, Git, Python, uv)
+- [ ] Software installed (R, RStudio, Quarto, Git)
 - [ ] Indicators project cloned
 - [ ] R packages installed (`renv::restore()`)
 - [ ] Python environment set up (`uv sync`)
@@ -85,7 +85,7 @@ r-quarto-learning/
 By the end of this course, you will be able to:
 
 - Navigate the command line (Git Bash) for basic file operations
-- Use Positron IDE to write and execute R code
+- Use RStudio IDE to write and execute R code
 - Load, transform, and analyse data using tidyverse packages
 - Create publication-quality visualisations with ggplot2
 - Author reproducible reports combining code, narrative, and outputs using Quarto

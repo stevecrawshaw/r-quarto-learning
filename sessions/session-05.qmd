@@ -230,7 +230,7 @@ Bus ridership showed steady growth, increasing by 12% overall.
 **Resolution Process:**
 
 1. Identify the conflict
-2. Open the file in Positron
+2. Open the file in RStudio
 3. Review both versions
 4. Choose or combine the changes
 5. Remove conflict markers
@@ -298,7 +298,7 @@ What part of the Git workflow would you want to practise more? Share with the gr
 Over 5 sessions, you've learned to:
 
 - ✅ Navigate the command line with Git Bash
-- ✅ Use Positron IDE for R development
+- ✅ Use RStudio IDE for R development
 - ✅ Write R code using tidyverse
 - ✅ Create visualisations with ggplot2
 - ✅ Author reproducible reports with Quarto

@@ -30,7 +30,7 @@ In Session 1, you ran pre-written code. Today you learn to write your own -- to 
 
 Today you'll write R code from scratch. You need somewhere to work:
 
-1. In Positron, open the indicators project if it isn't already open
+1. In RStudio, open the indicators project if it isn't already open
 2. `File > New File > R Script` (or `Ctrl+Shift+N`)
 3. Save it straight away as `scripts/R/session-02-practice.R`
 4. Add a header comment at the top:
