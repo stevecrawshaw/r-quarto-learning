@@ -83,8 +83,8 @@ summarise(filter(area_data, population > 100000),
           mean_pop = mean(population))
 
 # Tidyverse way (sequential, readable)
-area_data %>%
-  filter(population > 100000) %>%
+area_data |>
+  filter(population > 100000) |>
   summarise(mean_pop = mean(population))
 ```
 
@@ -105,7 +105,7 @@ area_data %>%
 > 2. `select()` -- keep just the area, year, and value columns
 > 3. `mutate()` -- add a new column calculating a rate or percentage
 > 4. `summarise()` -- calculate the mean and max of a numeric column
-> 5. `group_by() %>% summarise()` -- calculate summary statistics by area
+> 5. `group_by() |> summarise()` -- calculate summary statistics by area
 >
 > Pair up for these exercises. Person A writes the `filter()` and `select()` steps; Person B writes `mutate()` and `summarise()`. Swap roles for the ggplot2 exercise in Part 4.
 
